@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import './App.css';
 import Login from './components/Login';
 import Search from './components/Search';
 
