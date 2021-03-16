@@ -1,0 +1,46 @@
+.login-box {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 400px;
+  border: 1px solid #000000;
+  border-radius: 20px;
+  padding: 20px;
+}
+
+.login-title {
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.login-email,
+.login-password {
+  font-size: 24px;
+  border-radius: 20px;
+  border-color: #000000;
+  padding: 10px;
+  outline: none;
+}
+
+.login-email {
+  margin-bottom: 10px;
+}
+
+.login-password {
+  margin-bottom: 20px;
+}
+
+.login-items {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-signin,
+.login-signup {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+.login-github {
+  font-size: 20px;
+}
