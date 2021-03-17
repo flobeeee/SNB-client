@@ -12,6 +12,7 @@ const App = () => {
 
   if (authorizationCode) {
     setAccessToken(authorizationCode);
+    setLogin(true);
   }
 
   return (
