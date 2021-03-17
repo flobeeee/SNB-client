@@ -20,7 +20,7 @@ const Login = (props) => {
   };
 
   return (
-    <div className="login-box" >
+    <div className="login-box">
       <div className="login-title">Login</div>
       <div className="login-items">
         <div className="login-input">
