@@ -9,8 +9,9 @@ const App = () => {
   const [isLogin, setLogin] = useState(false);
   const [accessToken, setAccessToken] = useState(null);
 
+
   const getAccessToken = async (authorizationCode) => {
-    let res = await axios.post('https://localhost:4000/oauth/login', { authorizationCode });
+    let res = await axios.post('https://songnumberbook.ga:4000/oauth/login', { authorizationCode });
 
     setAccessToken(res.data.accessToken);
     login();
