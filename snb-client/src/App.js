@@ -18,8 +18,12 @@ const App = () => {
     login(res.data);
   };
 
+  const logoutHandler = () => {
+    setLogin(false);
+  };
+
   const login = (data) => {
-    setLogin(!isLogin);
+    setLogin(true);
     setUserdata(data);
   };
 
@@ -39,7 +43,7 @@ const App = () => {
           <Login login={login} />
         </Route>
         <Route path='/main'>
-          <Main login={login} userdata={userdata} />
+          <Main logoutHandler={logoutHandler} userdata={userdata} />
         </Route>
         <Route path='/signup'>
           <Signup />
@@ -59,23 +63,3 @@ const App = () => {
 };
 
 export default App;
-
-// return (
-//   <Router>
-//     <Switch>
-//       <Route
-//         exact path='/'
-//         render={() => {
-//           if (isLogin) {
-//             return <Search accessToken={accessToken} />;
-//           }
-//           return <Login login={login} />;
-//         }}
-//       />
-//       <Route exact path='/signup'>
-//         <Signup />
-//       </Route>
-//     </Switch>
-//   </Router>
-// );
-// };

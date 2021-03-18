@@ -22,7 +22,7 @@ const Login = (props) => {
       { email, password },
       { 'Content-Type': 'application/json', withCredentials: true })
       .then((res) => props.login(res.data))
-      .then(() => history.push('/search'))
+      .then(() => history.push('/main'))
       .catch((err) => {
         setErrorMessage('이메일 또는 비밀번호가 올바르지 않습니다.');
       });
