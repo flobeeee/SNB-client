@@ -5,6 +5,7 @@ import './App.css';
 import Login from './components/Login';
 import Search from './components/Search';
 import Signup from './components/Signup';
+import MyPage from './components/Mypage';
 
 
 const App = () => {
@@ -42,6 +43,9 @@ const App = () => {
         </Route>
         <Route path='/signup'>
           <Signup />
+        </Route>
+        <Route path='/myPage'>
+          <MyPage />
         </Route>
         <Route
           path='/'

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-type';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import Header from './Header';
 import Song from './Song';
 import AddSong from './AddSong';
-import Mypage from './Mypage';
+import Mypage from './Mypage.js';
+import Modal from './modal/CenterModal';
+import AddList from './AddList';
 
 const Search = (props) => {
   const [result, setResult] = useState([]);
