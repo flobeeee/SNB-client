@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Header from './Header';
-import Song from './Song';
+import Header from '../components/Header';
+import Song from '../components/Song';
 import Mypage from './Mypage';
 
 require('dotenv').config;
