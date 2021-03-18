@@ -42,7 +42,7 @@ const Header = (props) => {
 
   return (
     <div className='header'>
-      <Link to="/search">
+      <Link to="/main">
         <img className='header-logo' src={logo} alt="Logo" />
       </Link>
       <div className='radio-button'>

@@ -10,6 +10,7 @@ const Login = (props) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const history = useHistory();
   const socialLoginHandler = () => {
@@ -20,8 +21,11 @@ const Login = (props) => {
     await axios.post(`${process.env.MAIN_SERVER_ADDRESS}/login`,
       { email, password },
       { 'Content-Type': 'application/json', withCredentials: true })
-      .then(() => props.login())
-      .then(() => history.push('/search'));
+      .then((res) => props.login(res.data))
+      .then(() => history.push('/search'))
+      .catch((err) => {
+        setErrorMessage('이메일 또는 비밀번호가 올바르지 않습니다.');
+      });
   };
 
   return (
@@ -45,6 +49,11 @@ const Login = (props) => {
             onChange={({ target: { value } }) => setPassword(value)}
             value={password}
           />
+          {
+            errorMessage !== ''
+              ? (<div className="login-err">{errorMessage}</div>)
+              : <div></div>
+          }
         </div>
         <div className="login-btns">
           <button className="login-signin" onClick={loginRequestHandler}>로그인</button>

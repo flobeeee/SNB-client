@@ -2,26 +2,25 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import Login from './components/Login';
-import Search from './components/Search';
-import Signup from './components/Signup';
-import MyPage from './components/Mypage';
+import Login from './pages/Login';
+import Main from './pages/Main';
+import Signup from './pages/Signup';
 
 require('dotenv').config;
 
 const App = () => {
   const [isLogin, setLogin] = useState(false);
-  const [accessToken, setAccessToken] = useState(null);
+  const [userdata, setUserdata] = useState(null);
 
-  const getAccessToken = async (authorizationCode) => {
+  const oauthLoginHandler = async (authorizationCode) => {
     let res = await axios.post(`${process.env.MAIN_SEVER_ADDRESS}/oauth/login`, { authorizationCode });
 
-    setAccessToken(res.data.accessToken);
-    login();
+    login(res.data);
   };
 
-  const login = () => {
+  const login = (data) => {
     setLogin(!isLogin);
+    setUserdata(data);
   };
 
   useEffect(() => {
@@ -29,7 +28,7 @@ const App = () => {
     const authorizationCode = url.searchParams.get('code');
 
     if (authorizationCode) {
-      getAccessToken(authorizationCode);
+      oauthLoginHandler(authorizationCode);
     }
   }, []);
 
@@ -39,20 +38,17 @@ const App = () => {
         <Route path='/login'>
           <Login login={login} />
         </Route>
-        <Route path='/search'>
-          <Search accessToken={accessToken} login={login} />
+        <Route path='/main'>
+          <Main login={login} userdata={userdata} />
         </Route>
         <Route path='/signup'>
           <Signup />
-        </Route>
-        <Route path='/myPage'>
-          <MyPage />
         </Route>
         <Route
           path='/'
           render={() => {
             if (isLogin) {
-              return <Redirect to='/search' />;
+              return <Redirect to='/main' />;
             }
             return <Redirect to='/login' />;
           }}
