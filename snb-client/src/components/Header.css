@@ -1,0 +1,64 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+
+
+}
+.header-logo {
+margin-top: 10px;
+margin-bottom: 10px;
+height: 80px;
+margin-left: 20px;
+border-radius: 100px;
+}
+.radio-button {
+margin-left: 100px;
+margin-right: -150px;
+}
+
+.header-center {
+display: flex;
+flex: 1;
+align-items: center;
+max-width: fit-content;
+padding: 20px;
+height: 30px;
+border: 1px solid lightsteelblue;
+border-radius: 100px;
+}
+.header-center > input {
+border:none;
+padding:10px;
+outline: none;
+border-radius: 100px;
+width: 400px;
+}
+.header-right {
+display:flex;
+align-items: center;
+justify-content: space-between;
+width: 15vw;
+margin-right: 50px;
+}
+.submit-button {
+height: 30px;
+width: 50px;
+}
+
+.mypage_button {
+
+height: 50px;
+width: 100px;
+}
+.logout-button {
+margin-left: 10px;
+margin-right: 10px;
+height: 50px;
+width: 100px;
+} 
