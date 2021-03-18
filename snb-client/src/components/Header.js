@@ -19,14 +19,14 @@ const Header = (props) => {
         { page: page, numberOfRow: numberOfRow, title: searchValue },
         { withCredentials: true })
         .then(res => {
-          props.getSearchResult(res.data, searchType, searchValue);
+          // props.getSearchResult(res.data, searchType, searchValue);
         });
     } else {
       axios.get('https://songnumberbook.ga:5000/v1/search/singer',
         { page: page, numberOfRow: numberOfRow, title: searchValue },
         { withCredentials: true })
         .then(res => {
-          props.getSearchResult(res.data, searchType, searchValue);
+          // props.getSearchResult(res.data, searchType, searchValue);
         });
     }
   };
