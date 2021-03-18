@@ -19,6 +19,7 @@ const Header = (props) => {
         { withCredentials: true })
         .then(res => {
           props.searchHandler(res.data.results, searchType, searchValue);
+          history.push('/search');
         });
     } else {
       axios.get('https://songnumberbook.ga:5000/v1/search/singer',
@@ -26,6 +27,7 @@ const Header = (props) => {
         { withCredentials: true })
         .then(res => {
           props.searchHandler(res.data.results, searchType, searchValue);
+          history.push('/search');
         });
     }
   };
@@ -45,7 +47,7 @@ const Header = (props) => {
 
   return (
     <div className='header'>
-      <Link to="/main">
+      <Link to="/search">
         <img className='header-logo' src={logo} alt="Logo" />
       </Link>
       <div className='radio-button'>
