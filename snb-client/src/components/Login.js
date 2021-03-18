@@ -19,7 +19,7 @@ const Login = (props) => {
       { email, password },
       { 'Content-Type': 'application/json', withCredentials: true })
       .then(() => props.login())
-      .then(() => history.push('/search'))
+      .then(() => history.push('/search'));
   };
 
   return (
