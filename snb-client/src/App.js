@@ -38,7 +38,7 @@ const App = () => {
           <Login login={login} />
         </Route>
         <Route path='/search'>
-          <Search accessToken={accessToken} />
+          <Search accessToken={accessToken} login={login} />
         </Route>
         <Route path='/signup'>
           <Signup />
