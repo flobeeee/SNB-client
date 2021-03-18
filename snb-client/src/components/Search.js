@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Header from './Header';
-import SearchSong from './SearchSong';
+import Song from './Song';
 import AddSong from './AddSong';
+import Mypage from './Mypage';
 
 const Search = () => {
   const [result, setResult] = useState([]);
   const [searchType, setSearchType] = useState('');
   const [title, setTitle] = useState('');
   const [page, setPage] = useState(2);
+  const [mypage, setMypage] = useState(false);
 
   const getSearchResult = (search, type, title) => {
     setResult(search);
@@ -28,18 +30,26 @@ const Search = () => {
     }
   };
 
+  const mypageHandler = (blooean) => {
+    setMypage(blooean);
+  };
+
   return (
     <div className="search-box">
-      <Header getSearchResult={getSearchResult} />
-      {result.map((data, index) => (
-        <SearchSong
-          key={index}
-          songNum={data.songNum}
-          title={data.title}
-          singer={data.singer}
-          link={data.link}
-        />
-      ))}
+      <Header
+        getSearchResult={getSearchResult}
+        mypageHandler={mypageHandler}
+      />
+      {mypage ? (<Mypage />) : (
+        result.map((data, index) => (
+          <Song
+            key={index}
+            songNum={data.songNum}
+            title={data.title}
+            singer={data.singer}
+            link={data.link}
+          />
+        )))}
       <div className="search-btnbox">
         <button className="search-previosbtn" onClick={() => changePage()}>이전</button>
         <button className="search-nextbtn" onClick={() => changePage()}>다음</button>
