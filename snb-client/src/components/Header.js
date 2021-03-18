@@ -8,7 +8,6 @@ import PropTypes from 'prop-types';
 const Header = (props) => {
 
   const history = useHistory();
-
   const [searchType, setsearchType] = useState('');
   const [searchValue, setSearchValue] = useState('');
 
