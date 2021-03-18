@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Login.css';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = (props) => {
@@ -8,6 +9,7 @@ const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const history = useHistory();
   const socialLoginHandler = () => {
     window.location.assign('https://github.com/login/oauth/authorize?client_id=a9141b639cb5a1982bb6');
   };
@@ -15,8 +17,9 @@ const Login = (props) => {
   const loginRequestHandler = async () => {
     await axios.post('https://songnumberbook.ga:4000/login',
       { email, password },
-      { 'Content-Type': 'application/json', withCredentials: true });
-    props.login();
+      { 'Content-Type': 'application/json', withCredentials: true })
+      .then(() => props.login())
+      .then(() => history.push('/search'));
   };
 
   return (
@@ -43,7 +46,7 @@ const Login = (props) => {
         </div>
         <div className="login-btns">
           <button className="login-signin" onClick={loginRequestHandler}>로그인</button>
-          <button className="login-signup">회원가입</button>
+          <button className="login-signup" onClick={() => history.push('/signup')}>회원가입</button>
           <button className="login-github" onClick={socialLoginHandler}>Github Login</button>
         </div>
       </div>
