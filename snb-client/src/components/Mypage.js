@@ -1,9 +1,9 @@
 import React from 'react';
 
-const AddSong = () => {
+const SearchSong = () => {
   return (
     <div>Hello world</div>
   );
 };
 
-export default AddSong;
+export default SearchSong;

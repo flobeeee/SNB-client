@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-type';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import Header from './Header';
 import Song from './Song';
-import AddSong from './AddSong';
 import Mypage from './Mypage';
+
+require('dotenv').config;
 
 const Search = (props) => {
   const [result, setResult] = useState([]);
@@ -12,6 +13,7 @@ const Search = (props) => {
   const [title, setTitle] = useState('');
   const [page, setPage] = useState(2);
   const [mypage, setMypage] = useState(false);
+  // const [song, setSong] = useState([]);
 
   const getSearchResult = (search, type, title) => {
     setResult(search);
@@ -22,11 +24,11 @@ const Search = (props) => {
   const changePage = async () => {
     if (page > 0) {
       setPage(page + 1);
-      await axios.get(`https://songnumberbook.ga:5000/v1/search/${searchType}`,
+      await axios.get(`${process.env.SCRAP_SERVER_ADDRESS}/v1/search/${searchType}`,
         { page, numOfRow: 15, title }, { withCredentials: true });
     } else {
       setPage(1);
-      await axios.get(`https://songnumberbook.ga:5000/v1/search/${searchType}`,
+      await axios.get(`${process.env.SCRAP_SERVER_ADDRESS}/v1/search/${searchType}`,
         { page, numOfRow: 15, title }, { withCredentials: true });
     }
   };
@@ -56,7 +58,14 @@ const Search = (props) => {
         <button className="search-previosbtn" onClick={() => changePage()}>이전</button>
         <button className="search-nextbtn" onClick={() => changePage()}>다음</button>
       </div>
-      <AddSong />
+      <div className="search-listbox">
+        <select name="list" id="listDropdown">
+          {/* {props.list.map((data) => {
+            <option value={data.name}>{data.name}</option>;
+          })} */}
+        </select>
+        <button className="search-aaddlistbtn">내 리스트에 저장</button>
+      </div>
     </div>
   );
 };

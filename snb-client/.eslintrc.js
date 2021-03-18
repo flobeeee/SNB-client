@@ -42,5 +42,7 @@ module.exports = {
     'indent': ['error', 2],
     // console.log 경고
     'no-console': ['warn'],
+    // no-undef 무시
+    'no-undef': ['off']
   }
 };
