@@ -27,7 +27,7 @@ module.exports = {
     // 오브젝트에 속성으로 접근할 때는 .(점)을 사용한다.
     'dot-notation': ['error', { allowKeywords: true }],
     // disallow declaration of variables that are not used in the code
-    'no-unused-vars': ['error', {
+    'no-unused-vars': ['off', {
       'args': 'none'
     }],
     // , 뒤의 공백
