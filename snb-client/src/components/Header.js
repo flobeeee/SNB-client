@@ -17,16 +17,16 @@ const Header = (props) => {
     if (searchType === 'title') {
       axios.get('https://songnumberbook.ga:5000/v1/search/title',
         { page: page, numberOfRow: numberOfRow, title: searchValue },
-        { 'Content-Type': 'application/json', withCredentials: true })
+        { withCredentials: true })
         .then(res => {
-          // props.getSearchResult(res.data);
+          props.getSearchResult(res.data, searchType, searchValue);
         });
     } else {
       axios.get('https://songnumberbook.ga:5000/v1/search/singer',
         { page: page, numberOfRow: numberOfRow, title: searchValue },
-        { 'Content-Type': 'application/json', withCredentials: true })
+        { withCredentials: true })
         .then(res => {
-          // props.getSearchResult(res.data);
+          props.getSearchResult(res.data, searchType, searchValue);
         });
     }
   };
