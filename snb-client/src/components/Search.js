@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-type';
 import axios from 'axios';
 import Header from './Header';
 import Song from './Song';
 import AddSong from './AddSong';
 import Mypage from './Mypage';
 
-const Search = () => {
+const Search = (props) => {
   const [result, setResult] = useState([]);
   const [searchType, setSearchType] = useState('');
   const [title, setTitle] = useState('');
@@ -39,6 +40,7 @@ const Search = () => {
       <Header
         getSearchResult={getSearchResult}
         mypageHandler={mypageHandler}
+        login={props.login}
       />
       {mypage ? (<Mypage />) : (
         result.map((data, index) => (
@@ -57,6 +59,10 @@ const Search = () => {
       <AddSong />
     </div>
   );
+};
+
+Search.propTypes = {
+  login: PropTypes.func
 };
 
 export default Search;
