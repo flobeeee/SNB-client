@@ -3,38 +3,47 @@ import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
 import logo from './logo.png';
 import './Header.css';
-
+import PropTypes from 'prop-types';
 const Header = (props) => {
 
   const history = useHistory();
 
   const [searchType, setsearchType] = useState('');
-  const [page, setPage] = useState(1);
   const [numberOfRow, setNumberOfRow] = useState(15);
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearch = () => {
     if (searchType === 'title') {
       axios.get('https://songnumberbook.ga:5000/v1/search/title',
-        { page: page, numberOfRow: numberOfRow, title: searchValue },
+        { page: 1, numberOfRow: numberOfRow, title: searchValue },
         { withCredentials: true })
         .then(res => {
-          // props.getSearchResult(res.data, searchType, searchValue);
+          props.getSearchResult(res.data, searchType, searchValue);
         });
     } else {
       axios.get('https://songnumberbook.ga:5000/v1/search/singer',
-        { page: page, numberOfRow: numberOfRow, title: searchValue },
+        { page: 1, numberOfRow: numberOfRow, title: searchValue },
         { withCredentials: true })
         .then(res => {
-          // props.getSearchResult(res.data, searchType, searchValue);
+          props.getSearchResult(res.data, searchType, searchValue);
         });
     }
+  };
+
+  const logoutHandler = async () => {
+
+    await axios.post('https://songsunmerbook.ga:4000/logout', null,
+      { withCredentials: true })
+      .then(res => {
+        props.login();
+        history.push('/login');
+      });
   };
 
 
   return (
     <div className='header'>
-      <Link to="/">
+      <Link to="/search">
         <img className='header-logo' src={logo} alt="Logo" />
       </Link>
       <div className='radio-button'>
@@ -61,10 +70,14 @@ const Header = (props) => {
           onClick={() =>
             history.push('/mypage')}>Mypage</button>
         <button className="logout-button"
-          onClick={() => history.push('/login')}>Logout</button>
+          onClick={() => logoutHandler()}>Logout</button>
       </div>
     </div >
   );
+};
+Header.propTypes = {
+  getSearchResult: PropTypes.func,
+  login: PropTypes.func
 };
 
 export default Header;
