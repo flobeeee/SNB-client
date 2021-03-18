@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import Login from './components/Login';
 import Search from './components/Search';
+import Signup from './components/Signup';
+
 
 const App = () => {
   const [isLogin, setLogin] = useState(false);
@@ -33,9 +35,18 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        {isLogin ? (
-          <Search accessToken={accessToken} />
-        ) : (<Login login={login} />)}
+        <Route
+          exact path='/'
+          render={() => {
+            if (isLogin) {
+              return <Search accessToken={accessToken} />;
+            }
+            return <Login login={login} />;
+          }}
+        />
+        <Route exact path='/signup'>
+          <Signup />
+        </Route>
       </Switch>
     </Router>
   );
