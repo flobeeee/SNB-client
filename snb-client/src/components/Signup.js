@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import './Signup.css';
 
+require('dotenv').config;
+
 const Signup = () => {
 
   const history = useHistory();
@@ -16,7 +18,7 @@ const Signup = () => {
     if (userEmail === '' || userPassword === '' || userName === '') {
       alert('모든 정보를 입력하세요');
     } else {
-      axios.post('https://songnumberbook.ga:4000/signup',
+      axios.post(`${process.env.MAIN_SEVER_ADDRESS}/signup`,
         { email: userEmail, password: userPassword, username: userName },
         { 'Content-Type': 'application/json', withCredentials: true })
         .then(res => {

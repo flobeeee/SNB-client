@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import axios from 'axios';
 import logo from './logo.png';
@@ -9,20 +9,19 @@ const Header = (props) => {
   const history = useHistory();
 
   const [searchType, setsearchType] = useState('');
-  const [numberOfRow, setNumberOfRow] = useState(15);
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearch = () => {
     if (searchType === 'title') {
       axios.get('https://songnumberbook.ga:5000/v1/search/title',
-        { page: 1, numberOfRow: numberOfRow, title: searchValue },
+        { page: 1, numberOfRow: 15, title: searchValue },
         { withCredentials: true })
         .then(res => {
           props.getSearchResult(res.data, searchType, searchValue);
         });
     } else {
       axios.get('https://songnumberbook.ga:5000/v1/search/singer',
-        { page: 1, numberOfRow: numberOfRow, title: searchValue },
+        { page: 1, numberOfRow: 15, title: searchValue },
         { withCredentials: true })
         .then(res => {
           props.getSearchResult(res.data, searchType, searchValue);
@@ -75,6 +74,7 @@ const Header = (props) => {
     </div >
   );
 };
+
 Header.propTypes = {
   getSearchResult: PropTypes.func,
   login: PropTypes.func
