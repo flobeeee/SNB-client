@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import Login from './components/Login';
-import Main from './components/Main';
-import Signup from './components/Signup';
+import Login from './pages/Login';
+import Main from './pages/Main';
+import Signup from './pages/Signup';
 
 require('dotenv').config;
 

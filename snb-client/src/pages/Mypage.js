@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-import Modal from './modal/CenterModal';
-import AddList from './AddList';
-import Header from './Header';
+import Modal from '../components/modal/CenterModal';
+import AddList from '../components/AddList';
+import Header from '../components/Header';
 
 const MyPage = () => {
   const email = 'user1@gmail.com';
