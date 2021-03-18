@@ -13,12 +13,26 @@ const Search = (props) => {
   const [title, setTitle] = useState('');
   const [page, setPage] = useState(2);
   const [mypage, setMypage] = useState(false);
-  // const [song, setSong] = useState([]);
+  const [song, setSong] = useState([]);
+  const [value, setValue] = useState(props.list.id);
 
   const getSearchResult = (search, type, title) => {
     setResult(search);
     setSearchType(type);
     setTitle(title);
+  };
+
+  const getSongs = (songInfo) => {
+    setSong(song.push(songInfo));
+  };
+
+  const handleClick = async () => {
+    await axios.post(`${process.env.MAIN_SERVER_ADDRESS}/mylist/song/add`,
+      { listid: value, song: song }, { withCredentials: true });
+  };
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
   };
 
   const changePage = async () => {
@@ -52,6 +66,7 @@ const Search = (props) => {
             title={data.title}
             singer={data.singer}
             link={data.link}
+            getSongs={getSongs}
           />
         )))}
       <div className="search-btnbox">
@@ -59,18 +74,22 @@ const Search = (props) => {
         <button className="search-nextbtn" onClick={() => changePage()}>다음</button>
       </div>
       <div className="search-listbox">
-        <select name="list" id="listDropdown">
-          {/* {props.list.map((data) => {
-            <option value={data.name}>{data.name}</option>;
-          })} */}
+        <select name="list" id="listDropdown" value={value} onChange={handleChange}>
+          {props.list.map((data) => {
+            <option value={data.id}>{data.listname}</option>;
+          })}
         </select>
-        <button className="search-aaddlistbtn">내 리스트에 저장</button>
+        <button className="search-aaddlistbtn" onClick={handleClick}>내 리스트에 저장</button>
       </div>
     </div>
   );
 };
 
 Search.propTypes = {
+  username: PropTypes.string,
+  email: PropTypes.email,
+  created_at: PropTypes.string,
+  list: PropTypes.array,
   login: PropTypes.func
 };
 
