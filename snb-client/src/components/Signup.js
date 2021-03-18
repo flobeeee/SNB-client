@@ -5,6 +5,8 @@ import './Signup.css';
 
 const Signup = () => {
 
+  const history = useHistory();
+
   const [userEmail, setuserEmail] = useState('');
   const [userPassword, setPassword] = useState('');
   const [userName, setuserName] = useState('');
