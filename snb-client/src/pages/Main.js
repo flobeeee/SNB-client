@@ -25,7 +25,7 @@ const Main = ({ logoutHandler, userdata }) => {
       <Header logoutHandler={logoutHandler} searchHandler={searchHandler} />
       <Switch>
         <Route path="/mypage">
-          <Mypage />
+          <Mypage userdata={userdata} />
         </Route>
         <Route path="/search">
           <Search searchValue={searchValue} searchType={searchType} title={title} userdata={userdata} nextPageValue={nextPageValue} />
