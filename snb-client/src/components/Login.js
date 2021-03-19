@@ -4,6 +4,8 @@ import './Login.css';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
+require('dotenv').config;
+
 const Login = (props) => {
 
   const [email, setEmail] = useState('');
@@ -15,7 +17,7 @@ const Login = (props) => {
   };
 
   const loginRequestHandler = async () => {
-    await axios.post('https://localhost:4000/login',
+    await axios.post(`${process.env.MAIN_SERVER_ADDRESS}/login`,
       { email, password },
       { 'Content-Type': 'application/json', withCredentials: true })
       .then(() => props.login())
