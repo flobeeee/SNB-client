@@ -6,6 +6,9 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 
 dotenv.config();
+const port = process.env.REACT_APP_INSTANCE_PORT;
+console.log(process.env);
+console.log(port);
 
 const Login = (props) => {
 
