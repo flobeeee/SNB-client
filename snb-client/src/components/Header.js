@@ -4,10 +4,10 @@ import axios from 'axios';
 import logo from './logo.png';
 import './Header.css';
 import PropTypes from 'prop-types';
+
 const Header = (props) => {
 
   const history = useHistory();
-
   const [searchType, setsearchType] = useState('');
   const [searchValue, setSearchValue] = useState('');
 
@@ -17,32 +17,33 @@ const Header = (props) => {
         { page: 1, numberOfRow: 15, title: searchValue },
         { withCredentials: true })
         .then(res => {
-          props.getSearchResult(res.data, searchType, searchValue);
+          props.searchHandler(res.data.results, searchType, searchValue);
+          history.push('/search');
         });
     } else {
       axios.get('https://songnumberbook.ga:5000/v1/search/singer',
         { page: 1, numberOfRow: 15, title: searchValue },
         { withCredentials: true })
         .then(res => {
-          props.getSearchResult(res.data, searchType, searchValue);
+          props.searchHandler(res.data.results, searchType, searchValue);
+          history.push('/search');
         });
     }
   };
 
-  const logoutHandler = async () => {
+  const logout = async () => {
 
-    await axios.post('https://songsunmerbook.ga:4000/logout', null,
+    await axios.post('https://localhost:4000/logout', null,
       { withCredentials: true })
       .then(res => {
-        props.login();
-        history.push('/login');
+        props.logoutHandler(() => history.push('/'));
       });
   };
 
 
   return (
     <div className='header'>
-      <Link to="/main">
+      <Link to="/search">
         <img className='header-logo' src={logo} alt="Logo" />
       </Link>
       <div className='radio-button'>
@@ -62,22 +63,22 @@ const Header = (props) => {
       <div className="header-center">
         <input type="search" onChange={e => setSearchValue(e.target.value)} />
         <button className='submit-button'
-          onClick={() => handleSearch()}>검색</button>
+          onClick={handleSearch}>검색</button>
       </div>
       <div className='header-right'>
         <button className="mypage_button"
           onClick={() =>
             history.push('/mypage')}>Mypage</button>
         <button className="logout-button"
-          onClick={() => logoutHandler()}>Logout</button>
+          onClick={logout}>Logout</button>
       </div>
     </div >
   );
 };
 
 Header.propTypes = {
-  getSearchResult: PropTypes.func,
-  login: PropTypes.func
+  searchHandler: PropTypes.func,
+  logoutHandler: PropTypes.func,
 };
 
 export default Header;

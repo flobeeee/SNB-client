@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
 import Login from './pages/Login';
@@ -7,10 +7,12 @@ import Main from './pages/Main';
 import Signup from './pages/Signup';
 
 require('dotenv').config;
+let cb = null;
 
 const App = () => {
   const [isLogin, setLogin] = useState(false);
   const [userdata, setUserdata] = useState(null);
+
 
   const oauthLoginHandler = async (authorizationCode) => {
     let res = await axios.post(`${process.env.MAIN_SEVER_ADDRESS}/oauth/login`, { authorizationCode });
@@ -18,10 +20,26 @@ const App = () => {
     login(res.data);
   };
 
+  const logoutHandler = (callback) => {
+    console.log('cb위', cb);
+    cb = callback;
+    console.log('cd밑', cb);
+    setLogin(false);
+
+  };
+
   const login = (data) => {
-    setLogin(!isLogin);
+    setLogin(true);
     setUserdata(data);
   };
+
+  useEffect(() => {
+    console.log('if문 밖입니다', cb);
+    if (typeof cb === 'function') {
+      console.log('if문 안입니다', cb);
+      cb();
+    }
+  }, [isLogin]);
 
   useEffect(() => {
     const url = new URL(window.location.href);
@@ -33,49 +51,39 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
+    <div>
       <Switch>
-        <Route path='/login'>
-          <Login login={login} />
+        <Route path='/login'
+          render={() => {
+            return <Login login={login} />;
+          }}>
         </Route>
-        <Route path='/main'>
-          <Main login={login} userdata={userdata} />
+        <Route exact path='/main'
+          render={() => {
+            return <Main logoutHandler={logoutHandler} userdata={userdata} />;
+          }}>
         </Route>
-        <Route path='/signup'>
-          <Signup />
+        <Route exact path='/signup'
+          render={() => {
+            return <Signup />;
+          }}>
         </Route>
         <Route
-          path='/'
+          exact path='/'
           render={() => {
             if (isLogin) {
+              alert('로그인');
               return <Redirect to='/main' />;
             }
+            alert('리다이렉트');
             return <Redirect to='/login' />;
           }}
         />
       </Switch>
-    </Router>
+    </div>
+
+
   );
 };
 
-export default App;
-
-// return (
-//   <Router>
-//     <Switch>
-//       <Route
-//         exact path='/'
-//         render={() => {
-//           if (isLogin) {
-//             return <Search accessToken={accessToken} />;
-//           }
-//           return <Login login={login} />;
-//         }}
-//       />
-//       <Route exact path='/signup'>
-//         <Signup />
-//       </Route>
-//     </Switch>
-//   </Router>
-// );
-// };
+export default withRouter(App);
