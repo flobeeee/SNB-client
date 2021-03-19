@@ -1,6 +1,9 @@
+@import "./variables.css";
+
 * {
   font-family: 'Noto Sans KR', sans-serif;
 }
+
 .signup {
   display: flex;
   flex-direction: column;
@@ -8,50 +11,52 @@
   width: 400px;
   height: 500px;
   border: 1px solid #000000;
-  border-radius: 20px;
+  border-radius: var(--radius-mid);
   padding: 20px;
-  box-shadow: 50px 80px 50px -30px #383838 
+  box-shadow: var(--shadow);
 }
-.signup-email {
-  font-size: 24px;
-  border-radius: 20px;
-  border-color: #000000;
-  border: 2px solid #000000;
+
+.signup-inputbox,
+.signup-buttonbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.signup-email,
+.signup-username,
+.signup-password,
+.signup-check {
+  font-size: var(--font-small);
+  border-radius: var(--radius-mid);
+  border: var(--item-border);
   padding: 10px;
   outline: none;
-  margin-top: 20px;
+  margin-bottom: 15px
 }
-.signup-username {
-  font-size: 24px;
-  border-radius: 20px;
-  border-color: #000000;
-  border: 2px solid #000000;
-  padding: 10px;
-  outline: none;
-}
-.login-password {
-  font-size: 24px;
-  border-radius: 20px;
-  border-color: #000000;
-  border: 2px solid #000000;
-  padding: 10px;
-  outline: none;
-}
+
 .signup-button {
-  font-size: 24px;
-  border-radius: 20px;
-  border-color: #000000;
-  border: 2px solid #000000;
+  cursor: pointer;
+  font-size: var(--font-mid);
+  border-radius: var(--radius-small);
+  border: var(--item-border);
+  background-color: var(--main-color);
   padding: 10px;
   outline: none;
-  margin-bottom: 70px;
+  margin-top: 10px;
 }
+
+.signup-error {
+  font-size: var(--font-small);
+  text-align: center;
+  color: var(--red);
+}
+
 .signup-button:hover {
-  background-color: #535353;
-  color: #ffffff;
+  background-color: var(--withe-yellow);
   transition: background-color 0.5s, color 0.5s;
 }
+
 .signup-button:active {
-  background-color: #000000;
-  transition: background-color 0s;
+  background-color: var(--yellow);
 }
