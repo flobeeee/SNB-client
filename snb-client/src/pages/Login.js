@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import './Login.css';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import dotenv from 'dotenv';
 
-require('dotenv').config;
+dotenv.config();
 
 const Login = (props) => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const history = useHistory();
   const socialLoginHandler = () => {
@@ -17,11 +19,16 @@ const Login = (props) => {
   };
 
   const loginRequestHandler = async () => {
-    await axios.post(`${process.env.MAIN_SERVER_ADDRESS}/login`,
+    await axios.post('https://localhost:4000/login',
       { email, password },
       { 'Content-Type': 'application/json', withCredentials: true })
-      .then(() => props.login())
-      .then(() => history.push('/search'));
+      .then((res) => props.login(res.data))
+      .then(() => history.push('/'))
+      .catch((err) => {
+        console.log(process.env);
+        console.log('https://localhost:4000/login');
+        setErrorMessage('이메일 또는 비밀번호가 올바르지 않습니다.');
+      });
   };
 
   return (
@@ -45,6 +52,11 @@ const Login = (props) => {
             onChange={({ target: { value } }) => setPassword(value)}
             value={password}
           />
+          {
+            errorMessage !== ''
+              ? (<div className="login-err">{errorMessage}</div>)
+              : <div></div>
+          }
         </div>
         <div className="login-btns">
           <button className="login-signin" onClick={loginRequestHandler}>로그인</button>

@@ -1,85 +1,95 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import axios from 'axios';
 import './App.css';
-import Login from './components/Login';
-import Search from './components/Search';
-import Signup from './components/Signup';
-import MyPage from './components/Mypage';
+import Login from './pages/Login';
+import Main from './pages/Main';
+import Signup from './pages/Signup';
 
 require('dotenv').config;
+//let cb = null;
 
 const App = () => {
+  const [rendering, setRedering] = useState(false);
   const [isLogin, setLogin] = useState(false);
-  const [accessToken, setAccessToken] = useState(null);
+  const [userdata, setUserdata] = useState(null);
 
-  const getAccessToken = async (authorizationCode) => {
+
+  const oauthLoginHandler = async (authorizationCode) => {
     let res = await axios.post(`${process.env.MAIN_SEVER_ADDRESS}/oauth/login`, { authorizationCode });
 
-    setAccessToken(res.data.accessToken);
-    login();
+    login(res.data);
   };
 
-  const login = () => {
-    setLogin(!isLogin);
+  const logoutHandler = (callback) => {
+    //console.log('cb위', cb);
+    //cb = callback;
+    //console.log('cd밑', cb);
+    setLogin(false);
+    //callback();
   };
+
+  const login = (data) => {
+    setLogin(true);
+    setUserdata(data);
+  };
+
+  useEffect(() => {
+    console.log('useEffect', isLogin);
+    // console.log('if문 밖입니다', cb);
+    // if (typeof cb === 'function') {
+    //   console.log('if문 안입니다', cb);
+    //   cb();
+    // }
+    setRedering(preV=>!preV);
+  }, [isLogin]);
 
   useEffect(() => {
     const url = new URL(window.location.href);
     const authorizationCode = url.searchParams.get('code');
 
     if (authorizationCode) {
-      getAccessToken(authorizationCode);
+      oauthLoginHandler(authorizationCode);
     }
   }, []);
-
+  console.log('여기는 /', isLogin, window.location.href);
   return (
-    <Router>
+    <div>
       <Switch>
-        <Route path='/login'>
-          <Login login={login} />
+        <Route exact path='/main'
+          render={() => {
+            console.log('여기는 /main', isLogin, window.location.href);
+            return <Main logoutHandler={logoutHandler} userdata={userdata} />;
+          }}>
         </Route>
-        <Route path='/search'>
-          <Search accessToken={accessToken} login={login} />
+        <Route exact path='/login'
+          render={() => {
+            console.log('여기는 /login', isLogin, window.location.href);
+            return <Login login={login} />;
+          }}>
         </Route>
-        <Route path='/signup'>
-          <Signup />
-        </Route>
-        <Route path='/myPage'>
-          <MyPage />
+        <Route exact path='/signup'
+          render={() => {
+            return <Signup />;
+          }}>
         </Route>
         <Route
           path='/'
           render={() => {
+            console.log('redirect!');
+            console.log('여기는 / refirect', isLogin, window.location.href);
             if (isLogin) {
-              return <Redirect to='/search' />;
+              console.log('login true');
+              return <Redirect to='/main' />;
             }
             return <Redirect to='/login' />;
           }}
         />
       </Switch>
-    </Router>
+    </div>
+
+
   );
 };
 
-export default App;
-
-// return (
-//   <Router>
-//     <Switch>
-//       <Route
-//         exact path='/'
-//         render={() => {
-//           if (isLogin) {
-//             return <Search accessToken={accessToken} />;
-//           }
-//           return <Login login={login} />;
-//         }}
-//       />
-//       <Route exact path='/signup'>
-//         <Signup />
-//       </Route>
-//     </Switch>
-//   </Router>
-// );
-// };
+export default withRouter(App);
