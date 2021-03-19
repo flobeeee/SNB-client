@@ -1,0 +1,18 @@
+:root {
+  --font-small: 18px;
+  --font-mid: 24px;
+  --font-large: 32px;
+  --item-border: 2px solid #000000;
+  --radius-small: 10px;
+  --radius-mid: 20px;
+  --shadow: 50px 80px 50px -30px #383838 ;
+  --main-color: #ffffff;
+  --red: #e34d68;
+  --withe-red: #ffe4e8;
+  --blue: #227aba;
+  --withe-blue: #82a6c0;
+  --grean: #16b28b;
+  --withe-grean: #81b3a6;
+  --yellow: #fabc1f;
+  --withe-yellow: #ffe9b1;
+}
