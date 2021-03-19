@@ -20,6 +20,7 @@ const Main = ({ logoutHandler, userdata }) => {
     setSearchType(searchType);
     setTitle(searchValue);
   };
+
   return (
     <Router>
       <Header logoutHandler={logoutHandler} searchHandler={searchHandler} />

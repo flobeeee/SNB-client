@@ -7,7 +7,6 @@ import AddList from '../components/AddList';
 import Userinfo from '../components/Userinfo';
 
 const Mypage = (props) => {
-  console.log(props.userdata);
   const email = 'user1@gmail.com';
   const [isOpenPopup, setIsOpenPopup] = useState(false);
 
@@ -31,10 +30,8 @@ const Mypage = (props) => {
   const requestRemoveList = async (listid) => {
     await axios.post('https://localhost:4000/mylist/remove',
       { 'listid': listid },
-      { 'Content-Type': 'application/json', withCredentials: true })
-      .then((res) => {
-        return res.status === 200 ? true : false;
-      });
+      { 'Content-Type': 'application/json', withCredentials: true });
+    await axios.get('https://localhost:4000/mylist/name',);
   };
 
   return (
