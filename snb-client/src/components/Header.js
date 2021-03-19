@@ -31,16 +31,13 @@ const Header = (props) => {
     }
   };
 
-  const logout = () => {
-    props.logoutHandler();
-    history.push('/login');
+  const logout = async () => {
 
-    // await axios.post('https://songsunmerbook.ga:4000/logout', null,
-    //   { withCredentials: true })
-    //   .then(res => {
-    //     props.logoutHandler();
-    //     history.push('/login');
-    //   });
+    await axios.post('https://localhost:4000/logout', null,
+      { withCredentials: true })
+      .then(res => {
+        props.logoutHandler(() => history.push('/'));
+      });
   };
 
 

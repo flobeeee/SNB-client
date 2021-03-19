@@ -18,11 +18,11 @@ const Login = (props) => {
   };
 
   const loginRequestHandler = async () => {
-    await axios.post(`${process.env.MAIN_SERVER_ADDRESS}/login`,
+    await axios.post('https://localhost:4000/login',
       { email, password },
       { 'Content-Type': 'application/json', withCredentials: true })
       .then((res) => props.login(res.data))
-      .then(() => history.push('/main'))
+      .then(() => history.push('/'))
       .catch((err) => {
         setErrorMessage('이메일 또는 비밀번호가 올바르지 않습니다.');
       });
