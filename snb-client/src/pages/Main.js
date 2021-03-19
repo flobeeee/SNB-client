@@ -10,15 +10,15 @@ const Main = ({ logoutHandler, userdata }) => {
   const [searchValue, setSearchValue] = useState(null);
   const [searchType, setSearchType] = useState('');
   const [title, setTitle] = useState('');
-
-  const nextPageValue = (data) => {
-    setSearchValue(data);
-  };
+  const [isNext, setIsnext] = useState(true);
+  const [nowPages, setNowPages] = useState(1);
 
   const searchHandler = (data, searchType, searchValue) => {
-    setSearchValue(data);
-    setSearchType(searchType);
-    setTitle(searchValue);
+    setSearchValue(data); //헤더에서 검색한 결과(노래들이 들어있는 배열)
+    setSearchType(searchType); //가수 OR 제목
+    setTitle(searchValue); //헤더에서 검색한 검색어
+    setIsnext(data.page.isNext);//헤더에서 처음 검색했을 때 가지고 오는 next값
+    setNowPages(data.page.nowPages); //헤더에서 처음 검색했을 때 가지고 오는 nowpages값
   };
   return (
     <Router>
@@ -28,7 +28,7 @@ const Main = ({ logoutHandler, userdata }) => {
           <Mypage />
         </Route>
         <Route path="/search">
-          <Search searchValue={searchValue} searchType={searchType} title={title} userdata={userdata} nextPageValue={nextPageValue} />
+          <Search searchValue={searchValue} searchType={searchType} title={title} userdata={userdata} isNext={isNext} nowPages={nowPages} />
         </Route>
       </Switch >
     </Router >
