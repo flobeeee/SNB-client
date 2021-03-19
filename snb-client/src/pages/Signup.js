@@ -19,11 +19,13 @@ const Signup = () => {
   const handleInputValue = () => {
     // eslint-disable-next-line no-empty
     if (userEmail === '' || userPassword === '' || userName === '') {
-      setErrorMessage('모든 정보를 입력해주세요');
+      setErrorMessage('모든 정보를 입력해야 합니다.');
     } else if (userPassword !== passwordCheck) {
       setErrorMessage('비밀번호가 일치하지 않습니다.');
+    } else if (userPassword.length <= 4) {
+      setErrorMessage('비밀번호 길이는 4글자 이상이어야 합니다.');
     } else {
-      axios.post(`${process.env.MAIN_SEVER_ADDRESS}/signup`,
+      axios.post(`${process.env.REACT_APP_MAIN_SEVER_ADDRESS}/signup`,
         { email: userEmail, password: userPassword, username: userName },
         { 'Content-Type': 'application/json', withCredentials: true })
         .then(res => {
