@@ -14,6 +14,15 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
   const [nowPage, setNowPage] = useState(nowPages);
   const [Next, setnext] = useState(isNext);
 
+  console.log('값이 바뀌나요?', result);
+
+  useEffect(() => {
+    setResult(searchValue);
+    setPage(1);
+    setNowPage(nowPages);
+    setnext(isNext);
+  }, [searchValue, searchType, title, userdata, isNext, nowPages]);
+
   const NextPage = async () => {
 
     if (Next === true || page < nowPage) {
@@ -27,6 +36,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
             setnext(res.data.page.isNext);
             setPage(page + 1);
             setNowPage(res.data.page.nowPages);
+            setSongList([]);
           });
       } else {
         await axios.get(`https://localhost:5000/v1/search/${searchType}`,
@@ -37,6 +47,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
             setnext(res.data.page.isNext);
             setPage(page + 1);
             setNowPage(res.data.page.nowPages);
+            setSongList([]);
           });
       }
     } else {
@@ -56,6 +67,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
             setnext(res.data.page.isNext);
             setPage(page - 1);
             setNowPage(res.data.page.nowPages);
+            setSongList([]);
           });
       } else {
         await axios.get(`https://localhost:5000/v1/search/${searchType}`,
@@ -66,10 +78,11 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
             setnext(res.data.page.isNext);
             setPage(page - 1);
             setNowPage(res.data.page.nowPages);
+            setSongList([]);
           });
       }
     } else {
-      alert('마지막 페이지 입니다');
+      alert('첫 번째 페이지 입니다');
     }
   };
 
@@ -85,31 +98,16 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
     }
   };
 
-  const [checking, setChecking] = useState(null);
-
-  const checkingHandler = () => {
-    setChecking(null);
-  };
-
-  useEffect(() => {
-    setChecking(false);
-
-    console.log('checking');
-  }, [page]);
-
-
-
   return (
     <div className="search-box">
-      {result.results.map((data, index) => (
+      {result.results.map((data) => (
         <Song
-          key={index}
+          key={data.songNum}
           songNum={data.songNum}
           title={data.title}
           singer={data.singer}
           link={data.link}
           getSongs={getSongs}
-          checking={checking}
         />
       ))}
       <AddSong userdata={userdata} songList={songList} />
