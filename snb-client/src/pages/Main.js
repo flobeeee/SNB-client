@@ -5,7 +5,7 @@ import Search from './Search';
 import Mypage from './Mypage';
 import PropTypes from 'prop-types';
 
-const Main = ({ logoutHandler, userdata }) => {
+const Main = ({ logoutHandler, userdata, listHandler }) => {
 
   const [searchValue, setSearchValue] = useState(null);
   const [searchType, setSearchType] = useState('');
@@ -26,7 +26,7 @@ const Main = ({ logoutHandler, userdata }) => {
       <Header logoutHandler={logoutHandler} searchHandler={searchHandler} />
       <Switch>
         <Route path="/mypage">
-          <Mypage userdata={userdata} />
+          <Mypage userdata={userdata} listHandler={listHandler} />
         </Route>
         <Route path="/search">
           <Search searchValue={searchValue} searchType={searchType} title={title} userdata={userdata} nextPageValue={nextPageValue} />
@@ -38,6 +38,7 @@ const Main = ({ logoutHandler, userdata }) => {
 
 Main.propTypes = {
   logoutHandler: PropTypes.func,
+  listHandler: PropTypes.func,
   userdata: PropTypes.object
 };
 
