@@ -1,3 +1,5 @@
+@import "../variables.css";
+
 * {
   font-family: 'Noto Sans KR', sans-serif;
 }
@@ -10,19 +12,18 @@
   border: 1px solid #000000;
   border-radius: 20px;
   padding: 20px;
-  box-shadow: 50px 80px 50px -30px #383838 
+  box-shadow: var(--shadow);
 }
 
 .login-title {
-  font-size: 32px;
+  font-size: var(--font-large);
   margin-bottom: 20px;
 }
 
 .login-email,
 .login-password {
-  font-size: 24px;
-  border-radius: 20px;
-  border-color: #000000;
+  font-size: var(--font-mid);
+  border-radius: var(--radius-mid);
   border: 2px solid #000000;
   padding: 10px;
   outline: none;
@@ -30,10 +31,6 @@
 
 .login-email {
   margin-bottom: 10px;
-}
-
-.login-password {
-  margin-bottom: 50px;
 }
 
 .login-items {
@@ -49,6 +46,12 @@
   margin-top: 20px;
 }
 
+.login-err {
+  font-size: var(--font-small);
+  text-align: center;
+  color: var(--red);
+}
+
 .login-btns {
   display: flex;
   flex-direction: column;
@@ -57,35 +60,45 @@
 .login-signin,
 .login-signup {
   margin-bottom: 10px;
-  font-size: 20px;
+  font-size: var(--font-mid);
   padding: 10px;
   background-color: #ffffff;
   outline: none;
-  border: 2px solid #000000;
-  border-radius: 10px;
+  border: var(--item-border);
+  border-radius: var(--radius-small);
   font-weight: 500;
+  cursor: pointer;
 }
 
 .login-signin:hover,
 .login-signup:hover {
-  background-color: #535353;
-  color: #ffffff;
+  background-color: var(--withe-yellow);
   transition: background-color 0.5s, color 0.5s;
 }
 
 .login-signin:active,
 .login-signup:active {
-  background-color: #000000;
-  transition: background-color 0s;
+  background-color: var(--yellow);
 }
 
 .login-github {
-  font-size: 20px;
+  cursor: pointer;
+  font-size: var(--font-mid);
   background-color: #000000;
   padding: 10px;
   outline: none;
-  border: 2px solid #000000;
-  border-radius: 10px;
+  border: var(--item-border);
+  border-radius: var(--radius-small);
   color: #ffffff;
   font-weight: 500;
+}
+
+.login-github:hover {
+  background-color: #535353;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.login-github:active {
+  background-color: var(--main-color);
+  color: #000000;
 }

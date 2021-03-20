@@ -50,12 +50,12 @@ const Login = (props) => {
             onChange={({ target: { value } }) => setPassword(value)}
             value={password}
           />
-          {
-            errorMessage !== ''
-              ? (<div className="login-err">{errorMessage}</div>)
-              : <div></div>
-          }
         </div>
+        {
+          errorMessage !== ''
+            ? (<div className="login-err">{errorMessage}</div>)
+            : <div></div>
+        }
         <div className="login-btns">
           <button className="login-signin" onClick={loginRequestHandler}>로그인</button>
           <button className="login-signup" onClick={() => history.push('/signup')}>회원가입</button>

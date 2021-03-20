@@ -12,20 +12,23 @@ const Header = (props) => {
   const [searchValue, setSearchValue] = useState('');
 
   const handleSearch = () => {
+    console.log('SearchType', searchType);
     if (searchType === 'title') {
-      axios.get('https://songnumberbook.ga:5000/v1/search/title',
-        { page: 1, numberOfRow: 15, title: searchValue },
+      axios.get('https://localhost:5000/v1/search/title',
+        { params: { page: 1, numOfRow: 15, title: searchValue } },
         { withCredentials: true })
         .then(res => {
-          props.searchHandler(res.data.results, searchType, searchValue);
+          console.log('서버응답', res);
+          props.searchHandler(res.data, searchType, searchValue);
           history.push('/search');
         });
     } else {
-      axios.get('https://songnumberbook.ga:5000/v1/search/singer',
-        { page: 1, numberOfRow: 15, title: searchValue },
+      axios.get('https://localhost:5000/v1/search/singer',
+        { params: { page: 1, numOfRow: 15, singer: searchValue } },
         { withCredentials: true })
         .then(res => {
-          props.searchHandler(res.data.results, searchType, searchValue);
+          console.log('서버응답', res);
+          props.searchHandler(res.data, searchType, searchValue);
           history.push('/search');
         });
     }
@@ -49,13 +52,13 @@ const Header = (props) => {
       <div className='radio-button'>
         <div className="singer">
           <label>
-            <input name='radio' type="radio" value="singer" checked={true} onChange={(e) => setsearchType(e.target.value)} />
+            <input name='radio' type="radio" value="singer" onChange={() => setsearchType('singer')} />
             가수
           </label>
         </div>
         <div className="title">
           <label>
-            <input name='radio' type="radio" value="title" checked={true} onChange={(e) => setsearchType(e.target.value)} />
+            <input name='radio' type="radio" value="title" onChange={() => setsearchType('title')} />
             제목
           </label>
         </div>
