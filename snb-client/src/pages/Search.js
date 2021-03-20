@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import Song from '../components/Song';
 import axios from 'axios';
 import AddSong from '../components/AddSong';
+import './Search.css';
 
 require('dotenv').config;
-//searchValue는 배열이다
+
 const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) => {
 
   const [result, setResult] = useState(searchValue);
@@ -13,8 +14,6 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
   const [page, setPage] = useState(1);
   const [nowPage, setNowPage] = useState(nowPages);
   const [Next, setnext] = useState(isNext);
-
-  console.log('값이 바뀌나요?', result);
 
   useEffect(() => {
     setResult(searchValue);
@@ -94,28 +93,35 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
       setSongList(song);
     } else {
       setSongList([...songList, songInfo.data]);
-      console.log('노래 정보', songInfo);
     }
   };
 
   return (
-    <div className="search-box">
-      {result.results.map((data) => (
-        <Song
-          key={data.songNum}
-          songNum={data.songNum}
-          title={data.title}
-          singer={data.singer}
-          link={data.link}
-          getSongs={getSongs}
-        />
-      ))}
-      <AddSong userdata={userdata} songList={songList} />
-      <div className='page-box'>
-        <div className="search-btnbox">
-          <button className="search-previosbtn" onClick={() => PreviousPage()}>이전</button>
-          <button className="search-nextbtn" onClick={() => NextPage()}>다음</button>
+    <div className='search-box'>
+      <div className='info'>
+        <div className='info-num'>번호</div>
+        <div className='info-title'>제목</div>
+        <div className='info-singer'>가수</div>
+        <div className='info-media'>미디어</div>
+        <div className='info-dropdown'>
+          <AddSong userdata={userdata} songList={songList} />
         </div>
+      </div>
+      <div className='songs'>
+        {result.results.map((data) => (
+          <Song
+            key={data.songNum}
+            songNum={data.songNum}
+            title={data.title}
+            singer={data.singer}
+            link={data.link}
+            getSongs={getSongs}
+          />
+        ))}
+      </div>
+      <div className='search-btnbox'>
+        <button className='search-previosbtn' onClick={() => PreviousPage()}>이전</button>
+        <button className='search-nextbtn' onClick={() => NextPage()}>다음</button>
       </div>
     </div>
 
