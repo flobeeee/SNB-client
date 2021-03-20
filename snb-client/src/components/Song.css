@@ -1,0 +1,23 @@
+
+.body {
+  width: 100%;
+}
+.songdata {
+    display: flex;
+    justify-content: space-between;
+    width: 1400px;
+    height: 100%;
+    border: grey 1px solid;
+}
+.checkbox {
+  display: flex;
+  width:30px;
+  height:50px;
+  
+}
+.search-btnbox {
+  display: flex;
+  margin-top: 100px;
+  justify-content:center;
+}
+
