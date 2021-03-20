@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../components/Song.css';
+import youtubeLogo from '../components/youtube-logo.jpeg';
 
-const Song = ({ songNum, title, singer, getSongs, link, checking }) => {
+const Song = ({ songNum, title, singer, getSongs, link }) => {
 
   const [checked, setchecked] = useState(true);
 
@@ -16,7 +17,10 @@ const Song = ({ songNum, title, singer, getSongs, link, checking }) => {
       <div className="songNum">{songNum}</div>
       <div className="title">{title}</div>
       <div className="singer">{singer}</div>
-      <input className="checkbox" type="checkbox" defaultChecked={false} name={`${songNum}`} onChange={getSongsHandler} />
+      <a href={`${link}`} target='_blank' rel="noopener noreferrer">
+        <img className='link-image' src={youtubeLogo} alt='Logo' />
+      </a>
+      <input className="checkbox" type="checkbox" name={`${songNum}`} onChange={getSongsHandler} />
     </div>
 
   );
