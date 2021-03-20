@@ -5,7 +5,7 @@ import Search from './Search';
 import Mypage from './Mypage';
 import PropTypes from 'prop-types';
 
-const Main = ({ logoutHandler, userdata }) => {
+const Main = ({ logoutHandler, userdata, listHandler }) => {
 
   const [searchValue, setSearchValue] = useState(null);
   const [searchType, setSearchType] = useState('');
@@ -20,12 +20,13 @@ const Main = ({ logoutHandler, userdata }) => {
     setIsnext(data.page.isNext);//헤더에서 처음 검색했을 때 가지고 오는 next값
     setNowPages(data.page.nowPages); //헤더에서 처음 검색했을 때 가지고 오는 nowpages값
   };
+
   return (
     <Router>
       <Header logoutHandler={logoutHandler} searchHandler={searchHandler} />
       <Switch>
         <Route path="/mypage">
-          <Mypage />
+          <Mypage userdata={userdata} listHandler={listHandler} />
         </Route>
         <Route path="/search">
           <Search searchValue={searchValue} searchType={searchType} title={title} userdata={userdata} isNext={isNext} nowPages={nowPages} />
@@ -37,6 +38,7 @@ const Main = ({ logoutHandler, userdata }) => {
 
 Main.propTypes = {
   logoutHandler: PropTypes.func,
+  listHandler: PropTypes.func,
   userdata: PropTypes.object
 };
 

@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 
 import { Wrapper, Header, Title, Content, InputName, AddButton, Comment } from './AddListStyle';
 
-const AddList = ({addListCallback, closeCallback}) => {
+const AddList = ({ addListCallback, closeCallback }) => {
 
   const [name, setName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const handleAddEvent = async () => {
-    if(name.length < 1) {
+    if (name.length < 1) {
       setErrorMessage('한 글자 이상 입력해야 합니다.');
       return;
     }
