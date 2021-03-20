@@ -36,12 +36,7 @@ const Header = (props) => {
     await axios.post('https://localhost:4000/logout', null,
       { withCredentials: true })
       .then(res => {
-<<<<<<< HEAD
-        //props.logoutHandler(() => history.push('/'));
-        //window.location.href = '/';
-=======
         props.logoutHandler();
->>>>>>> 4eb102f4c2772f0d319ac203b6829a32e6924750
       });
   };
 

@@ -6,9 +6,6 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const port = process.env.REACT_APP_INSTANCE_PORT;
-console.log(process.env);
-console.log(port);
 
 const Login = (props) => {
 
@@ -28,8 +25,6 @@ const Login = (props) => {
       .then((res) => props.login(res.data))
       .then(() => history.push('/'))
       .catch((err) => {
-        console.log(process.env);
-        console.log('https://localhost:4000/login');
         setErrorMessage('이메일 또는 비밀번호가 올바르지 않습니다.');
       });
   };
