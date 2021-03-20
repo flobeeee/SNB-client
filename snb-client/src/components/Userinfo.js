@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-import Modal from '../components/modal/CenterModal';
-import AddList from '../components/AddList';
-import RemoveList from '../components/RemoveList';
-import Song from '../components/Song';
+import Modal from './modal/CenterModal';
+import AddList from './AddList';
+import RemoveList from './RemoveList';
+import Song from './Song';
 
 const Userinfo = ({ userdata, listHandler }) => {
   const [list, setList] = useState('');
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [isAddBtn, setIsAddBtn] = useState(true);
   const [songs, setSongs] = useState([]);
+  const [songList, setSongList] = useState([]);
 
   const isAdd = (e) => {
     if (e.target.value === 'true') {
@@ -38,6 +39,7 @@ const Userinfo = ({ userdata, listHandler }) => {
       { 'Content-Type': 'application/json', withCredentials: true })
       .then((res) => {
         userdata.lists.push({ id: res.data.id, name });
+        setSongs([]);
         return res.status === 201 ? true : false;
       });
   };
@@ -58,12 +60,23 @@ const Userinfo = ({ userdata, listHandler }) => {
     return `${yymmdd[0]}년 ${yymmdd[1]}월 ${yymmdd[2]}일 가입`;
   };
 
+  const getSongs = (songInfo) => {
+    if (songInfo.checked === false) {
+      let result = songList.filter(el => songList.title !== songInfo.title);
+      setSongList(result);
+    } else {
+      setSongLsit([...songList, (songInfo)]);
+    }
+  };
+
   useEffect(async () => {
-    console.log('useEffect');
-    const getSongs = await axios.post('https://localhost:4000/mylist/info',
-      { 'listid': Number(list) },
-      { 'Content-Type': 'application/json', withCredentials: true });
-    setSongs(getSongs);
+    if (list) {
+      await axios.post('https://localhost:4000/mylist/info',
+        { 'listid': Number(list) },
+        { 'Content-Type': 'application/json', withCredentials: true })
+        .then((res) => setSongs(res.data.Song))
+        .catch(() => setSongs([]));
+    }
   }, [list]);
 
   return (
@@ -90,20 +103,24 @@ const Userinfo = ({ userdata, listHandler }) => {
           value={list}
           onChange={e => setList(e.target.value)}
         >
+          <option className="userinfo-option" >리스트를 선택해주세요</option>
           {userdata.lists.map(data => {
             return <option className="userinfo-option" key={data.id} value={data.id}>{data.name}</option>;
           })}
         </select>
         <button className="userinfo-addlist" onClick={isAdd} value="true">add List</button>
         <button className="userinfo-removelist" onClick={isAdd} value="false">remove List</button>
-        <div className="userinfo-songs">
-          {songs?.data?.Song?.map((data) => {
-            <Song
-              key={data.songNum}
-              songNum={data.songNum} />;
-          })}
-        </div>
       </div>
+      {songs ? (songs.map((data) =>
+        <Song
+          key={data.songNum}
+          songNum={data.songNum}
+          title={data.title}
+          singer={data.singer}
+          link={data.link}
+          getSongs={getSongs}
+        />))
+        : <div></div>}
     </div>
   );
 };
