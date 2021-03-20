@@ -97,7 +97,7 @@ const Userinfo = ({ userdata, listHandler }) => {
         <button className="userinfo-addlist" onClick={isAdd} value="true">add List</button>
         <button className="userinfo-removelist" onClick={isAdd} value="false">remove List</button>
         <div className="userinfo-songs">
-          {songs.data.Song.map((data) => {
+          {songs?.data?.Song?.map((data) => {
             <Song
               key={data.songNum}
               songNum={data.songNum} />;
