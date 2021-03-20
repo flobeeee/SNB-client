@@ -103,9 +103,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
         <div className='info-title'>제목</div>
         <div className='info-singer'>가수</div>
         <div className='info-media'>미디어</div>
-        <div className='info-dropdown'>
-          <AddSong userdata={userdata} songList={songList} />
-        </div>
+        <div className='info-check'>선택</div>
       </div>
       <div className='songs'>
         {result.results.map((data) => (
@@ -119,9 +117,14 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
           />
         ))}
       </div>
-      <div className='search-btnbox'>
-        <button className='search-previosbtn' onClick={() => PreviousPage()}>이전</button>
-        <button className='search-nextbtn' onClick={() => NextPage()}>다음</button>
+      <div className='addsong-dropdown'>
+        <div className='info-dropdown'>
+          <AddSong userdata={userdata} songList={songList} />
+        </div>
+        <div className='search-btnbox'>
+          <button className='search-previusbtn' onClick={() => PreviousPage()}>이전</button>
+          <button className='search-nextbtn' onClick={() => NextPage()}>다음</button>
+        </div>
       </div>
     </div>
 
