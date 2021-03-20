@@ -5,14 +5,15 @@ import axios from 'axios';
 import Modal from '../components/modal/CenterModal';
 import AddList from '../components/AddList';
 import RemoveList from '../components/RemoveList';
+import Song from '../components/Song';
 
 const Userinfo = ({ userdata, listHandler }) => {
   const [list, setList] = useState('');
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [isAddBtn, setIsAddBtn] = useState(true);
+  const [songs, setSongs] = useState([]);
 
   const isAdd = (e) => {
-    // console.log(e.target.value);
     if (e.target.value === 'true') {
       setIsAddBtn(true);
       openPopUp();
@@ -24,7 +25,6 @@ const Userinfo = ({ userdata, listHandler }) => {
   };
 
   const openPopUp = () => {
-    console.log(isAddBtn);
     setIsOpenPopup(true);
   };
 
@@ -38,7 +38,6 @@ const Userinfo = ({ userdata, listHandler }) => {
       { 'Content-Type': 'application/json', withCredentials: true })
       .then((res) => {
         userdata.lists.push({ id: res.data.id, name });
-        console.log(userdata.lists, '추가 완료');
         return res.status === 201 ? true : false;
       });
   };
@@ -49,10 +48,23 @@ const Userinfo = ({ userdata, listHandler }) => {
       { 'Content-Type': 'application/json', withCredentials: true })
       .then((res) => {
         userdata.lists = userdata.lists.filter((data) => data.id !== Number(list));
-        console.log(userdata.lists, '제거 완료');
         return res.status === 200 ? true : false;
       });
   };
+
+  const getDate = () => {
+    const date = userdata.createdAt.split('T');
+    const yymmdd = date[0].split('-');
+    return `${yymmdd[0]}년 ${yymmdd[1]}월 ${yymmdd[2]}일 가입`;
+  };
+
+  useEffect(async () => {
+    console.log('useEffect');
+    const getSongs = await axios.post('https://localhost:4000/mylist/info',
+      { 'listid': Number(list) },
+      { 'Content-Type': 'application/json', withCredentials: true });
+    setSongs(getSongs);
+  }, [list]);
 
   return (
     <div className="userinfo-box">
@@ -68,11 +80,10 @@ const Userinfo = ({ userdata, listHandler }) => {
             closeCallback={closePopUp}
             listHandler={listHandler}
           />)}
-
       </Modal>
       <div className="userinfo-username">{userdata.username}</div>
       <div className="userinfo-email">{userdata.email}</div>
-      <div className="userinfo-createdAt">{userdata.createdAt}</div>
+      <div className="userinfo-createdAt">{getDate()}</div>
       <div className="userinfo-listbox">
         <select
           className="userinfo-dropdown"
@@ -83,8 +94,15 @@ const Userinfo = ({ userdata, listHandler }) => {
             return <option className="userinfo-option" key={data.id} value={data.id}>{data.name}</option>;
           })}
         </select>
-        <button className="userinfo-addlist" onClick={isAdd} value={true}>add List</button>
-        <button className="userinfo-removelist" onClick={isAdd} value={false}>remove List</button>
+        <button className="userinfo-addlist" onClick={isAdd} value="true">add List</button>
+        <button className="userinfo-removelist" onClick={isAdd} value="false">remove List</button>
+        <div className="userinfo-songs">
+          {songs.data.Song.map((data) => {
+            <Song
+              key={data.songNum}
+              songNum={data.songNum} />;
+          })}
+        </div>
       </div>
     </div>
   );
