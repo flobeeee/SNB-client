@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, Link, NavLink } from 'react-router-dom';
 import axios from 'axios';
-import logo from './logo.png';
+import logo from '../res/snb_logo.png';
 import './Header.css';
 import PropTypes from 'prop-types';
 
@@ -10,6 +10,9 @@ const Header = (props) => {
   const history = useHistory();
   const [searchType, setsearchType] = useState('');
   const [searchValue, setSearchValue] = useState('');
+  //const [path, setPath] = useState(history.location.pathname);
+
+  //console.log(history.location.pathname);
 
   const handleSearch = () => {
     console.log('SearchType', searchType);
@@ -34,6 +37,10 @@ const Header = (props) => {
     }
   };
 
+  const handleFilterPopup = () => {
+    console.log('필터팝업');
+  };
+
   const logout = async () => {
 
     await axios.post('https://localhost:4000/logout', null,
@@ -43,37 +50,57 @@ const Header = (props) => {
       });
   };
 
+  const handleNavClick = (e) => {
+    const parentClassList = e.target.parentNode.classList;
+    const parentStyle = e.target.parentNode.style;
+    //console.log(e.target.parentNode.style);
+    //parentClassList.add('current');
+    parentStyle.borderTop = '5px solid var(--nav-point-color)';
+    history.push(e.target.value);
+  };
+
 
   return (
     <div className='header'>
       <Link to="/search">
-        <img className='header-logo' src={logo} alt="Logo" />
+        <img className='header-logo' alt="Logo" src={logo}/>
       </Link>
-      <div className='radio-button'>
-        <div className="singer">
-          <label>
-            <input name='radio' type="radio" value="singer" onChange={() => setsearchType('singer')} />
-            가수
-          </label>
-        </div>
-        <div className="title">
-          <label>
-            <input name='radio' type="radio" value="title" onChange={() => setsearchType('title')} />
-            제목
-          </label>
+      <div className="header-search-bar">
+        <input type="search" placeholder="Search" onChange={e => setSearchValue(e.target.value)} />
+        <div className="header-search-bar-btns">
+          <button className='submit-button' onClick={handleSearch}></button>
+          <button className='filter-button' onClick={handleFilterPopup}>
+            <div className="filter-tooltip">
+              <div className='radio-button'>
+                <div className="singer">
+                  <label className="tooltip-container">
+                    <input name='radio' type="radio" value="singer" onChange={() => setsearchType('singer')} />
+                    <span className="checkmark"></span>
+                    가수
+                  </label>
+                </div>
+                <div className="title">
+                  <label className="tooltip-container">
+                    <input name='radio' type="radio" value="title" onChange={() => setsearchType('title')} checked/>
+                    <span className="checkmark"></span>
+                    제목
+                  </label>
+                </div>
+              </div>
+            </div>
+          </button>
         </div>
       </div>
-      <div className="header-center">
-        <input type="search" onChange={e => setSearchValue(e.target.value)} />
-        <button className='submit-button'
-          onClick={handleSearch}>검색</button>
-      </div>
-      <div className='header-right'>
-        <button className="mypage_button"
-          onClick={() =>
-            history.push('/mypage')}>Mypage</button>
-        <button className="logout-button"
-          onClick={logout}>Logout</button>
+      <div className='header-nav'>
+        <NavLink className='nav-link' to="/mypage" activeStyle={{
+          fontWeight: 'bold',
+          borderTop: '5px solid var(--nav-point-color)'
+        }}>
+          <div className='nav-container'>
+            <span>Mypage</span>
+          </div>
+        </NavLink>
+        <button className="logout-button" onClick={logout}></button>
       </div>
     </div >
   );
@@ -82,7 +109,7 @@ const Header = (props) => {
 Header.propTypes = {
   searchHandler: PropTypes.func,
   logoutHandler: PropTypes.func,
-  history: PropTypes.object
+  history: PropTypes.object,
 };
 
 export default Header;
