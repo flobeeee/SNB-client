@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useHistory, Link, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../res/snb_logo.png';
@@ -11,6 +11,8 @@ const Header = (props) => {
   const [searchType, setsearchType] = useState('');
   const [searchValue, setSearchValue] = useState('');
   //const [path, setPath] = useState(history.location.pathname);
+
+  const filterTooltip = useRef();
 
   //console.log(history.location.pathname);
 
@@ -38,7 +40,13 @@ const Header = (props) => {
   };
 
   const handleFilterPopup = () => {
-    console.log('필터팝업');
+    const visibility = filterTooltip.current.style.visibility;
+
+    if(visibility === 'hidden') {
+      filterTooltip.current.style.visibility = 'visible';
+    } else {
+      filterTooltip.current.style.visibility = 'hidden';
+    }
   };
 
   const logout = async () => {
@@ -70,7 +78,7 @@ const Header = (props) => {
         <div className="header-search-bar-btns">
           <button className='submit-button' onClick={handleSearch}></button>
           <button className='filter-button' onClick={handleFilterPopup}>
-            <div className="filter-tooltip">
+            <div className="filter-tooltip" ref={filterTooltip}>
               <div className='radio-button'>
                 <div className="singer">
                   <label className="tooltip-container">
