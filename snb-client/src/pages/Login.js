@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import './Login.css';
 import { useHistory } from 'react-router-dom';
 import axios from 'axios';
+import dotenv from 'dotenv';
 
-require('dotenv').config;
+dotenv.config();
 
 const Login = (props) => {
 
