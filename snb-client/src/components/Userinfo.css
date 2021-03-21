@@ -1,0 +1,34 @@
+.userinfo {
+  position: absolute;
+  left: 0px;
+  top: 100px;
+  display: flex;
+  width: 100%;
+  margin: 0px 20px;
+}
+
+.userinfo-box {
+  width: 25%;
+}
+
+.userinfo-rightbox {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+
+.userinfo-removebox {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  margin-right: 40px;
+}
+
+.userinfo-removesong {
+  width: 80px;
+  height: 50px;
+}
+
+.userinfo-songbar {
+  display: flex;
+}

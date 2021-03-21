@@ -47,7 +47,7 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <Switch>
         <Route path='/login'
           render={() => {
@@ -75,7 +75,7 @@ const App = () => {
           }}
         />
       </Switch>
-    </div>
+    </>
 
 
   );
