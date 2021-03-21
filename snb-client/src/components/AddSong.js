@@ -31,14 +31,12 @@ const AddSong = ({ userdata, songList }) => {
 
   return (
     <div className='addsong'>
-      <div className="search-listbox">
-        <select name="list" id="listDropdown" value={value} onChange={handleChange}>
-          {userdata.lists.map(list => {
-            return <option key={list.id} value={list.id}>{list.name}</option>;
-          })}
-        </select>
-        <button className="search-aaddlistbtn" onClick={handleClick}>내 리스트에 저장</button>
-      </div>
+      <select className='listDropdown' name="list" id="listDropdown" value={value} onChange={handleChange}>
+        {userdata.lists.map(list => {
+          return <option className='option' key={list.id} value={list.id}>{list.name}</option>;
+        })}
+      </select>
+      <button className="search-aaddlistbtn" onClick={handleClick}>내 리스트에 저장</button>
     </div>
 
   );
