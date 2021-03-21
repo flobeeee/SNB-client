@@ -6,6 +6,7 @@ import Modal from '../components/modal/CenterModal';
 const AddSong = ({ userdata, songList }) => {
 
   const [value, setValue] = useState(userdata.lists.length !== 0 ? userdata.lists[0].id : [] && <div>리스트를 만드세요</div>);
+  console.log(userdata);
   const result = songList.reduce((a, b) => {
     if (a.indexOf(b) < 0) { a.push(b); }
     return a;

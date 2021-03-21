@@ -149,18 +149,6 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
           />
         ))}
       </div>
-      {/* {result.results ? (<div className='songs'>
-        {result.results.map((data) => (
-          <Song
-            key={data.songNum}
-            songNum={data.songNum}
-            title={data.title}
-            singer={data.singer}
-            link={data.link}
-            getSongs={getSongs}
-          />
-        ))}
-      </div>) : (<div>첫번째 리스트를 만드세요</div>)} */}
       <div className='addsong-dropdown'>
         <div className='info-dropdown'>
           <AddSong userdata={userdata} songList={songList} />
