@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import '../components/Song.css';
-import youtubeLogo from '../components/youtube-logo.jpeg';
+import youtubeLogo from '../components/youtube.png';
 
 const Song = ({ songNum, title, singer, getSongs, link }) => {
 
