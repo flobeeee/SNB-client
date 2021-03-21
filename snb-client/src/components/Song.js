@@ -17,10 +17,12 @@ const Song = ({ songNum, title, singer, getSongs, link }) => {
       <div className="songNum">{songNum}</div>
       <div className="title">{title}</div>
       <div className="singer">{singer}</div>
-      <a href={`${link}`} target='_blank' rel="noopener noreferrer">
-        <img className='link-image' src={youtubeLogo} alt='Logo' />
-      </a>
-      <input className="checkbox" type="checkbox" name={`${songNum}`} onChange={getSongsHandler} />
+      <div className="mediabox">
+        <a className="link" href={`${link}`} target='_blank' rel="noopener noreferrer">
+          <img className='link-image' src={youtubeLogo} alt='Logo' />
+        </a>
+        <input className="checkbox" type="checkbox" name={`${songNum}`} onChange={getSongsHandler} />
+      </div>
     </div>
 
   );
