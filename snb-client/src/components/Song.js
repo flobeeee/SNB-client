@@ -6,10 +6,11 @@ const Song = ({ songNum, title, singer, getSongs, link }) => {
   const [checked, setchecked] = useState(false);
 
   const getSongsHandler = () => {
-    setchecked(!checked);
     const data = { data: { songNum, title, singer, link }, checked };
+    setchecked(!checked);
     getSongs(data);
   };
+
   return (
     <div className="songdata">
       <div className="songNum">{songNum}</div>

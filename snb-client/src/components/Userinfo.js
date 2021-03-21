@@ -22,7 +22,6 @@ const Userinfo = ({ userdata, listHandler }) => {
       setIsAddBtn(false);
       openPopUp();
     }
-
   };
 
   const openPopUp = () => {
@@ -61,11 +60,12 @@ const Userinfo = ({ userdata, listHandler }) => {
   };
 
   const getSongs = (songInfo) => {
-    if (songInfo.checked === false) {
-      let result = songList.filter(el => songList.title !== songInfo.title);
-      setSongList(result);
+    console.log(songList);
+    if (songInfo.checked) {
+      let song = songList.filter(el => Number(el.songNum) === Number(songInfo.songNum));
+      setSongList(song);
     } else {
-      setSongLsit([...songList, (songInfo)]);
+      setSongList([...songList, songInfo.data]);
     }
   };
 
@@ -111,16 +111,22 @@ const Userinfo = ({ userdata, listHandler }) => {
         <button className="userinfo-addlist" onClick={isAdd} value="true">add List</button>
         <button className="userinfo-removelist" onClick={isAdd} value="false">remove List</button>
       </div>
-      {songs ? (songs.map((data) =>
-        <Song
-          key={data.songNum}
-          songNum={data.songNum}
-          title={data.title}
-          singer={data.singer}
-          link={data.link}
-          getSongs={getSongs}
-        />))
-        : <div></div>}
+      <div className="userinfo-songsbox">
+        {songs ? (songs.map((data) =>
+          <Song
+            key={data.songNum}
+            songNum={data.songNum}
+            title={data.title}
+            singer={data.singer}
+            link={data.link}
+            getSongs={getSongs}
+          />))
+          : <div></div>}
+      </div>
+      <div className="userinfo-removebox">
+        <div className="userinfo-seletsong">{songList.length}/{songs.length}</div>
+        <button>삭제</button>
+      </div>
     </div>
   );
 };
