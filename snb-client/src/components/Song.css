@@ -22,28 +22,39 @@
     color: #646464;
 }
 .songNum {
-  width: 1%;
+  width: 5%;
 }
 .title {
-  width: 50%;
+  width: 45%;
   text-align: center;
   
 }
 .singer {
-  width: 30%;
+  width: 20%;
   text-align: center;
-  
 }
-.checkbox {
-  width: 20px;
-  height: 20px;
-}
-.search-btnbox {
+
+.mediabox {
+  position: relative;
+  width: 10%;
   display: flex;
-  margin-top: 20px;
-  justify-content:center;
+  justify-content: space-around;
+  align-items: center;
 }
+
+.checkbox {
+  margin: 0px;
+  margin-right: 20px;
+  width: 25px;
+  height: 25px;
+}
+
+.link { 
+  display: flex;
+  align-items: center;
+}
+
 .link-image {
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 22.5px;
 }

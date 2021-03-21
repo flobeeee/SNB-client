@@ -102,8 +102,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
         <div className='info-num'>번호</div>
         <div className='info-title'>제목</div>
         <div className='info-singer'>가수</div>
-        <div className='info-media'>미디어</div>
-        <div className='info-check'>선택</div>
+        <div className='info-media'>미디어 / 선택</div>
       </div>
       <div className='songs'>
         {result.results.map((data) => (
