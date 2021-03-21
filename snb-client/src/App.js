@@ -16,7 +16,7 @@ const App = () => {
 
 
   const oauthLoginHandler = async (authorizationCode) => {
-    let res = await axios.post(`${process.env.MAIN_SEVER_ADDRESS}/oauth/login`, { authorizationCode });
+    let res = await axios.post('https://localhost:4000/oauth/login', { authorizationCode });
 
     login(res.data);
   };
@@ -32,6 +32,11 @@ const App = () => {
     setUserdata(data);
   };
 
+  const listHandler = (lists) => {
+    const { username, email, createdAt } = userdata;
+    setUserdata({ username, email, createdAt, lists });
+  };
+
   useEffect(() => {
     const url = new URL(window.location.href);
     const authorizationCode = url.searchParams.get('code');
@@ -44,14 +49,14 @@ const App = () => {
   return (
     <div>
       <Switch>
-        <Route exact path='/main'
-          render={() => {
-            return <Main logoutHandler={logoutHandler} userdata={userdata} />;
-          }}>
-        </Route>
-        <Route exact path='/login'
+        <Route path='/login'
           render={() => {
             return <Login login={login} />;
+          }}>
+        </Route>
+        <Route exact path='/main'
+          render={() => {
+            return <Main logoutHandler={logoutHandler} userdata={userdata} listHandler={listHandler} />;
           }}>
         </Route>
         <Route exact path='/signup'
@@ -60,7 +65,7 @@ const App = () => {
           }}>
         </Route>
         <Route
-          path='/'
+          exact path='/'
           render={() => {
             if (isLogin) {
               return <Redirect to='/main' />;
