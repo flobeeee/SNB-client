@@ -10,6 +10,7 @@
   height: 100px;
   border-bottom: 5px solid var(--header-border-color);
   background-color: var(--background-color);
+  z-index: 998;
 }
 
 button:focus {
@@ -150,16 +151,13 @@ height: 100%;
   margin-right: 0px;
   }
 
-  .filter-button:hover .filter-tooltip {
-    visibility: visible;
-  }
-
   .filter-button .filter-tooltip {
-    visibility: hidden;
     border-radius: 6px;
     padding: 10px;
     background-color: var(--tooltip-color);
-
+    visibility: hidden;
+    overflow: visible;
+    display: inline-block;
     /* Position the tooltip */
     position: absolute;
     z-index: 1;
@@ -172,7 +170,7 @@ height: 100%;
     content: " ";
 			position: absolute;
 			top: -32%;
-			left: 50%;
+			left: 52%;
 			margin-left: -10px;
 			border-width: 10px;
 			border-style: solid;
@@ -198,14 +196,18 @@ a.nav-link:hover {
   align-items: center;
 }
 
+.nav-container > span{
+  margin-right: 10px;
+}
+
 .logout-button {
 margin-left: 5px;
-margin-right: 10px;
+margin-right: 100px;
 width: 32px;
 height: 32px;
 background: url('../res/exit.png') no-repeat;
 background-size: 100%;
 cursor: pointer;
 border:none;
-padding: 1;
+padding: 1px;
 } 
