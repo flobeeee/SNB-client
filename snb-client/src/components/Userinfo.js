@@ -64,7 +64,8 @@ const Userinfo = ({ userdata, listHandler }) => {
           { 'listid': Number(list) },
           { 'Content-Type': 'application/json', withCredentials: true })
           .then((res) => setSongs(res.data.Song))
-          .then(setSongList([]));
+          .then(setSongList([]))
+          .catch(() => setSongs([]));
       });
   };
 
