@@ -11,7 +11,7 @@ export const Dimmer = styled.div`
   width: 100%;
   height: 100%;
   z-index: 999;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: ${(props) => (props.backColor ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 0.6)')}; 
 `;
 
 export const OuterContainer = styled.div`

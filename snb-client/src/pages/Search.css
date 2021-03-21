@@ -66,7 +66,7 @@
   border:none;
   border-radius: 10px;
   margin-right: 10px;
-  background-color: #d06cc0;
+  background-color: #9382e2;
 }
 .search-nextbtn {
   height: 50px;;
@@ -75,7 +75,7 @@
   border:none;
   border-radius: 10px;
   margin-left: 10px;
-  background-color: #d06cc0;
+  background-color: #9382e2;
 }
 .search-previusbtn:hover {
   transform: scale(1.2);
