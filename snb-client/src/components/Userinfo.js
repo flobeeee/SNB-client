@@ -63,7 +63,6 @@ const Userinfo = ({ userdata, listHandler }) => {
         axios.post('https://localhost:4000/mylist/info',
           { 'listid': Number(list) },
           { 'Content-Type': 'application/json', withCredentials: true })
-
           .then((res) => setSongs(res.data.Song))
           .then(setSongList([]))
           .catch(() => setSongs([]));
