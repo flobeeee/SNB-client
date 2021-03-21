@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
 import Modal from './modal/CenterModal';
 import AddList from './AddList';
@@ -9,7 +8,6 @@ import './Userinfo.css';
 
 
 const MyList = ({lists, listHandler, setCurrentListId, requestAddList, requestRemoveList, currentId}) => {
-  const [selectedList, setSelectedList] = useState(currentId); // 선택한 list의 id를 저장하는 상태
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [isAddBtn, setIsAddBtn] = useState(true);
 

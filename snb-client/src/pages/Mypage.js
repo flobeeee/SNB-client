@@ -35,7 +35,6 @@ const Mypage = ({ userdata, listHandler }) => {
         const newList = [...userdata.lists, addedList];
         //userdata.lists.push({ id: res.data.id, name });
         //setSongs([]);
-        console.log(newList);
         listHandler(newList);
         setCurrentListId(String(res.data.id));
         return res.status === 201 ? true : false;
