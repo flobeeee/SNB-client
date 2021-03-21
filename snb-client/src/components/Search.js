@@ -1,96 +1,143 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import Song from '../components/Song';
 import axios from 'axios';
-import Header from './Header';
-import Song from './Song';
-import Mypage from './Mypage';
+import AddSong from '../components/AddSong';
+import './Search.css';
 
 require('dotenv').config;
 
-const Search = (props) => {
-  const [result, setResult] = useState([]);
-  const [searchType, setSearchType] = useState('');
-  const [title, setTitle] = useState('');
-  const [page, setPage] = useState(2);
-  const [mypage, setMypage] = useState(false);
-  const [song, setSong] = useState([]);
-  const [value, setValue] = useState(props.list.id);
+const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) => {
 
-  const getSearchResult = (search, type, title) => {
-    setResult(search);
-    setSearchType(type);
-    setTitle(title);
-  };
+  const [result, setResult] = useState(searchValue);
+  const [songList, setSongList] = useState([]);
+  const [page, setPage] = useState(1);
+  const [nowPage, setNowPage] = useState(nowPages);
+  const [Next, setnext] = useState(isNext);
 
-  const getSongs = (songInfo) => {
-    setSong(song.push(songInfo));
-  };
+  useEffect(() => {
+    setResult(searchValue);
+    setPage(1);
+    setNowPage(nowPages);
+    setnext(isNext);
+  }, [searchValue, searchType, title, userdata, isNext, nowPages]);
 
-  const handleClick = async () => {
-    await axios.post(`${process.env.MAIN_SERVER_ADDRESS}/mylist/song/add`,
-      { listid: value, song: song }, { withCredentials: true });
-  };
+  const NextPage = async () => {
 
-  const handleChange = (e) => {
-    setValue(e.target.value);
-  };
+    if (Next === true || page < nowPage) {
 
-  const changePage = async () => {
-    if (page > 0) {
-      setPage(page + 1);
-      await axios.get(`${process.env.SCRAP_SERVER_ADDRESS}/v1/search/${searchType}`,
-        { page, numOfRow: 15, title }, { withCredentials: true });
+      if (searchType === 'singer') {
+        await axios.get(`https://localhost:5000/v1/search/${searchType}`,
+          { params: { page: page + 1, numOfRow: 15, singer: title } },
+          { withCredentials: true })
+          .then(res => {
+            setResult(res.data);
+            setnext(res.data.page.isNext);
+            setPage(page + 1);
+            setNowPage(res.data.page.nowPages);
+            setSongList([]);
+          });
+      } else {
+        await axios.get(`https://localhost:5000/v1/search/${searchType}`,
+          { params: { page: page + 1, numOfRow: 15, title: title } },
+          { withCredentials: true })
+          .then(res => {
+            setResult(res.data);
+            setnext(res.data.page.isNext);
+            setPage(page + 1);
+            setNowPage(res.data.page.nowPages);
+            setSongList([]);
+          });
+      }
     } else {
-      setPage(1);
-      await axios.get(`${process.env.SCRAP_SERVER_ADDRESS}/v1/search/${searchType}`,
-        { page, numOfRow: 15, title }, { withCredentials: true });
+      alert('마지막 페이지 입니다');
     }
   };
 
-  const mypageHandler = (blooean) => {
-    setMypage(blooean);
+  const PreviousPage = async () => {
+    if (page > 1) {
+
+      if (searchType === 'singer') {
+        await axios.get(`https://localhost:5000/v1/search/${searchType}`,
+          { params: { page: page - 1, numOfRow: 15, singer: title } },
+          { withCredentials: true })
+          .then(res => {
+            setResult(res.data);
+            setnext(res.data.page.isNext);
+            setPage(page - 1);
+            setNowPage(res.data.page.nowPages);
+            setSongList([]);
+          });
+      } else {
+        await axios.get(`https://localhost:5000/v1/search/${searchType}`,
+          { params: { page: page - 1, numOfRow: 15, title: title } },
+          { withCredentials: true })
+          .then(res => {
+            setResult(res.data);
+            setnext(res.data.page.isNext);
+            setPage(page - 1);
+            setNowPage(res.data.page.nowPages);
+            setSongList([]);
+          });
+      }
+    } else {
+      alert('첫 번째 페이지 입니다');
+    }
+  };
+
+  const getSongs = (songInfo) => {
+    // eslint-disable-next-line no-empty
+
+    if (songInfo.checked === false) {
+      let song = songList.filter(el => Number(el.songNum) !== Number(songInfo.songNum));
+      setSongList(song);
+    } else {
+      setSongList([...songList, songInfo.data]);
+    }
   };
 
   return (
-    <div className="search-box">
-      <Header
-        getSearchResult={getSearchResult}
-        mypageHandler={mypageHandler}
-        login={props.login}
-      />
-      {mypage ? (<Mypage />) : (
-        result.map((data, index) => (
+    <div className='search-box'>
+      <div className='info'>
+        <div className='info-num'>번호</div>
+        <div className='info-title'>제목</div>
+        <div className='info-singer'>가수</div>
+        <div className='info-media'>미디어</div>
+        <div className='info-check'>선택</div>
+      </div>
+      <div className='songs'>
+        {result.results.map((data) => (
           <Song
-            key={index}
+            key={data.songNum}
             songNum={data.songNum}
             title={data.title}
             singer={data.singer}
             link={data.link}
             getSongs={getSongs}
           />
-        )))}
-      <div className="search-btnbox">
-        <button className="search-previosbtn" onClick={() => changePage()}>이전</button>
-        <button className="search-nextbtn" onClick={() => changePage()}>다음</button>
+        ))}
       </div>
-      <div className="search-listbox">
-        <select name="list" id="listDropdown" value={value} onChange={handleChange}>
-          {props.list.map((data) => {
-            <option value={data.id}>{data.listname}</option>;
-          })}
-        </select>
-        <button className="search-aaddlistbtn" onClick={handleClick}>내 리스트에 저장</button>
+      <div className='addsong-dropdown'>
+        <div className='info-dropdown'>
+          <AddSong userdata={userdata} songList={songList} />
+        </div>
+        <div className='search-btnbox'>
+          <button className='search-previusbtn' onClick={() => PreviousPage()}>이전</button>
+          <button className='search-nextbtn' onClick={() => NextPage()}>다음</button>
+        </div>
       </div>
     </div>
+
   );
 };
 
 Search.propTypes = {
-  username: PropTypes.string,
-  email: PropTypes.email,
-  created_at: PropTypes.string,
-  list: PropTypes.array,
-  login: PropTypes.func
+  searchValue: PropTypes.object,
+  searchType: PropTypes.string,
+  title: PropTypes.string,
+  userdata: PropTypes.object,
+  isNext: PropTypes.bool,
+  nowPages: PropTypes.number
 };
 
 export default Search;
