@@ -6,12 +6,12 @@ import Userinfo from '../components/Userinfo';
 const Mypage = ({ userdata, listHandler }) => {
 
   return (
-    <div className="mypage-box">
+    <>
       <Userinfo
         listHandler={listHandler}
         userdata={userdata}
       />
-    </div>
+    </>
   );
 };
 

@@ -9,8 +9,8 @@ const Song = ({ songNum, title, singer, getSongs, link }) => {
 
   const getSongsHandler = () => {
     const data = { data: { songNum, title, singer, link }, checked: checked };
-    setchecked(!checked);
     getSongs(data);
+    setchecked(!checked);
   };
   return (
     <div className="songdata">

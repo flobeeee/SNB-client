@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 const Header = (props) => {
 
   const history = useHistory();
-  const [searchType, setsearchType] = useState('');
+  const [searchType, setsearchType] = useState('title');
   const [searchValue, setSearchValue] = useState('');
   //const [path, setPath] = useState(history.location.pathname);
 
@@ -63,7 +63,7 @@ const Header = (props) => {
   return (
     <div className='header'>
       <Link to="/search">
-        <img className='header-logo' alt="Logo" src={logo}/>
+        <img className='header-logo' alt="Logo" src={logo} />
       </Link>
       <div className="header-search-bar">
         <input type="search" placeholder="Search" onChange={e => setSearchValue(e.target.value)} />
@@ -81,7 +81,7 @@ const Header = (props) => {
                 </div>
                 <div className="title">
                   <label className="tooltip-container">
-                    <input name='radio' type="radio" value="title" onChange={() => setsearchType('title')} checked/>
+                    <input name='radio' type="radio" value="title" onChange={() => setsearchType('title')} checked />
                     <span className="checkmark"></span>
                     제목
                   </label>

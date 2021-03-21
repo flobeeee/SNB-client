@@ -27,7 +27,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
     if (Next === true || page < nowPage) {
 
       if (searchType === 'singer') {
-        await axios.get(`https://localhost:5000/v1/search/${searchType}`,
+        await axios.get('https://localhost:5000/v1/search/singer',
           { params: { page: page + 1, numOfRow: 15, singer: title } },
           { withCredentials: true })
           .then(res => {
@@ -38,7 +38,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
             setSongList([]);
           });
       } else {
-        await axios.get(`https://localhost:5000/v1/search/${searchType}`,
+        await axios.get('https://localhost:5000/v1/search/title',
           { params: { page: page + 1, numOfRow: 15, title: title } },
           { withCredentials: true })
           .then(res => {

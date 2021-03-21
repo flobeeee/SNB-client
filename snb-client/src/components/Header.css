@@ -25,9 +25,8 @@ margin-left: 2.5%;
 
 .radio-button {
 display: flex;
-justify-content: row;
+justify-content: space-between;
 padding: 10px 10px;
-width: 140px;
 }
 
 .radio-button > div {
@@ -43,6 +42,7 @@ input[type="radio"] {
   position: relative;
   cursor: pointer;
   padding-left: 25px;
+  width: max-content;
 }
 
 .tooltip-container input {
