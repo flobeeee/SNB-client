@@ -31,21 +31,28 @@
 .info-media {
   flex: 1;
 }
-.info-dropdown {
-  flex: 0.5;
-  margin-right: 30px;
-  justify-content: space-between;
+.info-check {
+  margin-right: 20px;
 }
 .songs {
   margin-top: 30px;
 }
-.search-btnbox {
+.addsong-dropdown {
   display: flex;
+  flex: 1;
   margin-top: 20px;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
-.search-previosbtn {
+.info-dropdown {
+  flex: 1;
+  margin-right: 30px;
+  justify-content: space-between;
+}
+.search-btnbox  {
+  flex: 1.5;
+}
+.search-previusbtn {
   height: 50px;;
   width: 80px;
   outline: none;
@@ -63,9 +70,19 @@
   margin-left: 10px;
   background-color: #d06cc0;
 }
-.search-previosbtn:hover {
+.search-previusbtn:hover {
   transform: scale(1.2);
+  background-color:#8e44ad;
+  transition: background-color 0.5s, color 0.5s;
+}
+.search-previusbtn:active {
+  background-color: #8e44ad;
 }
 .search-nextbtn:hover {
   transform: scale(1.2);
+  background-color:#8e44ad;
+  transition: background-color 0.5s, color 0.5s;
+}
+.search-nextbtn:active {
+  background-color: #8e44ad;
 }

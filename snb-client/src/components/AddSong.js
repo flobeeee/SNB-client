@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import './Addsong.css';
 
 const AddSong = ({ userdata, songList }) => {
 
   const [value, setValue] = useState(userdata.lists[0].id);
-  console.log('리스트 아이디', value);
-
-  // const result = songList.filter(el => Number(el.songNum) !== Number(songInfo.songNum));
-  var result = songList.reduce((a, b) => {
+  const result = songList.reduce((a, b) => {
     if (a.indexOf(b) < 0) { a.push(b); }
     return a;
   }, []);
 
-  console.log('추가하기 직전 아이디,노래목록', value, result);
+
   const handleClick = async () => {
     await axios.post('https://localhost:4000/mylist/song/add',
       { listid: value, songs: result }, { withCredentials: true })
-      .then(alert('저장되었습니다'));
+      .then(res => {
+        if (result.length === 0) {
+          alert('선택된 항목이 없습니다');
+        }
+        else {
+          alert('내 리스트에 저장 되었습니다');
+        }
+      });
   };
 
   const handleChange = (e) => {
