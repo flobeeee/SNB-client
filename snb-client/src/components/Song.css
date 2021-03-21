@@ -41,13 +41,6 @@
   align-items: center;
 }
 
-.checkbox {
-  margin: 0px;
-  margin-right: 20px;
-  width: 25px;
-  height: 25px;
-}
-
 .link { 
   display: flex;
   align-items: center;
@@ -56,4 +49,34 @@
 .link-image {
   width: 32px;
   height: 22.5px;
+}
+
+
+label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 25px;
+}
+
+.checkInput {
+  display: none;
+}
+
+.customCheckBox {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  margin-right: 20px;
+  border: 2px solid #9382E2;
+  border-radius: 5px;
+  background-color: #eeeeee;
+}
+
+.customCheckBox:hover {
+  background-color: #cccccc;
+}
+
+.checkInput:checked ~ .customCheckBox {
+  background-color: #D66CC0;
 }
