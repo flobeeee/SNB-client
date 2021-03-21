@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import '../components/Song.css';
+import youtubeLogo from '../components/youtube.png';
 
 const Song = ({ songNum, title, singer, getSongs, link }) => {
 
-  const [checked, setchecked] = useState(false);
+  const [checked, setchecked] = useState(true);
 
   const getSongsHandler = () => {
-    const data = { data: { songNum, title, singer, link }, checked };
+    const data = { data: { songNum, title, singer, link }, checked: checked };
     setchecked(!checked);
     getSongs(data);
   };
-
   return (
     <div className="songdata">
       <div className="songNum">{songNum}</div>
@@ -28,8 +29,9 @@ Song.propTypes = {
   getSongs: PropTypes.func,
   singer: PropTypes.string,
   title: PropTypes.string,
-  songNum: PropTypes.number,
-  link: PropTypes.string
+  songNum: PropTypes.string,
+  link: PropTypes.string,
+  checking: PropTypes.bool
 };
 
 export default Song;
