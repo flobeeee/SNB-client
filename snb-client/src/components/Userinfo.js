@@ -5,11 +5,10 @@ import axios from 'axios';
 import Modal from './modal/CenterModal';
 import AddList from './AddList';
 import RemoveList from './RemoveList';
-import Song from './Song';
 import './Userinfo.css';
 
 const Userinfo = ({ userdata, listHandler }) => {
-  const [list, setList] = useState(''); // 선택한 list의 id를 저장하는 상태
+  const [list, setList] = useState('1'); // 선택한 list의 id를 저장하는 상태
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [isAddBtn, setIsAddBtn] = useState(true);
   const [songs, setSongs] = useState([]); // 유저가 가진 list안의 노래들
@@ -115,44 +114,6 @@ const Userinfo = ({ userdata, listHandler }) => {
         <div className="userinfo-username">{userdata.username}</div>
         <div className="userinfo-email">{userdata.email}</div>
         <div className="userinfo-createdAt">{getDate()}</div>
-        <div className="userinfo-listbox">
-          <select
-            className="userinfo-dropdown"
-            value={list}
-            onChange={e => setList(e.target.value)}
-          >
-            <option className="userinfo-option" >리스트를 선택해주세요</option>
-            {userdata.lists.map(data => {
-              return <option className="userinfo-option" key={data.id} value={data.id}>{data.name}</option>;
-            })}
-          </select>
-          <button className="userinfo-addlist" onClick={isAdd} value="true">add List</button>
-          <button className="userinfo-removelist" onClick={isAdd} value="false">remove List</button>
-        </div>
-      </div>
-      <div className="userinfo-rightbox">
-        <div className="userinfo-songsbox">
-          <div className="userinfo-songbar">
-            <div>번호</div>
-            <div>제목</div>
-            <div>가수</div>
-            <div>미디어 / 버튼</div>
-          </div>
-          {songs ? (songs.map((data) =>
-            <Song
-              key={data.songNum}
-              songNum={data.songNum}
-              title={data.title}
-              singer={data.singer}
-              link={data.link}
-              getSongs={getSongs}
-            />))
-            : <div></div>}
-          <div className="userinfo-removebox">
-            <div className="userinfo-seletsong">{songList.length}/{songs.length}</div>
-            <button className="userinfo-removesong" onClick={requestRemoveSong}>삭제</button>
-          </div>
-        </div>
       </div>
     </div>
   );
