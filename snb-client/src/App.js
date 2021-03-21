@@ -61,7 +61,7 @@ const App = () => {
         </Route>
         <Route exact path='/signup'
           render={() => {
-            return <Signup />;
+            return <Signup login={login} />;
           }}>
         </Route>
         <Route
