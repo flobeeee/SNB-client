@@ -5,6 +5,8 @@ import axios from 'axios';
 import AddSong from '../components/AddSong';
 import './Search.css';
 import Modal from '../components/modal/CenterModal';
+import nextimg from '../res/next.png';
+import backimg from '../res/back.png';
 
 require('dotenv').config;
 
@@ -154,8 +156,8 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
           <AddSong userdata={userdata} songList={songList} />
         </div>
         <div className='search-btnbox'>
-          <button className='search-previusbtn' onClick={() => PreviousPage()}>이전</button>
-          <button className='search-nextbtn' onClick={() => NextPage()}>다음</button>
+          <img className='search-previusbtn' alt="backbtn" src={backimg} onClick={() => PreviousPage()} />
+          <img className='search-nextbtn' alt="nextbtn" src={nextimg} onClick={() => NextPage()} />
         </div>
       </div>
     </div>

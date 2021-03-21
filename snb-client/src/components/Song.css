@@ -20,6 +20,15 @@
     text-align: center;
     color: #646464;
 }
+.songdata:hover {
+  text-shadow: 0 0 .1em, 0 0 .3em;
+  color:white;
+  /* background: linear-gradient(to right, gold 0%, aqua 50%, pink 100%); */
+  background: linear-gradient(to right, rgb(229, 151, 240) 0%, #e8447d 50%, #8e44ad 100%);
+  transition: background-color 0.5s, color 0.5s;
+  border-radius:10px;
+}
+
 .songNum {
   width: 5%;
 }
