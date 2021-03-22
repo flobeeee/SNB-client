@@ -6,7 +6,7 @@ import Modal from './modal/CenterModal';
 import AddList from './AddList';
 import RemoveList from './RemoveList';
 import plus from '../res/plus.png';
-import minus from '../res/remove.png';
+import minus from '../res/minus.png';
 import './MyList.css';
 
 
