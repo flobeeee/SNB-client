@@ -1,11 +1,3 @@
-.userinfo {
-  position: absolute;
-  left: 0px;
-  top: 100px;
-  display: flex;
-  width: 100%;
-  margin: 0px 20px;
-}
 
 .userinfo-box {
   width: 25%;
@@ -14,7 +6,7 @@
 .userinfo-rightbox {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
 }
 
 .userinfo-removebox {

@@ -1,0 +1,21 @@
+.mypage {
+  position: absolute;
+  left: 0;
+  top: 110px;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid #000000;
+  border-style:none;
+}
+.mypage-left {
+  flex: 1;
+}
+.mypage-right {
+  flex: 3;
+}
+.mypage-userinfo {
+  width: 100%;
+}
