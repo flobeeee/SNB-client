@@ -29,6 +29,7 @@ const Song = ({ songNum, title, singer, getSongs, link }) => {
     </div >
   );
 };
+
 Song.propTypes = {
   getSongs: PropTypes.func,
   singer: PropTypes.string,
