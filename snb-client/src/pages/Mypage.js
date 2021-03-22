@@ -9,7 +9,8 @@ import './Mypage.css';
 
 const Mypage = ({ userdata, listHandler }) => {
 
-  const [currentListId, setCurrentListId] = useState(String(userdata?.lists[0]?.id));
+  const [currentListId, setCurrentListId] = useState('');
+  console.log('currentListId', currentListId);
   const [songs, setSongs] = useState(userdata.songs);
 
   useEffect(async () => {
@@ -49,7 +50,8 @@ const Mypage = ({ userdata, listHandler }) => {
       .then((res) => {
         const newList = userdata.lists.filter((data) => data.id !== Number(currentListId));
         listHandler(newList);
-        setCurrentListId(String(userdata?.lists[0]?.id));
+        // setCurrentListId(String(userdata?.lists[0]?.id));
+        setSongs([]);
         return res.status === 200 ? true : false;
       });
   };
@@ -71,7 +73,9 @@ const Mypage = ({ userdata, listHandler }) => {
             setCurrentListId={setCurrentListId}
             requestAddList={requestAddList}
             requestRemoveList={requestRemoveList}
-            currentId={currentListId}></MyList>
+            setSongs={setSongs}
+          ></MyList>
+
         </div>
       </div>
       <div className='mypage-right'>

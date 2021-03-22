@@ -42,7 +42,7 @@ const AddSong = ({ userdata, songList }) => {
       return { value: list.id, label: list.name };
     });
   } else {
-    options = ({ value: 0, label: '리스트 없음' });
+    options = [{ value: 0, label: '리스트 없음' }];
   }
 
   const isAdd = (e) => {
@@ -91,8 +91,11 @@ const AddSong = ({ userdata, songList }) => {
     }
   };
 
-  const handleChange = (seletedListId) => {
-    setListId(seletedListId.value);
+  const handleChange = (seletedList) => {
+    console.log(seletedList);
+
+    setListId(seletedList.value);
+
   };
 
   console.log('유저데이터', userdata.lists);
