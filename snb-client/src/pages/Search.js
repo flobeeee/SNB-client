@@ -131,7 +131,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
   return (
     <div className='search-box'>
       <Modal visible={isOpenPopup} color={'#aea1ea'} isBlackBtn={true} onClose={closePopUp} backColor={true}>
-        {isAddBtn ? (<div>첫번째 페이지 입니다</div>) : (<div>마지막 페이지 입니다</div>)}
+        {!isAddBtn ? (<div>첫번째 페이지 입니다</div>) : (<div>마지막 페이지 입니다</div>)}
       </Modal>
       <div className='info'>
         <div className='info-num'>번호</div>
