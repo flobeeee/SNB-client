@@ -5,6 +5,7 @@ import Userinfo from '../components/Userinfo';
 import MyList from '../components/MyList';
 import SongList from '../components/SongList';
 import './Mypage.css';
+
 const Mypage = ({ userdata, listHandler }) => {
 
   const [currentListId, setCurrentListId] = useState(String(userdata?.lists[0]?.id));

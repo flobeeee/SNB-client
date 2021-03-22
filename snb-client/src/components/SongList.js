@@ -5,7 +5,7 @@ import axios from 'axios';
 import Song from '../components/Song';
 import './Userinfo.css';
 
-const SongList = ({songs, listId, setSongs}) => {
+const SongList = ({ songs, listId, setSongs }) => {
 
   const [checkedSongList, setCheckedSongList] = useState([]); // 체크박스로 선택한 list안의 노래들
 
