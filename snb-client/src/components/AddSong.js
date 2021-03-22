@@ -48,7 +48,7 @@ const AddSong = ({ userdata, songList }) => {
   };
 
   const handleChange = (e) => {
-    setValue(e.target.value);
+    setValue(Number(e.target.value));
   };
 
   console.log('유저데이터', userdata.lists);
@@ -59,7 +59,7 @@ const AddSong = ({ userdata, songList }) => {
       </Modal>
       <select className='listDropdown' name="list" id="listDropdown" onChange={handleChange}>
         {userdata.lists.length !== 0 ? userdata.lists.map(list => {
-          return <option key={list.id} className='option'>{list.name}</option>;
+          return <option key={list.id} value={list.id} className='option'>{list.name}</option>;
         }) : (<option className='option'>리스트 없음</option>)}
       </select>
       <button className="search-aaddlistbtn" onClick={handleClick}>내 리스트에 저장</button>
