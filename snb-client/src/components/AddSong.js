@@ -58,7 +58,7 @@ const AddSong = ({ userdata, songList }) => {
         {isAddBtn ? (<div>항목을 선택해 주세요</div>) : (<div>저장되었습니다</div>)}
       </Modal>
       <select className='listDropdown' name="list" id="listDropdown" onChange={handleChange}>
-        {userdata.lists ? userdata.lists.map(list => {
+        {userdata.lists.length !== 0 ? userdata.lists.map(list => {
           return <option key={list.id} className='option'>{list.name}</option>;
         }) : (<option className='option'>리스트 없음</option>)}
       </select>
