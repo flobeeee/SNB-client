@@ -9,6 +9,8 @@ const AddSong = ({ userdata, songList }) => {
 
   const [isSearchable] = useState(false);
   const [listId, setListId] = useState(userdata.lists.length !== 0 ? userdata.lists[0].id : []);
+  const [ListPopup, setListPopup] = useState(false);
+  const [emptyList, setEmptyLsit] = useState(false);
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [isAddBtn, setIsAddBtn] = useState(true);
 
