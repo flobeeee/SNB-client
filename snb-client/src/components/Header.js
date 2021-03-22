@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useHistory, Link, NavLink } from 'react-router-dom';
 import axios from 'axios';
 import logo from '../res/snb_logo.png';
@@ -13,6 +13,7 @@ const Header = (props) => {
   //const [path, setPath] = useState(history.location.pathname);
 
   const filterTooltip = useRef();
+  const HeaderWrapper = useRef();
 
   //console.log(history.location.pathname);
 
@@ -67,14 +68,28 @@ const Header = (props) => {
     history.push(e.target.value);
   };
 
+  const moveToBottomHeader = () => {
+    const headerWrapper = document.querySelector('.header');
+    headerWrapper.animate([
+      {opacity: 0},
+      {opacity: 1}
+    ], 2000);
+  };
+
+  useEffect(() => {
+    moveToBottomHeader();
+  }, []);
+
 
   return (
-    <div className='header'>
+    <div className='header' ref={HeaderWrapper}>
       <Link to="/main">
-        <img className='header-logo' alt="Logo" src={logo} />
+        <div className='header-logo-wrapper'>
+          <img className='header-logo' alt="Logo" src={logo} />
+        </div>
       </Link>
       <div className="header-search-bar">
-        <input type="search" placeholder="Search" onChange={e => setSearchValue(e.target.value)} />
+        <input className="header-search-input" type="search" placeholder="Search" onChange={e => setSearchValue(e.target.value)} />
         <div className="header-search-bar-btns">
           <button className='submit-button' onClick={handleSearch}></button>
           <button className='filter-button' onClick={handleFilterPopup}>
