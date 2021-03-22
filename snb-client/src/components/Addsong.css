@@ -1,3 +1,5 @@
+@import '../variables.css';
+
 .addsong {
   display: flex;
   
@@ -33,4 +35,9 @@ select {
 }
 .search-aaddlistbtn:hover {
   transform: scale(1.2);
+}
+
+.dropdown {
+  width: 220px;
+  outline: none;
 }
