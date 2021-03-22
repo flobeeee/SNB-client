@@ -1,0 +1,13 @@
+.mylist-plusbtn {
+  width: 25px;
+  height: 25px;
+  outline: none;
+  background-color: var(--header-border-color);
+}
+
+.mylist-minusbtn {
+  width: 25px;
+  height: 25px;
+  outline: none;
+  background-color: var(--nav-point-color);
+}
