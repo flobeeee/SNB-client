@@ -138,16 +138,18 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
         <div className='info-media'>미디어 / 선택</div>
       </div>
       <div className='songs'>
-        {result.results.map((data) => (
-          <Song
-            key={data.songNum}
-            songNum={data.songNum}
-            title={data.title}
-            singer={data.singer}
-            link={data.link}
-            getSongs={getSongs}
-          />
-        ))}
+        {result.results ? (<div className='songs'>
+          {result.results.map((data) => (
+            <Song
+              key={data.songNum}
+              songNum={data.songNum}
+              title={data.title}
+              singer={data.singer}
+              link={data.link}
+              getSongs={getSongs}
+            />
+          ))}
+        </div>) : (<div>첫번째 리스트를 만드세요</div>)}
       </div>
       <div className='addsong-dropdown'>
         <div className='info-dropdown'>
