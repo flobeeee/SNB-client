@@ -82,14 +82,14 @@ const Header = (props) => {
               <div className='radio-button'>
                 <div className="singer">
                   <label className="tooltip-container">
-                    <input name='radio' type="radio" value="singer" onChange={() => setsearchType('singer')} />
+                    <input name='radio' type="radio" value="singer" onChange={() => setsearchType('singer')} checked={searchType === 'title' ? false : true}/>
                     <span className="checkmark"></span>
                     가수
                   </label>
                 </div>
                 <div className="title">
                   <label className="tooltip-container">
-                    <input name='radio' type="radio" value="title" onChange={() => setsearchType('title')} checked />
+                    <input name='radio' type="radio" value="title" onChange={() => setsearchType('title')} checked={searchType === 'title' ? true : false} />
                     <span className="checkmark"></span>
                     제목
                   </label>
