@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-
 import Userinfo from '../components/Userinfo';
 import MyList from '../components/MyList';
 import SongList from '../components/SongList';
-
+import './Mypage.css';
 const Mypage = ({ userdata, listHandler }) => {
 
   const [currentListId, setCurrentListId] = useState(String(userdata?.lists[0]?.id));
-  const [songs, setSongs] = useState(userdata.songs); 
+  const [songs, setSongs] = useState(userdata.songs);
 
   useEffect(async () => {
     if (currentListId) {
@@ -55,20 +54,30 @@ const Mypage = ({ userdata, listHandler }) => {
 
 
   return (
-    <>
-      <Userinfo
-        listHandler={listHandler}
-        userdata={userdata}
-      />
-      <MyList 
-        lists={userdata.lists} 
-        listHandler={listHandler} 
-        setCurrentListId={setCurrentListId} 
-        requestAddList={requestAddList}
-        requestRemoveList={requestRemoveList}
-        currentId={currentListId}></MyList>
-      <SongList songs={songs} listId={currentListId} setSongs={setSongs}></SongList>
-    </>
+    <div className='mypage'>
+      <div className='mypage-left'>
+        <div className='mypage-userinfo'>
+          <Userinfo
+            listHandler={listHandler}
+            userdata={userdata}
+          />
+        </div>
+        <div className='mypage-mylist'>
+          <MyList
+            lists={userdata.lists}
+            listHandler={listHandler}
+            setCurrentListId={setCurrentListId}
+            requestAddList={requestAddList}
+            requestRemoveList={requestRemoveList}
+            currentId={currentListId}></MyList>
+        </div>
+      </div>
+      <div className='mypage-right'>
+        <div className='mypage-songlist'>
+          <SongList songs={songs} listId={currentListId} setSongs={setSongs}></SongList>
+        </div>
+      </div>
+    </div>
   );
 };
 

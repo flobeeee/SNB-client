@@ -1,34 +1,29 @@
-.userinfo {
-  position: absolute;
-  left: 0px;
-  top: 100px;
-  display: flex;
-  width: 100%;
-  margin: 0px 20px;
-}
 
 .userinfo-box {
-  width: 25%;
+  width: 100%;
+  text-align: center;
 }
 
 .userinfo-rightbox {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 100%;
 }
-
-.userinfo-removebox {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 20px;
-  margin-right: 40px;
+.userinfo-username {
+  width: 100%;
+  font-size: var(--font-large);
+  color: #23202f;
 }
-
-.userinfo-removesong {
-  width: 80px;
-  height: 50px;
+.userinfo-email {
+  width: 100%;
+  margin-top: 10px;
+  font-size: var(--font-small);
+  color: #85838b;
 }
+.userinfo-createdAt {
+  width: 100%;
+  margin-top: 10px;
+  font-size: var(--font-small);
+  color: #85838b;
 
-.userinfo-songbar {
-  display: flex;
 }
