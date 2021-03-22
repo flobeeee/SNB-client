@@ -16,6 +16,8 @@
 }
 .mypage-right {
   flex: 3.5;
+  height: 80%;
+  overflow: auto;
 }
 .mypage-userinfo {
   width: 100%;

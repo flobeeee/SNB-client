@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import Song from '../components/Song';
 import './Userinfo.css';
+import './SongList.css';
 
 const SongList = ({ songs, listId, setSongs }) => {
 
@@ -35,11 +36,11 @@ const SongList = ({ songs, listId, setSongs }) => {
   return (
     <div className="userinfo-rightbox">
       <div className="userinfo-songsbox">
-        <div className="userinfo-songbar">
-          <div>번호</div>
-          <div>제목</div>
-          <div>가수</div>
-          <div>미디어 / 버튼</div>
+        <div className="info">
+          <div className="info-num">번호</div>
+          <div className="info-title">제목</div>
+          <div className="info-singer">가수</div>
+          <div className="info-media">미디어 / 선택</div>
         </div>
         {songs ? (songs.map((data) =>
           <Song
