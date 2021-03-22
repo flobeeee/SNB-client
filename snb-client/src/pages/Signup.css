@@ -13,9 +13,31 @@
   border: 1px solid #000000;
   border-radius: var(--radius-mid);
   padding: 20px;
-  box-shadow: var(--shadow);
+  /* box-shadow: var(--shadow); */
+  box-shadow:
+    0 0 20px rgb(0, 0, 0),
+    -20px 0 60px  var(--nav-point-color),
+    20px 0 60px #fff,
+    inset 0 0 60px #fff,
+    inset 60px 0 60px  var(--nav-point-color),
+    inset -60px 0 60px #fff,
+    inset 60px 0 100px  var(--nav-point-color),
+    inset -60px 0 100px #fff;
+  animation: pulsate 6s linear infinite;
 }
-
+@keyframes pulsate {
+  50% {
+    box-shadow:
+      0 0 20px #fff,
+      20px 0 60px  var(--nav-point-color),
+      -20px 0 60px #fff,
+      inset 0 0 60px #fff,
+      inset -60px 0 60px  var(--nav-point-color),
+      inset 60px 0 60px #fff,
+      inset -60px 0 100px var(--nav-point-color),
+      inset 60px 0 100px #fff;
+  }
+}
 .signup-inputbox,
 .signup-buttonbox {
   display: flex;
@@ -47,16 +69,16 @@
 }
 
 .signup-error {
-  font-size: var(--font-small);
+  font-size: #aea1eabe;
   text-align: center;
   color: var(--red);
 }
 
 .signup-button:hover {
-  background-color: var(--withe-yellow);
+  background-color: var(--withe-red);
   transition: background-color 0.5s, color 0.5s;
 }
 
 .signup-button:active {
-  background-color: var(--yellow);
+  background-color: var(--header-border-color);
 }
