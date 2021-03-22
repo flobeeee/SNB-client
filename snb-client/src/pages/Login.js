@@ -29,6 +29,16 @@ const Login = (props) => {
       });
   };
 
+  const guestLoginHandler = async () => {
+    const email = 'user1@gmail.com';
+    const password = '1234';
+    await axios.post('https://localhost:4000/login',
+      { email, password },
+      { 'Content-Type': 'application/json', withCredentials: true })
+      .then((res) => props.login(res.data))
+      .then(() => history.push('/'));
+  };
+
   return (
     <div className="login-box">
       <div className="login-title">Login</div>
@@ -59,7 +69,10 @@ const Login = (props) => {
         <div className="login-btns">
           <button className="login-signin" onClick={loginRequestHandler}>로그인</button>
           <button className="login-signup" onClick={() => history.push('/signup')}>회원가입</button>
-          <button className="login-github" onClick={socialLoginHandler}>Github Login</button>
+          <div className="login-gbox">
+            <button className="login-guest" onClick={guestLoginHandler}>Guest Login</button>
+            <button className="login-github" onClick={socialLoginHandler}>Github Login</button>
+          </div>
         </div>
       </div>
     </div>

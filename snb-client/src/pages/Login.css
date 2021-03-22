@@ -80,7 +80,22 @@
 .login-signup:active {
   background-color: var(--yellow);
 }
-
+.login-gbox {
+  display: flex;
+  justify-content: space-between;
+}
+.login-guest {
+  cursor: pointer;
+  font-size: var(--font-mid);
+  background-color: #ffffff;
+  padding: 10px;
+  outline: none;
+  border: var(--item-border);
+  border-radius: var(--radius-small);
+  color: #000000;
+  font-weight: 500;
+  width: 49%;
+}
 .login-github {
   cursor: pointer;
   font-size: var(--font-mid);
@@ -91,6 +106,7 @@
   border-radius: var(--radius-small);
   color: #ffffff;
   font-weight: 500;
+  width: 49%;
 }
 
 .login-github:hover {
