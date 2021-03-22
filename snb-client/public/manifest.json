@@ -1,0 +1,13 @@
+{
+  "short_name": "SNB",
+  "name": "Song Number Book",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "32x32",
+      "type": "res/favicon.ico"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone"
+}

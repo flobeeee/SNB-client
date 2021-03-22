@@ -42,7 +42,7 @@ const Header = (props) => {
   const handleFilterPopup = () => {
     const visibility = filterTooltip.current.style.visibility;
 
-    if(visibility === 'hidden') {
+    if (visibility === 'hidden') {
       filterTooltip.current.style.visibility = 'visible';
     } else {
       filterTooltip.current.style.visibility = 'hidden';
@@ -70,7 +70,7 @@ const Header = (props) => {
 
   return (
     <div className='header'>
-      <Link to="/search">
+      <Link to="/main">
         <img className='header-logo' alt="Logo" src={logo} />
       </Link>
       <div className="header-search-bar">

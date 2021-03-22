@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import './Signup.css';
+import PropTypes from 'prop-types';
 
 require('dotenv').config;
 
-const Signup = () => {
+const Signup = (props) => {
 
   const history = useHistory();
 
@@ -29,7 +30,8 @@ const Signup = () => {
         { email: userEmail, password: userPassword, username: userName },
         { 'Content-Type': 'application/json', withCredentials: true })
         .then(res => {
-          history.push('/main');
+          props.login(res.data);
+          history.push('/');
         });
     }
   };
@@ -60,6 +62,9 @@ const Signup = () => {
       </div>
     </div>
   );
+};
+Signup.propTypes = {
+  login: PropTypes.func
 };
 
 export default Signup;

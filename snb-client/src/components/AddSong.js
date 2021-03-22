@@ -5,8 +5,8 @@ import './Addsong.css';
 import Modal from '../components/modal/CenterModal';
 const AddSong = ({ userdata, songList }) => {
 
-  const [value, setValue] = useState(userdata.lists.length !== 0 ? userdata.lists[0].id : [] && <div>리스트를 만드세요</div>);
-  console.log(userdata);
+  const [value, setValue] = useState(userdata.lists.length !== 0 ? userdata.lists[0].id : []);
+
   const result = songList.reduce((a, b) => {
     if (a.indexOf(b) < 0) { a.push(b); }
     return a;
@@ -14,6 +14,9 @@ const AddSong = ({ userdata, songList }) => {
 
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [isAddBtn, setIsAddBtn] = useState(true);
+
+  const [ListPopup, setListPopup] = useState(false);
+  const [emptyList, setEmptyLsit] = useState(false);
 
 
 
@@ -35,35 +38,54 @@ const AddSong = ({ userdata, songList }) => {
   };
 
 
+  const openListPopup = () => {
+    setListPopup(true);
+  };
+  const closeListPopup = () => {
+    setListPopup(false);
+  };
+
+
   const handleClick = async () => {
-    await axios.post('https://localhost:4000/mylist/song/add',
-      { listid: value, songs: result }, { withCredentials: true })
-      .then(res => {
-        if (result.length === 0) {
-          isAdd(true);
-        }
-        else {
-          isAdd(false);
-        }
-      });
+
+    if (userdata.lists.length === 0) {
+      setEmptyLsit(true);
+      openListPopup();
+    }
+    else {
+      await axios.post('https://localhost:4000/mylist/song/add',
+        { listid: value, songs: result }, { withCredentials: true })
+        .then(res => {
+          if (result.length === 0) {
+            isAdd(true);
+          }
+          else {
+            isAdd(false);
+          }
+        });
+    }
   };
 
   const handleChange = (e) => {
-    setValue(e.target.value);
+    setValue(Number(e.target.value));
   };
 
+  console.log('유저데이터', userdata.lists);
   return (
     <div className='addsong'>
       <Modal visible={isOpenPopup} color={'#aea1ea'} isBlackBtn={true} onClose={closePopUp} backColor={true}>
         {isAddBtn ? (<div>항목을 선택해 주세요</div>) : (<div>저장되었습니다</div>)}
       </Modal>
-      <select className='listDropdown' name="list" id="listDropdown" value={value} onChange={handleChange}>
+      <Modal visible={ListPopup} color={'#aea1ea'} isBlackBtn={true} onClose={closeListPopup} backColor={true}>
+        <div>첫 번째 리스트를 만들어 주세요</div>
+      </Modal>
+      <select className='listDropdown' name="list" id="listDropdown" onChange={handleChange}>
         {userdata.lists.length !== 0 ? userdata.lists.map(list => {
-          return <option className='option' key={list.id} value={list.id}>{list.name}</option>;
+          return <option key={list.id} value={list.id} className='option'>{list.name}</option>;
         }) : (<option className='option'>리스트 없음</option>)}
       </select>
       <button className="search-aaddlistbtn" onClick={handleClick}>내 리스트에 저장</button>
-    </div>
+    </div >
 
   );
 
