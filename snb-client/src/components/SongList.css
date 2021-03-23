@@ -5,7 +5,19 @@
   height: 100px;
 }
 
-.songs-box {
-  height: 40%;
-  overflow: auto;
+.userinfo-songsbox {
+  height: 100vh;
+}
+
+.info-background {
+  background-color: #fff;
+  position: sticky;
+  top: 0px;
+  z-index: 1;
+}
+
+.userinfo-removebox {
+  position: sticky;
+  bottom: 0px;
+  background-color: #fff;
 }

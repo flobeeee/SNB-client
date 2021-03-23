@@ -2,7 +2,7 @@
   position: absolute;
   left: 0;
   top: 110px;
-  height: 100%;
+  height: calc(100vh - 110px);
   display: flex;
   justify-content: center;
   width: 100%;
@@ -16,6 +16,7 @@
 }
 .mypage-right {
   flex: 3.5;
+  overflow: auto;
 }
 .mypage-userinfo {
   width: 100%;

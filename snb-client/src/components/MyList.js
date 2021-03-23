@@ -106,7 +106,7 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
           className="dropdown"
           styles={customStyles}
           placeholder={lists.length !== 0 ? '리스트를 선택해주세요' : '리스트 없음'}
-          value={options.label || ''}
+          value={options.label}
           onChange={handleChange}
           options={options}
           isSearchable={isSearchable}
