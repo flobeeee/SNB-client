@@ -42,23 +42,26 @@ const Signup = (props) => {
   };
 
   return (
-    <div className="signup">
-      <div className="signup-inputbox">
-        <input className="signup-email" placeholder="Email"
-          type="email" onChange={e => setuserEmail(e.target.value)} />
-        <input className="signup-username" placeholder="UserName"
-          type="text" onChange={e => setuserName(e.target.value)} />
-        <input className="signup-password" placeholder="Password"
-          type="password" onChange={e => setPassword(e.target.value)} />
-        <input className="signup-check" placeholder="Password Check"
-          type="password" onChange={onchangePasswordCheck} />
-      </div>
-      {passwordError || errormessage !== ''
-        ? (<div className="signup-error">{errormessage}</div>)
-        : (<div></div>)}
-      <div className="signup-buttonbox">
-        <button className="signup-button" onClick={() => history.push('/login')}>돌아가기</button>
-        <button className="signup-button" onClick={() => handleInputValue()}>회원가입</button>
+    <div className="login-container">
+      <div className="login-neon">Song Number Book ♬</div>
+      <div className="signup">
+        <div className="signup-inputbox">
+          <input className="signup-email" placeholder="Email"
+            type="email" onChange={e => setuserEmail(e.target.value)} />
+          <input className="signup-username" placeholder="UserName"
+            type="text" onChange={e => setuserName(e.target.value)} />
+          <input className="signup-password" placeholder="Password"
+            type="password" onChange={e => setPassword(e.target.value)} />
+          <input className="signup-check" placeholder="Password Check"
+            type="password" onChange={onchangePasswordCheck} />
+        </div>
+        {passwordError || errormessage !== ''
+          ? (<div className="signup-error">{errormessage}</div>)
+          : (<div></div>)}
+        <div className="signup-buttonbox">
+          <button className="signup-button" onClick={() => history.push('/login')}>돌아가기</button>
+          <button className="signup-button" onClick={() => handleInputValue()}>회원가입</button>
+        </div>
       </div>
     </div>
   );

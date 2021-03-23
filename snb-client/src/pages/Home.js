@@ -31,7 +31,7 @@ const Home = (props) => {
     let endTop = 90;
     let endRight = 100;
 
-    if(i < 0) {
+    if (i < 0) {
       i *= -1;
       const interval = 25;
       const a = ((90 - interval) * (interval * i)) / (100 - interval); //y절편
@@ -45,12 +45,12 @@ const Home = (props) => {
       endTop = (90 - (i * 17));
     }
 
-    if(startTop > 80) {return;}
+    if (startTop > 80) { return; }
 
 
     circle.animate([
-      {top: `${startTop}%`, right: `${startRight}%`},
-      {top: `${endTop}%`, right: `${endRight}%`},
+      { top: `${startTop}%`, right: `${startRight}%` },
+      { top: `${endTop}%`, right: `${endRight}%` },
     ], 10000);
 
     stage?.appendChild(circle);
@@ -60,7 +60,7 @@ const Home = (props) => {
   };
 
   const createCricleManyAll = () => {
-    for(let i = -6; i < 6; i++) {
+    for (let i = -6; i < 6; i++) {
       createCricleAll(i);
     }
   };
@@ -77,14 +77,24 @@ const Home = (props) => {
     };
   }, []);
 
-  
+
 
   return (
     <div className="home-wrapper">
       <div className="home-title-container">
-        <p className="neon">Create Your <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> 
-          <br></br> 
-          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Song List</p> 
+        <p className="neon">
+          Create Your <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+          <br></br>
+          <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Song List</p>
+        <marquee className="ssp" behavior="alternate" direction="up" width="1400" height="100" scrollamount="8">
+          <marquee behavior="alternate" scrollamount="8">
+            <span className="ssp-name">Team</span>
+            ⎛⎝(^O^)⎠⎞<span className="ssp-name">백광호</span>
+          ⎛⎝(˘･ᴗ･˘)⎠⎞<span className="ssp-name">김유상</span>
+          ⎛⎝( •᷄⌓•᷅ )⎠⎞<span className="ssp-name">이은정</span>
+          ⎛⎝(๑•᎑•๑)⎠⎞<span className="ssp-name">임혜림</span>
+          </marquee>
+        </marquee>
       </div>
     </div>
   );

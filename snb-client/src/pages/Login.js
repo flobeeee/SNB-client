@@ -40,38 +40,41 @@ const Login = (props) => {
   };
 
   return (
-    <div className="login-box">
-      <div className="login-title">Login</div>
-      <div className="login-items">
-        <div className="login-input">
-          <input
-            name="email"
-            className="login-email"
-            placeholder="Email"
-            type="email"
-            onChange={({ target: { value } }) => setEmail(value)}
-            value={email}
-          />
-          <input
-            name="password"
-            className="login-password"
-            placeholder="Password"
-            type="password"
-            onChange={({ target: { value } }) => setPassword(value)}
-            value={password}
-          />
-        </div>
-        {
-          errorMessage !== ''
-            ? (<div className="login-err">{errorMessage}</div>)
-            : <div></div>
-        }
-        <div className="login-btns">
-          <button className="login-signin" onClick={loginRequestHandler}>로그인</button>
-          <button className="login-signup" onClick={() => history.push('/signup')}>회원가입</button>
-          <div className="login-gbox">
-            <button className="login-guest" onClick={guestLoginHandler}>Guest Login</button>
-            <button className="login-github" onClick={socialLoginHandler}>Github Login</button>
+    <div className="login-container">
+      <div className="login-neon">Song Number Book ♬</div>
+      <div className="login-box">
+        <div className="login-title">Login</div>
+        <div className="login-items">
+          <div className="login-input">
+            <input
+              name="email"
+              className="login-email"
+              placeholder="Email"
+              type="email"
+              onChange={({ target: { value } }) => setEmail(value)}
+              value={email}
+            />
+            <input
+              name="password"
+              className="login-password"
+              placeholder="Password"
+              type="password"
+              onChange={({ target: { value } }) => setPassword(value)}
+              value={password}
+            />
+          </div>
+          {
+            errorMessage !== ''
+              ? (<div className="login-err">{errorMessage}</div>)
+              : <div></div>
+          }
+          <div className="login-btns">
+            <button className="login-signin" onClick={loginRequestHandler}>로그인</button>
+            <button className="login-signup" onClick={() => history.push('/signup')}>회원가입</button>
+            <div className="login-gbox">
+              <button className="login-guest" onClick={guestLoginHandler}>Guest Login</button>
+              <button className="login-github" onClick={socialLoginHandler}>Github Login</button>
+            </div>
           </div>
         </div>
       </div>

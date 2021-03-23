@@ -152,3 +152,38 @@
   background-color: var(--main-color);
   color: #000000;
 }
+
+/*네온*/
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-neon {
+  font-size: 3vw;
+  line-height: 5vw;
+  font-family: 'Do Hyeon', sans-serif;
+  z-index: 6;
+  margin-bottom: 10%;
+  
+}
+
+.login-neon {
+  animation: neon1 6s ease infinite;
+}
+
+@keyframes neon1 {
+  0%,
+  100% {
+    text-shadow: 0 0 0.75vw var(--header-border-color), 0 0 2.25vw var(--header-border-color), 0 0 5vw var(--header-border-color), 0 0 5vw #f74667, 0 0 .3vw #ff3399, .3vw .2vw .1vw #61335e;
+    color: #F5DEFA;
+  }
+  
+  50% {
+    text-shadow: 0 0 .5vw #8d192b, 0 0 1.5vw #8d192b, 0 0 5vw #8d192b, 0 0 5vw #8d192b, 0 0 .2vw #8d192b, .3vw .2vw .1vw #c08399;
+    color: #e8447d;
+  }
+}     
+
