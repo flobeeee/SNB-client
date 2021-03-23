@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 
@@ -8,7 +8,6 @@ import RemoveList from './RemoveList';
 import plus from '../res/plus.png';
 import minus from '../res/minus.png';
 import './MyList.css';
-
 
 const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestRemoveList, setSongs }) => {
   const [listname, setListname] = useState(lists.name ? lists[0].name : '선택된 리스트 없음');

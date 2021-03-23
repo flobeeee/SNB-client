@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Song from '../components/Song';
 import axios from 'axios';
+import dotenv from 'dotenv';
+
+import Song from '../components/Song';
 import AddSong from '../components/AddSong';
-import './Search.css';
 import Modal from '../components/modal/CenterModal';
 import nextimg from '../res/next.png';
 import backimg from '../res/back.png';
+import './Search.css';
 
-require('dotenv').config;
+dotenv.config();
 
 const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) => {
 
@@ -58,7 +60,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
     if (Next === true || page < nowPage) {
 
       if (searchType === 'singer') {
-        await axios.get('https://localhost:5000/v1/search/singer',
+        await axios.get(`${process.env.REACT_APP_SCRAP_SERVER_ADDRESS}/v1/search/singer`,
           { params: { page: page + 1, numOfRow: 15, singer: title } },
           { withCredentials: true })
           .then(res => {
@@ -69,7 +71,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
             setSongList([]);
           });
       } else {
-        await axios.get('https://localhost:5000/v1/search/title',
+        await axios.get(`${process.env.REACT_APP_SCRAP_SERVER_ADDRESS}/v1/search/title`,
           { params: { page: page + 1, numOfRow: 15, title: title } },
           { withCredentials: true })
           .then(res => {
@@ -89,7 +91,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
     if (page > 1) {
 
       if (searchType === 'singer') {
-        await axios.get(`https://localhost:5000/v1/search/${searchType}`,
+        await axios.get(`${process.env.REACT_APP_SCRAP_SERVER_ADDRESS}/v1/search/${searchType}`,
           { params: { page: page - 1, numOfRow: 15, singer: title } },
           { withCredentials: true })
           .then(res => {
@@ -100,7 +102,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
             setSongList([]);
           });
       } else {
-        await axios.get(`https://localhost:5000/v1/search/${searchType}`,
+        await axios.get(`${process.env.REACT_APP_SCRAP_SERVER_ADDRESS}/v1/search/${searchType}`,
           { params: { page: page - 1, numOfRow: 15, title: title } },
           { withCredentials: true })
           .then(res => {

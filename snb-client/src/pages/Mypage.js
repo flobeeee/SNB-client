@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import dotenv from 'dotenv';
+
 import Userinfo from '../components/Userinfo';
 import MyList from '../components/MyList';
 import SongList from '../components/SongList';
 import './Mypage.css';
+
+dotenv.config();
 
 const Mypage = ({ userdata, listHandler }) => {
 
@@ -14,7 +18,7 @@ const Mypage = ({ userdata, listHandler }) => {
 
   useEffect(async () => {
     if (currentListId) {
-      await axios.post('https://localhost:4000/mylist/info',
+      await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/mylist/info`,
         { 'listid': Number(currentListId) },
         { 'Content-Type': 'application/json', withCredentials: true })
         .then((res) => setSongs(res.data.Song))
@@ -24,7 +28,7 @@ const Mypage = ({ userdata, listHandler }) => {
 
 
   const requestAddList = async (name) => {
-    return await axios.post('https://localhost:4000/mylist/add',
+    return await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/mylist/add`,
       { 'email': userdata.email, 'listname': name },
       { 'Content-Type': 'application/json', withCredentials: true })
       .then((res) => {
@@ -43,7 +47,7 @@ const Mypage = ({ userdata, listHandler }) => {
   };
 
   const requestRemoveList = async () => {
-    return await axios.post('https://localhost:4000/mylist/remove',
+    return await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/mylist/remove`,
       { 'listid': Number(currentListId) },
       { 'Content-Type': 'application/json', withCredentials: true })
       .then((res) => {

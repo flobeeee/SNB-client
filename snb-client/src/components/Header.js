@@ -1,9 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useHistory, Link, NavLink } from 'react-router-dom';
 import axios from 'axios';
+import PropTypes from 'prop-types';
+import dotenv from 'dotenv';
+
 import logo from '../res/snb_logo.png';
 import './Header.css';
-import PropTypes from 'prop-types';
+
+dotenv.config();
 
 const Header = (props) => {
 
@@ -20,7 +24,7 @@ const Header = (props) => {
   const handleSearch = () => {
     console.log('SearchType', searchType);
     if (searchType === 'title') {
-      axios.get('https://localhost:5000/v1/search/title',
+      axios.get(`${process.env.REACT_APP_SCRAP_SERVER_ADDRESS}/v1/search/title`,
         { params: { page: 1, numOfRow: 15, title: searchValue } },
         { withCredentials: true })
         .then(res => {
@@ -29,7 +33,7 @@ const Header = (props) => {
           history.push('/search');
         });
     } else {
-      axios.get('https://localhost:5000/v1/search/singer',
+      axios.get(`${process.env.REACT_APP_SCRAP_SERVER_ADDRESS}/v1/search/singer`,
         { params: { page: 1, numOfRow: 15, singer: searchValue } },
         { withCredentials: true })
         .then(res => {
@@ -52,7 +56,7 @@ const Header = (props) => {
 
   const logout = async () => {
 
-    await axios.post('https://localhost:4000/logout', null,
+    await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/logout`, null,
       { withCredentials: true })
       .then(res => {
         props.logoutHandler();
@@ -71,8 +75,8 @@ const Header = (props) => {
   const moveToBottomHeader = () => {
     const headerWrapper = document.querySelector('.header');
     headerWrapper.animate([
-      {opacity: 0},
-      {opacity: 1}
+      { opacity: 0 },
+      { opacity: 1 }
     ], 2000);
   };
 
@@ -97,7 +101,7 @@ const Header = (props) => {
               <div className='radio-button'>
                 <div className="singer">
                   <label className="tooltip-container">
-                    <input name='radio' type="radio" value="singer" onChange={() => setsearchType('singer')} checked={searchType === 'title' ? false : true}/>
+                    <input name='radio' type="radio" value="singer" onChange={() => setsearchType('singer')} checked={searchType === 'title' ? false : true} />
                     <span className="checkmark"></span>
                     가수
                   </label>
