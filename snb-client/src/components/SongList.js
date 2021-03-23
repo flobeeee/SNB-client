@@ -42,16 +42,18 @@ const SongList = ({ songs, listId, setSongs }) => {
           <div className="info-singer">가수</div>
           <div className="info-media">미디어 / 선택</div>
         </div>
-        {songs ? (songs.map((data) =>
-          <Song
-            key={data.songNum}
-            songNum={String(data.songNum)}
-            title={data.title}
-            singer={data.singer}
-            link={data.link}
-            getSongs={getSongs}
-          />))
-          : <div></div>}
+        <div className="songs-box">
+          {songs ? (songs.map((data) =>
+            <Song
+              key={data.songNum}
+              songNum={String(data.songNum)}
+              title={data.title}
+              singer={data.singer}
+              link={data.link}
+              getSongs={getSongs}
+            />))
+            : <div></div>}
+        </div>
         <div className="userinfo-removebox">
           <div className="userinfo-seletsong">{checkedSongList?.length}/{songs?.length}</div>
           <button className="userinfo-removesong" onClick={requestRemoveSong}>삭제</button>
