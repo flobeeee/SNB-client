@@ -25,6 +25,8 @@ const Signup = (props) => {
       setErrorMessage('비밀번호가 일치하지 않습니다.');
     } else if (userPassword.length < 4) {
       setErrorMessage('비밀번호 길이는 4글자 이상이어야 합니다.');
+    } else if (userName.length > 8 || userName.length < 4) {
+      setErrorMessage('이름은 4글자 이상 8글자 이이어야 합니다');
     } else {
       axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/signup`,
         { email: userEmail, password: userPassword, username: userName },
