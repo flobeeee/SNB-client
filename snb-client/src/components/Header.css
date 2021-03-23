@@ -250,7 +250,7 @@ a.nav-link:focus {
 }
 
 .nav-container > span{
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 
 .logout-button {
