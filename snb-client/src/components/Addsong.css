@@ -4,11 +4,6 @@
   display: flex;
   
 }
-select {
-  /* -moz-appearance: none;
-	-webkit-appearance: none;
-	appearance: none; */
-}
 .listDropdown {
   width: 100px;
   height: 50px;
@@ -16,28 +11,41 @@ select {
   outline-style: none;
   border-radius: 15px;
 }
-.addsong select.listDropdown {
-  color: #8e44ad;
-  outline-style: none;
-  border: 3px solid ;
-  border-radius: 15px;
-}
-.addsong > select.listDropdown:hover {
-  transform: scale(1.2);
-}
+
 .search-aaddlistbtn {
-  background-color: #FBFBFB;
-  margin-left: 20px;
-  color: #8e44ad;
-  outline-style: none;
-  border: 3px solid ;
-  border-radius: 15px;
+  height: 35px;
+  cursor: pointer;
+  font-size: var(--font-small);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  margin-left: 30px;
+  background-color: var(--header-border-color);
+  box-shadow:
+  0 0px 3px var(--header-border-color),
+  -3px 0 6px  var(--header-border-color),
+  3px 0 6px var(--header-border-color),
+  inset 0 0 6px var(--header-border-color),
+  inset 6px 0 6px  var(--header-border-color),
+  inset -6px 0 6px var(--header-border-color),
+  inset 6px 0 15px  var(--header-border-color),
+  inset -6px 0 15px var(--header-border-color);
+  transition: all 500ms ease-in-out;
 }
 .search-aaddlistbtn:hover {
-  transform: scale(1.2);
+  background: #9382E2;
+  box-shadow:
+  0 0 6px #9382E2,
+  6px 0 12px  #9382E2,
+  -6px 0 12px #9382E2,
+  inset 0 0 12px #9382E2,
+  inset -12px 0 12px  #9382E2,
+  inset 12px 0 12px #9382E2,
+  inset -12px 0 30px #9382E2,
+  inset 12px 0 30px #9382E2;
+  transition: all 500ms ease-in-out;
 }
 
 .dropdown {
   width: 220px;
-  outline: none;
 }

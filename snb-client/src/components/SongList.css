@@ -8,7 +8,7 @@
 .songs-box {
   position: relative;
   flex: 2;
-  margin-bottom: 75px;
+  margin-bottom: 65px;
 }
 
 .songlist-removebox {
@@ -22,6 +22,7 @@
   align-items: center;
   padding: 0px 40px;
   margin-bottom: 5px;
+  border-top: 5px solid var(--header-border-color);
 }
 
 .songlist-selectsong {

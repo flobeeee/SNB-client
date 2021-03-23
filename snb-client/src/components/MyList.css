@@ -21,6 +21,7 @@
 .mylist-listname {
   display: block;
   font-size: var(--font-mid);
+  color: var(--menu-color);
   height: 50px;
   text-align: center;
   overflow: hidden;

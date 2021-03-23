@@ -85,7 +85,7 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
 
   return (
     <>
-      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp}>
+      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={true}>
         {isAddBtn
           ? (<AddList
             addListCallback={clickAddBtn}
