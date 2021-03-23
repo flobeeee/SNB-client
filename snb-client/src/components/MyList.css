@@ -14,7 +14,7 @@
 
 .mylist-curlist {
   text-align: center;
-  font-size: var(--font-small);
+  font-size: 16px;
   color: #85838B;
 }
 
@@ -68,15 +68,16 @@
 }
 
 .mylist-plusbtn:hover {
+  background: #9382E2;
   box-shadow:
-  0 0 9px #9382E2,
-  9px 0 27px  #9382E2,
-  -9px 0 27px #9382E2,
-  inset 0 0 27px #9382E2,
-  inset -27px 0 27px  #9382E2,
-  inset 27px 0 27px #9382E2,
-  inset -27px 0 45px #9382E2,
-  inset 27px 0 45px #9382E2;
+  0 0 6px #9382E2,
+  6px 0 12px  #9382E2,
+  -6px 0 12px #9382E2,
+  inset 0 0 12px #9382E2,
+  inset -12px 0 12px  #9382E2,
+  inset 12px 0 12px #9382E2,
+  inset -12px 0 30px #9382E2,
+  inset 12px 0 30px #9382E2;
   transition: all 500ms ease-in-out;
 }
 
@@ -105,14 +106,15 @@
 }
 
 .mylist-minusbtn:hover {
+  background: var(--nav-point-color);
   box-shadow:
-  0 0 9px var(--nav-point-color),
-  9px 0 27px  var(--nav-point-color),
-  -9px 0 27px var(--nav-point-color),
-  inset 0 0 27px var(--nav-point-color),
-  inset -27px 0 27px  var(--nav-point-color),
-  inset 27px 0 27px var(--nav-point-color),
-  inset -27px 0 45px var(--nav-point-color),
-  inset 27px 0 45px var(--nav-point-color);
+  0 0 6px var(--nav-point-color),
+  6px 0 12px  var(--nav-point-color),
+  -6px 0 12px var(--nav-point-color),
+  inset 0 0 12px var(--nav-point-color),
+  inset -12px 0 12px  var(--nav-point-color),
+  inset 12px 0 12px var(--nav-point-color),
+  inset -12px 0 30px var(--nav-point-color),
+  inset 12px 0 30px var(--nav-point-color);
   transition: all 500ms ease-in-out;
 }

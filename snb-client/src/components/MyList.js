@@ -117,7 +117,9 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
             <div className="mylist-plusbtn" value="true" onClick={isAdd}>
               <img src={plus} alt="plus" />
             </div>
-            <div className="mylist-minusbtn" onClick={isAdd}><img src={minus} alt="minus" /></div>
+            <div className="mylist-minusbtn" onClick={isAdd}>
+              <img src={minus} alt="minus" />
+            </div>
           </div>
         </div>
       </div>

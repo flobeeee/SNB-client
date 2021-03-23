@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import axios from 'axios';
 
 import Song from '../components/Song';
-import './Userinfo.css';
 import './SongList.css';
 
 const SongList = ({ songs, listId, setSongs }) => {
@@ -34,9 +33,9 @@ const SongList = ({ songs, listId, setSongs }) => {
   };
 
   return (
-    <div className="userinfo-rightbox">
-      <div className="userinfo-songsbox">
-        <div className="info-background">
+    <>
+      <div className="songlist-songsbox">
+        <div className="songlist-background">
           <div className="info">
             <div className="info-num">번호</div>
             <div className="info-title">제목</div>
@@ -56,12 +55,12 @@ const SongList = ({ songs, listId, setSongs }) => {
             />))
             : <div></div>}
         </div>
-        <div className="userinfo-removebox">
-          <div className="userinfo-seletsong">{checkedSongList?.length}/{songs?.length}</div>
-          <button className="userinfo-removesong" onClick={requestRemoveSong}>삭제</button>
+        <div className="songlist-removebox">
+          <div className="songlist-selectsong">{checkedSongList?.length}<span className="songlist-songs"> / {songs ? songs.length : 0}</span></div>
+          <button className="songlist-removesongbtn" onClick={requestRemoveSong}>선택한 노래 삭제</button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
