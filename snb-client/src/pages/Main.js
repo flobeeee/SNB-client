@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from '../components/Header';
 import Search from './Search';
 import Mypage from './Mypage';
+import Home from './Home';
 import PropTypes from 'prop-types';
 
 const Main = ({ logoutHandler, userdata, listHandler }) => {
@@ -30,6 +31,9 @@ const Main = ({ logoutHandler, userdata, listHandler }) => {
         </Route>
         <Route path="/search">
           <Search searchValue={searchValue} searchType={searchType} title={title} userdata={userdata} isNext={isNext} nowPages={nowPages} />
+        </Route>
+        <Route path="/">
+          <Home/>
         </Route>
       </Switch >
     </Router >
