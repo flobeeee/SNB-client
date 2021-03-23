@@ -13,7 +13,7 @@
 .userinfo-username {
   width: 100%;
   font-size: var(--font-large);
-  color: #23202f;
+  color: var(--menu-color);
 }
 .userinfo-email {
   width: 100%;

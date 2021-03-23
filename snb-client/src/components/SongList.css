@@ -1,23 +1,76 @@
-.userinfo-rightbox {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100px;
-}
-
-.userinfo-songsbox {
-  height: 100vh;
-}
-
-.info-background {
+.songlist-infobackground {
   background-color: #fff;
   position: sticky;
   top: 0px;
   z-index: 1;
 }
 
-.userinfo-removebox {
-  position: sticky;
+.songs-box {
+  position: relative;
+  flex: 2;
+  margin-bottom: 65px;
+}
+
+.songlist-removebox {
+  position: fixed;
   bottom: 0px;
+  right: 0px;
   background-color: #fff;
+  display: flex;
+  width: 100%;
+  height: 80px;
+  align-items: center;
+  padding: 0px 40px;
+  margin-bottom: 5px;
+  border-top: 5px solid var(--header-border-color);
+}
+
+.songlist-selectsong {
+  flex: 4 0 0;
+  text-align: right;
+  margin: 20px;
+  font-size: var(--font-large);
+}
+
+.songlist-selectsong {
+  color: var(--nav-point-color);
+}
+
+.songlist-songs {
+  color: var(--header-border-color);
+}
+
+.songlist-removesongbtn {
+  flex: 1;
+  height: 35px;
+  cursor: pointer;
+  font-size: var(--font-small);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  background: #e07298;
+  box-shadow:
+  0 0px 3px #e07298,
+  -3px 0 6px  #e07298,
+  3px 0 6px #e07298,
+  inset 0 0 6px #e07298,
+  inset 6px 0 6px  #e07298,
+  inset -6px 0 6px #e07298,
+  inset 6px 0 15px  #e07298,
+  inset -6px 0 15px #e07298;
+  transition: all 500ms ease-in-out;
+}
+
+.songlist-removesongbtn:hover {
+  background: var(--nav-point-color);
+  box-shadow:
+  0 0 6px var(--nav-point-color),
+  6px 0 12px  var(--nav-point-color),
+  -6px 0 12px var(--nav-point-color),
+  inset 0 0 12px var(--nav-point-color),
+  inset -12px 0 12px  var(--nav-point-color),
+  inset 12px 0 12px var(--nav-point-color),
+  inset -12px 0 30px var(--nav-point-color),
+  inset 12px 0 30px var(--nav-point-color);
+  transition: all 500ms ease-in-out;
 }

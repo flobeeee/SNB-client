@@ -18,7 +18,8 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
   const [isAddBtn, setIsAddBtn] = useState(true);
 
   const isAdd = (e) => {
-    if (e.target.alt === 'plus') {
+    const plusbtn = document.querySelector('.mylist-plusbtn');
+    if (e.target === plusbtn || e.target.alt === 'plus') {
       setIsAddBtn(true);
     } else {
       setIsAddBtn(false);
@@ -84,7 +85,7 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
 
   return (
     <>
-      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp}>
+      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={true}>
         {isAddBtn
           ? (<AddList
             addListCallback={clickAddBtn}
@@ -102,17 +103,25 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
           <div className="mylist-curlist">선택된 리스트</div>
           <div className="mylist-listname">{listname}</div>
         </div>
-        <Select
-          className="dropdown"
-          styles={customStyles}
-          placeholder={lists.length !== 0 ? '리스트를 선택해주세요' : '리스트 없음'}
-          value={options.label}
-          onChange={handleChange}
-          options={options}
-          isSearchable={isSearchable}
-        />
-        <img src={plus} alt="plus" className="mylist-plusbtn" onClick={isAdd} />
-        <img src={minus} alt="minus" className="mylist-minusbtn" onClick={isAdd} />
+        <div className="mylist-contentbox">
+          <Select
+            className="mylist-dropdown"
+            styles={customStyles}
+            placeholder={lists.length !== 0 ? '리스트를 선택해주세요' : '리스트 없음'}
+            value={options.label || ''}
+            onChange={handleChange}
+            options={options}
+            isSearchable={isSearchable}
+          />
+          <div className="mylist-btnbox">
+            <div className="mylist-plusbtn" value="true" onClick={isAdd}>
+              <img src={plus} alt="plus" />
+            </div>
+            <div className="mylist-minusbtn" onClick={isAdd}>
+              <img src={minus} alt="minus" />
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );

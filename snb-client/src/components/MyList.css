@@ -1,25 +1,121 @@
+.mylist-listbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .mylist-curlistbox {
   display: flex;
-} */
+  flex-direction: column;
+  width: 250px;
+}
+
+.mylist-curlist {
+  text-align: center;
+  font-size: 16px;
+  color: #85838B;
+}
 
 .mylist-listname {
-  margin-left: 10px;
+  display: block;
+  font-size: var(--font-mid);
+  color: var(--menu-color);
+  height: 50px;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.mylist-contentbox {
+  width: 250px;
+  align-items: center;
+  justify-content: center;
+}
+
+.mylist-dropdown {
+  margin: 10px 0px;
+}
+
+.mylist-btnbox {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
 }
 
 .mylist-plusbtn {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
   width: 35px;
   height: 35px;
   outline: none;
-  padding: 5px;
-  background-color: var(--header-border-color);
+  padding: 5px 50px;
   border-radius: 5px;
+  transition: all 500ms ease-in-out;
+  background-color: var(--header-border-color);
+  box-shadow:
+  0 0px 3px var(--header-border-color),
+  -3px 0 6px  var(--header-border-color),
+  3px 0 6px var(--header-border-color),
+  inset 0 0 6px var(--header-border-color),
+  inset 6px 0 6px  var(--header-border-color),
+  inset -6px 0 6px var(--header-border-color),
+  inset 6px 0 15px  var(--header-border-color),
+  inset -6px 0 15px var(--header-border-color);
 }
 
+.mylist-plusbtn:hover {
+  background: #9382E2;
+  box-shadow:
+  0 0 6px #9382E2,
+  6px 0 12px  #9382E2,
+  -6px 0 12px #9382E2,
+  inset 0 0 12px #9382E2,
+  inset -12px 0 12px  #9382E2,
+  inset 12px 0 12px #9382E2,
+  inset -12px 0 30px #9382E2,
+  inset 12px 0 30px #9382E2;
+  transition: all 500ms ease-in-out;
+}
+
+
 .mylist-minusbtn {
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
   width: 35px;
   height: 35px;
   outline: none;
-  padding: 5px;
-  background-color: var(--nav-point-color);
+  padding: 5px 50px;
   border-radius: 5px;
+  transition: all 500ms ease-in-out;
+  background: #e07298;
+  box-shadow:
+  0 0px 3px #e07298,
+  -3px 0 6px  #e07298,
+  3px 0 6px #e07298,
+  inset 0 0 6px #e07298,
+  inset 6px 0 6px  #e07298,
+  inset -6px 0 6px #e07298,
+  inset 6px 0 15px  #e07298,
+  inset -6px 0 15px #e07298;
+}
+
+.mylist-minusbtn:hover {
+  background: var(--nav-point-color);
+  box-shadow:
+  0 0 6px var(--nav-point-color),
+  6px 0 12px  var(--nav-point-color),
+  -6px 0 12px var(--nav-point-color),
+  inset 0 0 12px var(--nav-point-color),
+  inset -12px 0 12px  var(--nav-point-color),
+  inset 12px 0 12px var(--nav-point-color),
+  inset -12px 0 30px var(--nav-point-color),
+  inset 12px 0 30px var(--nav-point-color);
+  transition: all 500ms ease-in-out;
 }

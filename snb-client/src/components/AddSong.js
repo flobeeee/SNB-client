@@ -28,7 +28,8 @@ const AddSong = ({ userdata, songList }) => {
       borderBottom: '1px solid #8D44AD',
       color: state.isSelected ? '#e8447d' : '#646464',
       background: 'none',
-      padding: 10
+      padding: 10,
+      overflow: 'hidden'
     }),
     singleValue: () => ({
       color: '#646464'
