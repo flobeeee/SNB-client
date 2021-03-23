@@ -7,7 +7,7 @@ import SongList from '../components/SongList';
 import './Mypage.css';
 
 const Mypage = ({ userdata, listHandler }) => {
-  const [currentListId, setCurrentListId] = useState(String(userdata?.lists[0]?.id));
+  const [currentListId, setCurrentListId] = useState(userdata.lists.length !== 0 ? String(userdata.lists[0].id) : '');
   const [songs, setSongs] = useState(userdata.songs);
 
   useEffect(async () => {
