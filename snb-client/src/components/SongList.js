@@ -35,7 +35,7 @@ const SongList = ({ songs, listId, setSongs }) => {
   return (
     <>
       <div className="songlist-songsbox">
-        <div className="songlist-background">
+        <div className="songlist-infobackground">
           <div className="info">
             <div className="info-num">번호</div>
             <div className="info-title">제목</div>
