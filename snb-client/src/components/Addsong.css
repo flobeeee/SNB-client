@@ -2,6 +2,7 @@
 
 .addsong {
   display: flex;
+  align-items: center;
   
 }
 .listDropdown {
@@ -44,6 +45,9 @@
   inset -12px 0 30px #9382E2,
   inset 12px 0 30px #9382E2;
   transition: all 500ms ease-in-out;
+}
+.add-button {
+  color: #fff;
 }
 
 .dropdown {

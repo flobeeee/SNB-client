@@ -15,7 +15,12 @@ const Header = (props) => {
   const filterTooltip = useRef();
   const HeaderWrapper = useRef();
 
-  //console.log(history.location.pathname);
+  // console.log(document.getElementsByClassName('header-search-input')[0].value);
+
+  const handleInput = () => {
+    document.getElementsByClassName('header-search-input')[0].value = null;
+    setSearchValue('');
+  };
 
   const handleSearch = () => {
     console.log('SearchType', searchType);
@@ -71,8 +76,8 @@ const Header = (props) => {
   const moveToBottomHeader = () => {
     const headerWrapper = document.querySelector('.header');
     headerWrapper.animate([
-      {opacity: 0},
-      {opacity: 1}
+      { opacity: 0 },
+      { opacity: 1 }
     ], 2000);
   };
 
@@ -83,7 +88,7 @@ const Header = (props) => {
 
   return (
     <div className='header' ref={HeaderWrapper}>
-      <Link to="/main">
+      <Link to="/main" onClick={() => handleInput()}>
         <div className='header-logo-wrapper'>
           <img className='header-logo' alt="Logo" src={logo} />
         </div>
@@ -97,7 +102,7 @@ const Header = (props) => {
               <div className='radio-button'>
                 <div className="singer">
                   <label className="tooltip-container">
-                    <input name='radio' type="radio" value="singer" onChange={() => setsearchType('singer')} checked={searchType === 'title' ? false : true}/>
+                    <input name='radio' type="radio" value="singer" onChange={() => setsearchType('singer')} checked={searchType === 'title' ? false : true} />
                     <span className="checkmark"></span>
                     가수
                   </label>
@@ -117,8 +122,8 @@ const Header = (props) => {
       <div className='header-nav'>
         <NavLink className='nav-link' to="/mypage" activeStyle={{
           fontWeight: 'bold',
-          borderTop: '5px solid var(--nav-point-color)'
-        }}>
+          borderTop: '5px solid var(--nav-point-color)',
+        }} onClick={() => handleInput()}>
           <div className='nav-container'>
             <span>Mypage</span>
           </div>

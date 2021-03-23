@@ -12,12 +12,11 @@
 }
 .info {
   display: flex;
+  height: 50px;
   align-items: center;
   justify-content: space-between;
   border-radius:20px;
   background: linear-gradient(to right, var(--header-border-color) 0%, #9382e2 100%);
-  width: 100%;
-  height: 60px;
   color: #fff;
   font-size: 18px;
 }
@@ -45,41 +44,40 @@
 .info-checkbox {
   margin-right: 15px;
 }
-
 .songs {
-  margin-top: 10px;
+  /* display: flex; */
+  flex: 5;
 }
 .addsong-dropdown {
   display: flex;
-  flex: 1;
-  margin-top: 20px;
+  flex: 2;
+  margin-top: 10px;
   justify-content: center;
   align-items: center;
 }
 .info-dropdown {
   flex: 1;
-  margin-right: 30px;
   justify-content: space-between;
   align-items: center;
 }
 
 .search-btnbox {
-  flex: 1.3;
+  flex: 1.2;
 }
 
 .search-previusbtn {
-  height: 50px;;
+  height: 40px;;
   outline: none;
   border:none;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-right: 10px;
   background-color: var(--header-border-color);
 }
 .search-nextbtn {
-  height: 50px;;
+  height: 40px;;
   outline: none;
   border:none;
-  border-radius: 20px;
+  border-radius: 10px;
   margin-left: 10px;
   background-color: var(--header-border-color);
 }
@@ -98,4 +96,7 @@
 }
 .search-nextbtn:active {
   background-color: #8e44ad;
+}
+.page-button {
+  color: #fff;
 }
