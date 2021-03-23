@@ -68,3 +68,27 @@
     color: #e8447d;
   }
 }
+
+
+/*개발자*/
+
+.ssp {
+  font-size: 2vw;
+  animation: neon2 1s ease infinite;
+}
+
+@keyframes neon2 {
+  0%,
+  100% {
+    text-shadow: 0 0 0.75vw #17a83b, 0 0 2.25vw #17a83b, 0 0 5vw #17a83b, 0 0 5vw #17a83b, 0 0 .3vw #17a83b, .3vw .2vw .1vw #61335e;
+    color: #F5DEFA;
+  }
+  
+  50% {
+    text-shadow: 0 0 .5vw #06300c, 0 0 1.5vw #06300c, 0 0 5vw #06300c, 0 0 5vw #06300c, 0 0 .2vw #06300c, .3vw .2vw .1vw #c08399;
+    color: #6ae844;
+  }
+}
+.ssp-name{
+  font-size: 0.8vw;
+}
