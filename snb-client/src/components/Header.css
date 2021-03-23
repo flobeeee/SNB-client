@@ -227,6 +227,14 @@ a{
 
 a.nav-link:hover {
   color: var(--header-border-color);
+  animation-duration: 3s;
+  animation-fill-mode: both;
+  animation-name: shake;
+  transform-origin: center bottom
+}
+
+a.nav-link:focus {
+  color: var(--header-border-color);
   animation-duration: 1s;
   animation-fill-mode: both;
   animation-name: bounce;
@@ -244,7 +252,7 @@ a.nav-link:hover {
 }
 
 .logout-button {
-margin-left: 5px;
+margin-left: 15px;
 margin-right: 100px;
 width: 32px;
 height: 32px;
@@ -256,12 +264,17 @@ padding: 1px;
 } 
 
 .logout-button:hover {
-  animation-duration: 1s;
+  animation-duration: 5s;
   animation-fill-mode: both;
-  animation-name: bounce;
+  animation-name: shake;
   transform-origin: center bottom
 }
-
+/* .logout-button:focus {
+  animation-duration: 3s;
+  animation-fill-mode: both;
+  animation-name: slide-right;
+  transform-origin: center bottom
+} */
 
 @keyframes bounce {
   0%, 100%, 20%, 53%, 80% {
@@ -278,4 +291,25 @@ padding: 1px;
     transform: translate3d(0, -4px, 0)
   }
 }
+
+@keyframes shake {
+	0%, 100% {
+    transform: (0,0);}
+	10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
+	20%, 40%, 60%, 80% {transform: translateX(10px);}
+}
+
+/* @keyframes slide-right {
+  0% {
+    margin-left: (0,0);
+  }
+
+  100% {
+    margin-left: 100%;
+  }
+} */
+
+
+
+
 
