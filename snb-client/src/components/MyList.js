@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 
@@ -10,8 +10,9 @@ import minus from '../res/minus.png';
 import './MyList.css';
 
 
-const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestRemoveList }) => {
-  const [listname, setListname] = useState(lists[0].name);
+const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestRemoveList, setSongs }) => {
+  const [listname, setListname] = useState(lists.name ? lists[0].name : '선택된 리스트 없음');
+  console.log('listname', lists);
   const [isSearchable] = useState(false);
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [isAddBtn, setIsAddBtn] = useState(true);
@@ -30,7 +31,11 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
   };
 
   const closePopUp = () => {
+    if (lists[0]) {
+      setListname('리스트를 선택해주세요');
+    }
     setIsOpenPopup(false);
+
   };
 
   const clickAddBtn = async (name) => {
@@ -41,6 +46,7 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
     return await requestRemoveList();
   };
 
+
   let options;
 
   if (lists.length !== 0) {
@@ -48,8 +54,9 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
       return { value: list.id, label: list.name };
     });
   } else {
-    options = ({ value: 0, label: '리스트 없음' });
+    options = [{ value: 0, label: '리스트 없음' }];
   }
+  console.log('options', options);
 
   const customStyles = {
     input: () => ({
@@ -67,9 +74,12 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
     })
   };
 
-  const handleChange = (seletedList) => {
-    setCurrentListId(seletedList.value);
-    setListname(seletedList.label);
+  const handleChange = (selectedList) => {
+    console.log('selectedList', selectedList);
+
+    setCurrentListId(selectedList.value);
+    setListname(selectedList.label);
+
   };
 
   return (
@@ -96,7 +106,7 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
           className="dropdown"
           styles={customStyles}
           placeholder={lists.length !== 0 ? '리스트를 선택해주세요' : '리스트 없음'}
-          value={options.label}
+          value={options.label || ''}
           onChange={handleChange}
           options={options}
           isSearchable={isSearchable}
@@ -114,7 +124,7 @@ MyList.propTypes = {
   setCurrentListId: PropTypes.func,
   requestAddList: PropTypes.func,
   requestRemoveList: PropTypes.func,
-  currentId: PropTypes.string
+  setSongs: PropTypes.func
 };
 
 
