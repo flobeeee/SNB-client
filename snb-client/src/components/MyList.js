@@ -85,7 +85,7 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
 
   return (
     <>
-      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={true}>
+      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={false}>
         {isAddBtn
           ? (<AddList
             addListCallback={clickAddBtn}
@@ -99,10 +99,6 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
           />)}
       </Modal>
       <div className="mylist-listbox">
-        <div className="mylist-curlistbox">
-          <div className="mylist-curlist">선택된 리스트</div>
-          <div className="mylist-listname">{listname}</div>
-        </div>
         <div className="mylist-contentbox">
           <Select
             className="mylist-dropdown"

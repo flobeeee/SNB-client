@@ -12,19 +12,17 @@
 }
 .mypage-left {
   flex: 1;
-  justify-content: center;
 }
+
 .mypage-right {
   flex: 3.5;
   overflow: auto;
 }
-.mypage-userinfo {
-  width: 100%;
-}
+
 .mypage-mylist {
   display: flex;
   width: 100%;
-  margin-top: 50px;
+  margin-top: 30px;
   justify-content: center;
 }
 .mypage-songlist {

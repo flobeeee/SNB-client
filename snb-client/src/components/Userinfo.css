@@ -1,7 +1,10 @@
 
 .userinfo-box {
   width: 100%;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding-left: 30px;
 }
 
 .userinfo-rightbox {
@@ -11,18 +14,16 @@
   height: 80%;
 }
 .userinfo-username {
-  width: 100%;
   font-size: var(--font-large);
   color: var(--menu-color);
+  font-weight: 700;
 }
 .userinfo-email {
-  width: 100%;
   margin-top: 10px;
   font-size: var(--font-small);
   color: #85838b;
 }
 .userinfo-createdAt {
-  width: 100%;
   margin-top: 10px;
   font-size: var(--font-small);
   color: #85838b;

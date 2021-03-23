@@ -59,12 +59,10 @@ const Mypage = ({ userdata, listHandler }) => {
   return (
     <div className='mypage'>
       <div className='mypage-left'>
-        <div className='mypage-userinfo'>
-          <Userinfo
-            listHandler={listHandler}
-            userdata={userdata}
-          />
-        </div>
+        <Userinfo
+          listHandler={listHandler}
+          userdata={userdata}
+        />
         <div className='mypage-mylist'>
           <MyList
             lists={userdata.lists}
@@ -80,7 +78,7 @@ const Mypage = ({ userdata, listHandler }) => {
       <div className='mypage-right'>
         <SongList songs={songs} listId={currentListId} setSongs={setSongs}></SongList>
       </div>
-    </div>
+    </div >
   );
 };
 

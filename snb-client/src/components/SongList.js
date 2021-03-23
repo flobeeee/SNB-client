@@ -60,7 +60,7 @@ const SongList = ({ songs, listId, setSongs }) => {
         </div>
         <div className="songlist-removebox">
           <div className="songlist-selectsong">{checkedSongList?.length}<span className="songlist-songs"> / {songs ? songs.length : 0}</span></div>
-          <button className="songlist-removesongbtn" onClick={requestRemoveSong}>선택한 노래 삭제</button>
+          <button className="songlist-removesongbtn" onClick={requestRemoveSong}>삭제</button>
         </div>
       </div>
     </>
