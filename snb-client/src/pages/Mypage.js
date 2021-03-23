@@ -9,7 +9,6 @@ import './Mypage.css';
 const Mypage = ({ userdata, listHandler }) => {
 
   const [currentListId, setCurrentListId] = useState('');
-  console.log('currentListId', currentListId);
   const [songs, setSongs] = useState(userdata.songs);
 
   useEffect(async () => {

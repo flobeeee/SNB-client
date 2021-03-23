@@ -12,7 +12,6 @@ import './MyList.css';
 
 const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestRemoveList, setSongs }) => {
   const [listname, setListname] = useState(lists.name ? lists[0].name : '선택된 리스트 없음');
-  console.log('listname', lists);
   const [isSearchable] = useState(false);
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [isAddBtn, setIsAddBtn] = useState(true);
@@ -76,8 +75,6 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
   };
 
   const handleChange = (selectedList) => {
-    console.log('selectedList', selectedList);
-
     setCurrentListId(selectedList.value);
     setListname(selectedList.label);
 
@@ -85,7 +82,7 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
 
   return (
     <>
-      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={true}>
+      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={false} isWarning={false}>
         {isAddBtn
           ? (<AddList
             addListCallback={clickAddBtn}
