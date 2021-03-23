@@ -118,7 +118,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
 
   const getSongs = (songInfo) => {
     // eslint-disable-next-line no-empty
-    console.log('방금들어온값의 체크상태', songInfo.checked);
+    //console.log('방금들어온값의 체크상태', songInfo.checked);
 
     if (songInfo.checked === false) {
       let song = songList.filter(el => Number(el.songNum) !== Number(songInfo.data.songNum));

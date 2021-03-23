@@ -92,13 +92,9 @@ const AddSong = ({ userdata, songList }) => {
   };
 
   const handleChange = (seletedList) => {
-    console.log(seletedList);
-
     setListId(seletedList.value);
-
   };
 
-  console.log('유저데이터', userdata.lists);
   return (
     <div className='addsong'>
       <Modal visible={isOpenPopup} color={'#aea1ea'} isBlackBtn={true} onClose={closePopUp} backColor={true}>
