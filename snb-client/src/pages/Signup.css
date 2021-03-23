@@ -16,12 +16,12 @@
   /* box-shadow: var(--shadow); */
   box-shadow:
     0 0 20px rgb(0, 0, 0),
-    -20px 0 60px  var(--nav-point-color),
+    -20px 0 60px  var(--header-border-color),
     20px 0 60px #fff,
     inset 0 0 60px #fff,
-    inset 60px 0 60px  var(--nav-point-color),
+    inset 60px 0 60px  var(--header-border-color),
     inset -60px 0 60px #fff,
-    inset 60px 0 100px  var(--nav-point-color),
+    inset 60px 0 100px  var(--header-border-color),
     inset -60px 0 100px #fff;
   animation: pulsate 6s linear infinite;
 }

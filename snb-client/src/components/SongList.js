@@ -36,11 +36,13 @@ const SongList = ({ songs, listId, setSongs }) => {
   return (
     <div className="userinfo-rightbox">
       <div className="userinfo-songsbox">
-        <div className="info">
-          <div className="info-num">번호</div>
-          <div className="info-title">제목</div>
-          <div className="info-singer">가수</div>
-          <div className="info-media">미디어 / 선택</div>
+        <div className="info-background">
+          <div className="info">
+            <div className="info-num">번호</div>
+            <div className="info-title">제목</div>
+            <div className="info-singer">가수</div>
+            <div className="info-media">미디어 / 선택</div>
+          </div>
         </div>
         <div className="songs-box">
           {songs ? (songs.map((data) =>

@@ -78,9 +78,7 @@ const Mypage = ({ userdata, listHandler }) => {
         </div>
       </div>
       <div className='mypage-right'>
-        <div className='mypage-songlist'>
-          <SongList songs={songs} listId={currentListId} setSongs={setSongs}></SongList>
-        </div>
+        <SongList songs={songs} listId={currentListId} setSongs={setSongs}></SongList>
       </div>
     </div>
   );

@@ -1,3 +1,11 @@
+.mylist-curlistbox {
+  display: flex;
+} */
+
+.mylist-listname {
+  margin-left: 10px;
+}
+
 .mylist-plusbtn {
   width: 35px;
   height: 35px;
