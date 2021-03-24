@@ -8,8 +8,12 @@ const AddList = ({ addListCallback, closeCallback }) => {
 
   const [name, setName] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
   const handleAddEvent = async () => {
-    if (name.length < 1) {
+    if (name.length >= 13) {
+      setErrorMessage('리스트 이름은 12자 이하 이어야 합니다.');
+      return;
+    } else if (!name) {
       setErrorMessage('한 글자 이상 입력해야 합니다.');
       return;
     }
@@ -25,7 +29,7 @@ const AddList = ({ addListCallback, closeCallback }) => {
         <Comment>{errorMessage}</Comment>
       </Header>
       <Content>
-        <InputName placeholder="Type List name" onChange={({ target: { value } }) => setName(value)}></InputName>
+        <InputName placeholder="리스트 이름을 입력해주세요." onChange={({ target: { value } }) => setName(value)}></InputName>
         <AddButton onClick={handleAddEvent}>확인</AddButton>
       </Content>
     </Wrapper>

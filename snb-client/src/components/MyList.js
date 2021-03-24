@@ -46,7 +46,7 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
 
   return (
     <>
-      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={true}>
+      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={false}>
         {isAddBtn
           ? (<AddList
             addListCallback={clickAddBtn}
@@ -60,25 +60,25 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
           />)}
       </Modal>
       <div className="mylist-listbox">
-        <div className="mylist-curlistbox">
-          <div className="mylist-curlist">나의 노래 목록</div>
-        </div>
-        <select
-          className="userinfo-dropdown"
-          onChange={e => setCurrentListId(e.target.value)}
-          value={currentListId}
-        >
-          <option value="" disabled hidden>Create Your List</option>
-          {lists.map(data => {
-            return <option className="userinfo-option" key={data.id} value={data.id} onMouseOver={hoverSelectOptionHandler}>{data.name}</option>;
-          })}
-        </select>
-        <div className="mylist-btnbox">
-          <div className="mylist-plusbtn" value="true" onClick={isAdd}>
-            <img src={plus} alt="plus" />
-          </div>
-          <div className="mylist-minusbtn" onClick={isAdd}>
-            <img src={minus} alt="minus" />
+        <div className="mylist-curlist">나의 노래 목록</div>
+        <div className="mylist-contentbox">
+          <select
+            className="userinfo-dropdown"
+            onChange={e => setCurrentListId(e.target.value)}
+            value={currentListId}
+          >
+            <option value="" disabled hidden>Create Your List</option>
+            {lists.map(data => {
+              return <option className="userinfo-option" key={data.id} value={data.id} onMouseOver={hoverSelectOptionHandler}>{data.name}</option>;
+            })}
+          </select>
+          <div className="mylist-btnbox">
+            <div className="mylist-plusbtn" value="true" onClick={isAdd}>
+              <img src={plus} alt="plus" />
+            </div>
+            <div className="mylist-minusbtn" onClick={isAdd}>
+              <img src={minus} alt="minus" />
+            </div>
           </div>
         </div>
       </div>
