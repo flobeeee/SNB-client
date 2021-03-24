@@ -86,7 +86,7 @@ const Home = (props) => {
           Create Your <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
           <br></br>
           <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Song List</p>
-        <marquee className="ssp" behavior="alternate" direction="up" width="1400" height="100" scrollamount="8">
+        {/* <marquee className="ssp" behavior="alternate" direction="up" width="1400" height="100" scrollamount="8">
           <marquee behavior="alternate" scrollamount="8">
             <span className="ssp-name">Team</span>
             ⎛⎝(^O^)⎠⎞<span className="ssp-name">백광호</span>
@@ -94,7 +94,7 @@ const Home = (props) => {
           ⎛⎝( •᷄⌓•᷅ )⎠⎞<span className="ssp-name">이은정</span>
           ⎛⎝(๑•᎑•๑)⎠⎞<span className="ssp-name">임혜림</span>
           </marquee>
-        </marquee>
+        </marquee> */}
       </div>
     </div>
   );
