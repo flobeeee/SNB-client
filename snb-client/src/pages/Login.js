@@ -19,7 +19,7 @@ const Login = (props) => {
   };
 
   const loginRequestHandler = async () => {
-    await axios.post('https://localhost:4000/login',
+    await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/login`,
       { email, password },
       { 'Content-Type': 'application/json', withCredentials: true })
       .then((res) => props.login(res.data))
@@ -32,7 +32,7 @@ const Login = (props) => {
   const guestLoginHandler = async () => {
     const email = 'user1@gmail.com';
     const password = '1234';
-    await axios.post('https://localhost:4000/login',
+    await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/login`,
       { email, password },
       { 'Content-Type': 'application/json', withCredentials: true })
       .then((res) => props.login(res.data))

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Song from '../components/Song';
 import axios from 'axios';
+import dotenv from 'dotenv';
+
+import Song from '../components/Song';
 import AddSong from '../components/AddSong';
-import './Search.css';
 import Modal from '../components/modal/CenterModal';
 import nextimg from '../res/next.png';
 import backimg from '../res/back.png';
+import './Search.css';
 
-require('dotenv').config;
+dotenv.config();
 
 const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) => {
 
@@ -25,14 +27,8 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
   const [page, setPage] = useState(1);
   const [nowPage, setNowPage] = useState(nowPages);
   const [Next, setnext] = useState(isNext);
-
-
-
-
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [isAddBtn, setIsAddBtn] = useState(true);
-
-
 
   const isAdd = (e) => {
     if (e === true) {
@@ -45,20 +41,19 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
   };
   const openPopUp = () => {
     setIsOpenPopup(true);
+
   };
 
   const closePopUp = () => {
     setIsOpenPopup(false);
   };
 
-
-
   const NextPage = async () => {
 
     if (Next === true || page < nowPage) {
 
       if (searchType === 'singer') {
-        await axios.get('https://localhost:5000/v1/search/singer',
+        await axios.get(`${process.env.REACT_APP_SCRAP_SERVER_ADDRESS}/v1/search/singer`,
           { params: { page: page + 1, numOfRow: 15, singer: title } },
           { withCredentials: true })
           .then(res => {
@@ -69,7 +64,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
             setSongList([]);
           });
       } else {
-        await axios.get('https://localhost:5000/v1/search/title',
+        await axios.get(`${process.env.REACT_APP_SCRAP_SERVER_ADDRESS}/v1/search/title`,
           { params: { page: page + 1, numOfRow: 15, title: title } },
           { withCredentials: true })
           .then(res => {
@@ -89,7 +84,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
     if (page > 1) {
 
       if (searchType === 'singer') {
-        await axios.get(`https://localhost:5000/v1/search/${searchType}`,
+        await axios.get(`${process.env.REACT_APP_SCRAP_SERVER_ADDRESS}/v1/search/${searchType}`,
           { params: { page: page - 1, numOfRow: 15, singer: title } },
           { withCredentials: true })
           .then(res => {
@@ -100,7 +95,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
             setSongList([]);
           });
       } else {
-        await axios.get(`https://localhost:5000/v1/search/${searchType}`,
+        await axios.get(`${process.env.REACT_APP_SCRAP_SERVER_ADDRESS}/v1/search/${searchType}`,
           { params: { page: page - 1, numOfRow: 15, title: title } },
           { withCredentials: true })
           .then(res => {
@@ -117,8 +112,6 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
   };
 
   const getSongs = (songInfo) => {
-    // eslint-disable-next-line no-empty
-    console.log('방금들어온값의 체크상태', songInfo.checked);
 
     if (songInfo.checked === false) {
       let song = songList.filter(el => Number(el.songNum) !== Number(songInfo.data.songNum));
@@ -130,8 +123,8 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
 
   return (
     <div className='search-box'>
-      <Modal visible={isOpenPopup} color={'#aea1ea'} isBlackBtn={true} onClose={closePopUp} backColor={true}>
-        {!isAddBtn ? (<div>첫번째 페이지 입니다</div>) : (<div>마지막 페이지 입니다</div>)}
+      <Modal visible={isOpenPopup} color={'#7660dccc'} isBlackBtn={false} onClose={closePopUp} backColor={true} isWarning={true} >
+        {!isAddBtn ? (<div style={{ color: 'white' }}>첫번째 페이지 입니다</div>) : (<div style={{ color: 'white' }}>마지막 페이지 입니다</div>)}
       </Modal>
       <div className='info'>
         <div className='info-num'>번호</div>
@@ -143,7 +136,7 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
         </div>
       </div>
       <div className='songs'>
-        {result.results ? (<div className='songs'>
+        {result.results ? (<div className='song'>
           {result.results.map((data) => (
             <Song
               key={data.songNum}

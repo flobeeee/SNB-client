@@ -1,41 +1,42 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import dotenv from 'dotenv';
+
 import Userinfo from '../components/Userinfo';
 import MyList from '../components/MyList';
 import SongList from '../components/SongList';
 import './Mypage.css';
 
-const Mypage = ({ userdata, listHandler }) => {
+dotenv.config();
 
-  const [currentListId, setCurrentListId] = useState('');
-  console.log('currentListId', currentListId);
+const Mypage = ({ userdata, listHandler }) => {
+  const [currentListId, setCurrentListId] = useState(userdata.lists.length !== 0 ? String(userdata.lists[0].id) : '');
   const [songs, setSongs] = useState(userdata.songs);
 
   useEffect(async () => {
     if (currentListId) {
-      await axios.post('https://localhost:4000/mylist/info',
+      await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/mylist/info`,
         { 'listid': Number(currentListId) },
         { 'Content-Type': 'application/json', withCredentials: true })
         .then((res) => setSongs(res.data.Song))
         .catch(() => setSongs([]));
+    } else {
+      setSongs([]);
     }
   }, [currentListId]);
 
 
   const requestAddList = async (name) => {
-    return await axios.post('https://localhost:4000/mylist/add',
+    return await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/mylist/add`,
       { 'email': userdata.email, 'listname': name },
       { 'Content-Type': 'application/json', withCredentials: true })
       .then((res) => {
         const addedList = {
           id: res.data.id,
-          name,
-          songs: []
+          name
         };
         const newList = [...userdata.lists, addedList];
-        //userdata.lists.push({ id: res.data.id, name });
-        //setSongs([]);
         listHandler(newList);
         setCurrentListId(String(res.data.id));
         return res.status === 201 ? true : false;
@@ -43,14 +44,17 @@ const Mypage = ({ userdata, listHandler }) => {
   };
 
   const requestRemoveList = async () => {
-    return await axios.post('https://localhost:4000/mylist/remove',
+    return await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/mylist/remove`,
       { 'listid': Number(currentListId) },
       { 'Content-Type': 'application/json', withCredentials: true })
       .then((res) => {
         const newList = userdata.lists.filter((data) => data.id !== Number(currentListId));
         listHandler(newList);
-        // setCurrentListId(String(userdata?.lists[0]?.id));
-        setSongs([]);
+        if (newList.length > 0) {
+          setCurrentListId(String(newList[0].id));
+        } else {
+          setCurrentListId('');
+        }
         return res.status === 200 ? true : false;
       });
   };
@@ -59,12 +63,10 @@ const Mypage = ({ userdata, listHandler }) => {
   return (
     <div className='mypage'>
       <div className='mypage-left'>
-        <div className='mypage-userinfo'>
-          <Userinfo
-            listHandler={listHandler}
-            userdata={userdata}
-          />
-        </div>
+        <Userinfo
+          listHandler={listHandler}
+          userdata={userdata}
+        />
         <div className='mypage-mylist'>
           <MyList
             lists={userdata.lists}
@@ -72,7 +74,7 @@ const Mypage = ({ userdata, listHandler }) => {
             setCurrentListId={setCurrentListId}
             requestAddList={requestAddList}
             requestRemoveList={requestRemoveList}
-            setSongs={setSongs}
+            currentListId={currentListId}
           ></MyList>
 
         </div>
@@ -80,7 +82,7 @@ const Mypage = ({ userdata, listHandler }) => {
       <div className='mypage-right'>
         <SongList songs={songs} listId={currentListId} setSongs={setSongs}></SongList>
       </div>
-    </div>
+    </div >
   );
 };
 

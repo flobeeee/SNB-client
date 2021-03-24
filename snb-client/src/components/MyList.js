@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Select from 'react-select';
 
 import Modal from './modal/CenterModal';
 import AddList from './AddList';
@@ -10,10 +9,8 @@ import minus from '../res/minus.png';
 import './MyList.css';
 
 
-const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestRemoveList, setSongs }) => {
-  const [listname, setListname] = useState(lists.name ? lists[0].name : '선택된 리스트 없음');
-  console.log('listname', lists);
-  const [isSearchable] = useState(false);
+const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestRemoveList, currentListId }) => {
+
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [isAddBtn, setIsAddBtn] = useState(true);
 
@@ -32,11 +29,7 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
   };
 
   const closePopUp = () => {
-    if (lists[0]) {
-      setListname('리스트를 선택해주세요');
-    }
     setIsOpenPopup(false);
-
   };
 
   const clickAddBtn = async (name) => {
@@ -47,45 +40,13 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
     return await requestRemoveList();
   };
 
-
-  let options;
-
-  if (lists.length !== 0) {
-    options = lists.map((list) => {
-      return { value: list.id, label: list.name };
-    });
-  } else {
-    options = [{ value: 0, label: '리스트 없음' }];
-  }
-  console.log('options', options);
-
-  const customStyles = {
-    input: () => ({
-      outline: 'none'
-    }),
-    option: (provided, state) => ({
-      ...provided,
-      borderBottom: '1px solid #8D44AD',
-      color: state.isSelected ? '#e8447d' : '#646464',
-      background: 'none',
-      padding: 10
-    }),
-    singleValue: () => ({
-      color: '#646464'
-    })
-  };
-
-  const handleChange = (selectedList) => {
-    console.log('selectedList', selectedList);
-
-    setCurrentListId(selectedList.value);
-    setListname(selectedList.label);
-
+  const hoverSelectOptionHandler = (e) => {
+    console.log(e.target.style);
   };
 
   return (
     <>
-      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={true}>
+      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={false} isWarning={false}>
         {isAddBtn
           ? (<AddList
             addListCallback={clickAddBtn}
@@ -99,20 +60,18 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
           />)}
       </Modal>
       <div className="mylist-listbox">
-        <div className="mylist-curlistbox">
-          <div className="mylist-curlist">선택된 리스트</div>
-          <div className="mylist-listname">{listname}</div>
-        </div>
+        <div className="mylist-curlist">나의 노래 목록</div>
         <div className="mylist-contentbox">
-          <Select
-            className="mylist-dropdown"
-            styles={customStyles}
-            placeholder={lists.length !== 0 ? '리스트를 선택해주세요' : '리스트 없음'}
-            value={options.label || ''}
-            onChange={handleChange}
-            options={options}
-            isSearchable={isSearchable}
-          />
+          <select
+            className="userinfo-dropdown"
+            onChange={e => setCurrentListId(e.target.value)}
+            value={currentListId}
+          >
+            <option value="" disabled hidden>Create Your List</option>
+            {lists.map(data => {
+              return <option className="userinfo-option" key={data.id} value={data.id} onMouseOver={hoverSelectOptionHandler}>{data.name}</option>;
+            })}
+          </select>
           <div className="mylist-btnbox">
             <div className="mylist-plusbtn" value="true" onClick={isAdd}>
               <img src={plus} alt="plus" />
@@ -133,7 +92,7 @@ MyList.propTypes = {
   setCurrentListId: PropTypes.func,
   requestAddList: PropTypes.func,
   requestRemoveList: PropTypes.func,
-  setSongs: PropTypes.func
+  currentListId: PropTypes.string
 };
 
 

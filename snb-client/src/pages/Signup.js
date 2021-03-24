@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import './Signup.css';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import dotenv from 'dotenv';
 
-require('dotenv').config;
+import './Signup.css';
+
+dotenv.config();
 
 const Signup = (props) => {
 
@@ -17,6 +19,12 @@ const Signup = (props) => {
   const [errormessage, setErrorMessage] = useState('');
   const [passwordError, setPasswordError] = useState(false);
 
+  const isEmail = (asValue) => {
+    // eslint-disable-next-line no-useless-escape
+    var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+    return regExp.test(asValue); // 형식에 맞는 경우 true 리턴	
+  };
+
   const handleInputValue = () => {
     // eslint-disable-next-line no-empty
     if (userEmail === '' || userPassword === '' || userName === '') {
@@ -25,8 +33,12 @@ const Signup = (props) => {
       setErrorMessage('비밀번호가 일치하지 않습니다.');
     } else if (userPassword.length < 4) {
       setErrorMessage('비밀번호 길이는 4글자 이상이어야 합니다.');
+    } else if (userName.length > 8 || userName.length < 1) {
+      setErrorMessage('이름은 4글자 이상 8글자 이이어야 합니다');
+    } else if (!isEmail(userEmail)) {
+      setErrorMessage('이메일 형식이 올바르지 않습니다.');
     } else {
-      axios.post(`${process.env.REACT_APP_MAIN_SEVER_ADDRESS}/signup`,
+      axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/signup`,
         { email: userEmail, password: userPassword, username: userName },
         { 'Content-Type': 'application/json', withCredentials: true })
         .then(res => {

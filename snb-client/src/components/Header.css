@@ -112,6 +112,8 @@ min-height: 30px;
 flex: 1;
 border:none;
 padding:10px;
+padding-left: 30px;
+padding-right: 20px;
 outline: none;
 border: none;
 border: 1px solid var(--search-bar-border-color);
@@ -248,12 +250,11 @@ a.nav-link:focus {
 }
 
 .nav-container > span{
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 
 .logout-button {
 margin-left: 15px;
-margin-right: 100px;
 width: 32px;
 height: 32px;
 background: url('../res/exit.png') no-repeat;
