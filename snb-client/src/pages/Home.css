@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -23,7 +23,7 @@
   overflow:hidden;
 }
 
-.circle-green{
+.circle-green {
   position: absolute;
   pointer-events: none;
   background-image: linear-gradient(to right, #2ef27466 0%, #54d88066 100%);
@@ -31,7 +31,7 @@
   right: 100%;
 }
 
-.circle-pink{
+.circle-pink {
   position: absolute;
   pointer-events: none;
   background-image: linear-gradient(to right, #ff33f066 0%, #bc98bb66 100%);

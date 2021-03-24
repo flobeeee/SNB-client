@@ -26,7 +26,6 @@ const Mypage = ({ userdata, listHandler }) => {
     }
   }, [currentListId]);
 
-
   const requestAddList = async (name) => {
     return await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/mylist/add`,
       { 'email': userdata.email, 'listname': name },
@@ -59,7 +58,6 @@ const Mypage = ({ userdata, listHandler }) => {
       });
   };
 
-
   return (
     <div className='mypage'>
       <div className='mypage-left'>
@@ -76,7 +74,6 @@ const Mypage = ({ userdata, listHandler }) => {
             requestRemoveList={requestRemoveList}
             currentListId={currentListId}
           ></MyList>
-
         </div>
       </div>
       <div className='mypage-right'>

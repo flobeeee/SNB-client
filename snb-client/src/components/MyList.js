@@ -40,10 +40,6 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
     return await requestRemoveList();
   };
 
-  const hoverSelectOptionHandler = (e) => {
-    console.log(e.target.style);
-  };
-
   return (
     <>
       <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={false} isWarning={false}>
@@ -69,7 +65,7 @@ const MyList = ({ lists, listHandler, setCurrentListId, requestAddList, requestR
           >
             <option value="" disabled hidden>Create Your List</option>
             {lists.map(data => {
-              return <option className="userinfo-option" key={data.id} value={data.id} onMouseOver={hoverSelectOptionHandler}>{data.name}</option>;
+              return <option className="userinfo-option" key={data.id} value={data.id}>{data.name}</option>;
             })}
           </select>
           <div className="mylist-btnbox">

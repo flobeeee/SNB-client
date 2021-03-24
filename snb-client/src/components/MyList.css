@@ -128,22 +128,8 @@
 
 .userinfo-dropdown option {
   zoom : 1.3; 
-  /* border-bottom: #aea1ea; */
 }
-
-/* select:invalid { color: gray; } */
 
 .userinfo-dropdown:focus option:checked {
   color: var(--nav-point-color);
 }
-
-.userinfo-dropdown:focus option:hover {
-  background-color: #488f8f;
-}
-
-/* option:hover{background-color:#aea1ea;} */
-
-/* .userinfo-dropdown *:focus {
-  background-color: red;
-} */
-

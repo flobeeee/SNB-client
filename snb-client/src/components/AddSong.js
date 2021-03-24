@@ -37,7 +37,6 @@ const AddSong = ({ userdata, songList }) => {
     setIsOpenPopup(false);
   };
 
-
   const openListPopup = () => {
     setListPopup(true);
   };
@@ -45,12 +44,9 @@ const AddSong = ({ userdata, songList }) => {
     setListPopup(false);
   };
 
-
   const handleClick = async () => {
 
-    console.log(listId, result);
-
-    if (userdata.lists.length === 0) { //리스트 선택 안했을 때
+    if (userdata.lists.length === 0) {
       openListPopup();
     }
     else {
@@ -65,11 +61,6 @@ const AddSong = ({ userdata, songList }) => {
           }
         });
     }
-  };
-
-  const handleChange = (seletedList) => {
-    setListId(seletedList.value);
-
   };
 
   return (

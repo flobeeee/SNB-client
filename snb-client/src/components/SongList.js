@@ -9,7 +9,7 @@ import Song from '../components/Song';
 import './SongList.css';
 
 const SongList = ({ songs, listId, setSongs }) => {
-  const [checkedSongList, setCheckedSongList] = useState([]); // 체크박스로 선택한 list안의 노래들
+  const [checkedSongList, setCheckedSongList] = useState([]);
 
   const requestRemoveSong = async () => {
     return await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/mylist/song/remove`,

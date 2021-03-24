@@ -15,11 +15,11 @@ const Main = ({ logoutHandler, userdata, listHandler }) => {
   const [nowPages, setNowPages] = useState(1);
 
   const searchHandler = (data, searchType, searchValue) => {
-    setSearchValue(data); //헤더에서 검색한 결과(노래들이 들어있는 배열)
-    setSearchType(searchType); //가수 OR 제목
-    setTitle(searchValue); //헤더에서 검색한 검색어
-    setIsnext(data.page.isNext);//헤더에서 처음 검색했을 때 가지고 오는 next값
-    setNowPages(data.page.nowPages); //헤더에서 처음 검색했을 때 가지고 오는 nowpages값
+    setSearchValue(data);
+    setSearchType(searchType);
+    setTitle(searchValue);
+    setIsnext(data.page.isNext);
+    setNowPages(data.page.nowPages);
   };
 
   return (

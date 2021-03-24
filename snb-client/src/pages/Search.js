@@ -21,7 +21,6 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
     setnext(isNext);
   }, [searchValue, searchType, title, userdata, isNext, nowPages]);
 
-
   const [result, setResult] = useState(searchValue);
   const [songList, setSongList] = useState([]);
   const [page, setPage] = useState(1);
@@ -159,7 +158,6 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
         </div>
       </div>
     </div>
-
   );
 };
 

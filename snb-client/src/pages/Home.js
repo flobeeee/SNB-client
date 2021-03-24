@@ -6,7 +6,7 @@ const Home = (props) => {
   const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min; //최댓값도 포함, 최솟값도 포함
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   };
 
   const createCricleAll = (i) => {
@@ -39,7 +39,6 @@ const Home = (props) => {
       startRight = 0;
       startTop = a;
       endRight = (((100 - interval) * (90 - a))) / (90 - interval);
-      //console.log(startTop, startRight, endTop, endRight);
     } else {
       startRight = (17 * i);
       endTop = (90 - (i * 17));
@@ -66,14 +65,10 @@ const Home = (props) => {
   };
 
   useEffect(() => {
-    //const circleAnimationTopId =  setInterval(createManyCircleTop, 900);
-    //const circleAnimationBottomId =  setInterval(createManyCircleBottom, 1200);
     const circleAnimationAllId = setInterval(createCricleManyAll, 900);
 
     return () => {
       clearInterval(circleAnimationAllId);
-      //clearInterval(circleAnimationTopId);
-      //clearInterval(circleAnimationBottomId);
     };
   }, []);
 
