@@ -16,7 +16,6 @@ const App = () => {
   const [userdata, setUserdata] = useState(null);
   const history = useHistory();
 
-
   const oauthLoginHandler = async (authorizationCode) => {
     let res = await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/oauth/login`, { authorizationCode });
 
@@ -72,14 +71,11 @@ const App = () => {
             if (isLogin) {
               return <Redirect to='/main' />;
             }
-
             return <Redirect to='/login' />;
           }}
         />
       </Switch>
     </>
-
-
   );
 };
 

@@ -22,7 +22,7 @@ const Signup = (props) => {
   const isEmail = (asValue) => {
     // eslint-disable-next-line no-useless-escape
     var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-    return regExp.test(asValue); // 형식에 맞는 경우 true 리턴	
+    return regExp.test(asValue);
   };
 
   const handleInputValue = () => {
@@ -34,7 +34,7 @@ const Signup = (props) => {
     } else if (userPassword.length < 4) {
       setErrorMessage('비밀번호 길이는 4글자 이상이어야 합니다.');
     } else if (userName.length > 8 || userName.length < 1) {
-      setErrorMessage('이름은 4글자 이상 8글자 이이어야 합니다');
+      setErrorMessage('이름은 1글자 이상 8글자 이이어야 합니다');
     } else if (!isEmail(userEmail)) {
       setErrorMessage('이메일 형식이 올바르지 않습니다.');
     } else {
@@ -44,6 +44,11 @@ const Signup = (props) => {
         .then(res => {
           props.login(res.data);
           history.push('/');
+        })
+        .catch(err => {
+          if (err.response.status === 409) {
+            setErrorMessage('중복된 이메일 입니다.');
+          }
         });
     }
   };
