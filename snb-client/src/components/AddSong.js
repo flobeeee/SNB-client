@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import dotenv from 'dotenv';
+
 import './Addsong.css';
 import Modal from '../components/modal/CenterModal';
+
+dotenv.config();
 
 const AddSong = ({ userdata, songList }) => {
 
@@ -50,7 +54,7 @@ const AddSong = ({ userdata, songList }) => {
       openListPopup();
     }
     else {
-      await axios.post('https://localhost:4000/mylist/song/add',
+      await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/mylist/song/add`,
         { listid: listId, songs: result }, { withCredentials: true })
         .then(res => {
           if (result.length === 0) {

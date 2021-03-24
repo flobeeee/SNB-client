@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import './Signup.css';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import dotenv from 'dotenv';
 
-require('dotenv').config;
+import './Signup.css';
+
+dotenv.config();
 
 const Signup = (props) => {
 
