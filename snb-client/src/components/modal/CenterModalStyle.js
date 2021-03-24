@@ -77,7 +77,7 @@ export const InnerContainer = styled.div`
   outline:none;
 
   ${(props) => props.isWarning && css`
-   animation: ${reverseAnimation} 0.3s alternate;
+   animation: ${shakeAnimation} 0.3s alternate;
   `}
 `;
 
