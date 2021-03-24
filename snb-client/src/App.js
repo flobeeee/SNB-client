@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect, withRouter, useHistory } from 'react-router-dom';
 import axios from 'axios';
-import './App.css';
+import dotenv from 'dotenv';
+
 import Login from './pages/Login';
 import Main from './pages/Main';
 import Signup from './pages/Signup';
+import './App.css';
 
-require('dotenv').config;
+dotenv.config();
 
 const App = () => {
 
@@ -16,7 +18,7 @@ const App = () => {
 
 
   const oauthLoginHandler = async (authorizationCode) => {
-    let res = await axios.post('https://localhost:4000/oauth/login', { authorizationCode });
+    let res = await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/oauth/login`, { authorizationCode });
 
     login(res.data);
   };

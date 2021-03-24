@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 import Song from '../components/Song';
 import './SongList.css';
@@ -9,11 +12,11 @@ const SongList = ({ songs, listId, setSongs }) => {
   const [checkedSongList, setCheckedSongList] = useState([]); // 체크박스로 선택한 list안의 노래들
 
   const requestRemoveSong = async () => {
-    return await axios.post('https://localhost:4000/mylist/song/remove',
+    return await axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/mylist/song/remove`,
       { 'listid': Number(listId), 'songs': checkedSongList },
       { 'Content-Type': 'application/json', withCredentials: true })
       .then(() => {
-        axios.post('https://localhost:4000/mylist/info',
+        axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/mylist/info`,
           { 'listid': Number(listId) },
           { 'Content-Type': 'application/json', withCredentials: true })
           .then((res) => setSongs(res.data.Song))
