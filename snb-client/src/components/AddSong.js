@@ -69,11 +69,11 @@ const AddSong = ({ userdata, songList }) => {
 
   return (
     <div className='addsong'>
-      <Modal visible={isOpenPopup} color={'#aea1ea'} isBlackBtn={false} onClose={closePopUp} backColor={true} >
-        {isAddBtn ? (<div className='add-button'>항목을 선택해 주세요</div>) : (<div className='add-button'>저장되었습니다</div>)}
+      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={false}>
+        {isAddBtn ? (<div>항목을 선택해 주세요</div>) : (<div>저장되었습니다</div>)}
       </Modal>
-      <Modal visible={ListPopup} color={'#aea1ea'} isBlackBtn={false} onClose={closeListPopup} backColor={true}>
-        <div className='add-button'>첫 번째 리스트를 만들어 주세요</div>
+      <Modal visible={ListPopup} color={'#fff'} isBlackBtn={true} onClose={closeListPopup} backColor={false}>
+        <div>첫 번째 리스트를 만들어 주세요</div>
       </Modal>
       <select
         className="search-dropdown"
