@@ -14,6 +14,7 @@ export const Header = styled.div`
 
 export const Title = styled.div`
   font-size: 2rem;
+  color: #5e5e5e;
 `;
 
 export const Comment = styled.p`
@@ -33,7 +34,7 @@ export const InputName = styled.input`
   flex: 4 0 0;
   margin-right: 1.8%;
   border: none;
-  border-bottom: 1px solid;
+  border-bottom: 1px solid #cecece;
   &:focus {
     outline: none;
   }
@@ -44,11 +45,10 @@ export const AddButton = styled.button`
   margin-left: 1.8%;
   border: none;
   border-radius: 8px;
-  background-color: #4F5F7D;
+  background-color: #aea1ea;
   color: #ffffff;
   outline: none;
   &:hover {
-    background-color: #ffffff;
-    color: #4F5F7D;
+    background-color: #9382e2;
   }
 `;

@@ -29,10 +29,7 @@
   flex: 4 0 0;
   text-align: right;
   margin: 20px;
-  font-size: var(--font-large);
-}
-
-.songlist-selectsong {
+  font-size: var(--font-mid);
   color: var(--nav-point-color);
 }
 

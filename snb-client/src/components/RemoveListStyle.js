@@ -9,11 +9,13 @@ export const Header = styled.div`
   display: flex;
   flex-direction: row;
   align-items: baseline;
+  justify-content: center;
   margin-bottom: 8px;
 `;
 
 export const Title = styled.div`
   font-size: 2rem;
+  text-align: center;
 `;
 
 export const Comment = styled.p`
@@ -25,19 +27,20 @@ export const Comment = styled.p`
 export const Content = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
 `;
 
 export const RemoveButton = styled.button`
-  flex: 1 0 0;
+
+  width: 15rem;
+  height: 2rem;
   margin-left: 1.8%;
   border: none;
   border-radius: 8px;
-  background-color: #4F5F7D;
+  background-color: #e8447d;
   color: #ffffff;
   outline: none;
   &:hover {
-    background-color: #ffffff;
-    color: #4F5F7D;
+    background-color: #fb1d46;
   }
 `;
