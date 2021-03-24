@@ -2,6 +2,7 @@
 
 .addsong {
   display: flex;
+  align-items: center;
   
 }
 .listDropdown {
@@ -12,7 +13,7 @@
   border-radius: 15px;
 }
 
-.search-aaddlistbtn {
+.search-addlistbtn {
   height: 35px;
   cursor: pointer;
   font-size: var(--font-small);
@@ -20,6 +21,7 @@
   border: none;
   border-radius: 5px;
   margin-left: 30px;
+  padding: 5px 30px;
   background-color: var(--header-border-color);
   box-shadow:
   0 0px 3px var(--header-border-color),
@@ -32,7 +34,7 @@
   inset -6px 0 15px var(--header-border-color);
   transition: all 500ms ease-in-out;
 }
-.search-aaddlistbtn:hover {
+.search-addlistbtn:hover {
   background: #9382E2;
   box-shadow:
   0 0 6px #9382E2,
@@ -44,6 +46,9 @@
   inset -12px 0 30px #9382E2,
   inset 12px 0 30px #9382E2;
   transition: all 500ms ease-in-out;
+}
+.add-button {
+  color: #fff;
 }
 
 .search-dropdown {

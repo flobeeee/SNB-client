@@ -69,11 +69,11 @@ const AddSong = ({ userdata, songList }) => {
 
   return (
     <div className='addsong'>
-      <Modal visible={isOpenPopup} color={'#aea1ea'} isBlackBtn={true} onClose={closePopUp} backColor={true}>
-        {isAddBtn ? (<div>항목을 선택해 주세요</div>) : (<div>저장되었습니다</div>)}
+      <Modal visible={isOpenPopup} color={'#aea1ea'} isBlackBtn={false} onClose={closePopUp} backColor={true} >
+        {isAddBtn ? (<div className='add-button'>항목을 선택해 주세요</div>) : (<div className='add-button'>저장되었습니다</div>)}
       </Modal>
-      <Modal visible={ListPopup} color={'#aea1ea'} isBlackBtn={true} onClose={closeListPopup} backColor={true}>
-        <div>첫 번째 리스트를 만들어 주세요</div>
+      <Modal visible={ListPopup} color={'#aea1ea'} isBlackBtn={false} onClose={closeListPopup} backColor={true}>
+        <div className='add-button'>첫 번째 리스트를 만들어 주세요</div>
       </Modal>
       <select
         className="search-dropdown"
@@ -85,7 +85,7 @@ const AddSong = ({ userdata, songList }) => {
           return <option className="addsong-selector-option" key={list.id} value={list.id}>{list.name}</option>;
         })}
       </select>
-      <button className="search-aaddlistbtn" onClick={handleClick}>내 리스트에 저장</button>
+      <button className="search-addlistbtn" onClick={handleClick}>저장</button>
     </div >
 
   );
