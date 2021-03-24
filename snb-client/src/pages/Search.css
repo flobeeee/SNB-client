@@ -21,6 +21,11 @@
   color: #fff;
   font-size: 18px;
 }
+
+.info > div {
+  color: #fff
+}
+
 .info-num {
   width: 5%;
   text-align: center;

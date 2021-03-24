@@ -26,7 +26,7 @@ const Signup = (props) => {
     } else if (userPassword.length < 4) {
       setErrorMessage('비밀번호 길이는 4글자 이상이어야 합니다.');
     } else {
-      axios.post(`${process.env.REACT_APP_MAIN_SEVER_ADDRESS}/signup`,
+      axios.post(`${process.env.REACT_APP_MAIN_SERVER_ADDRESS}/signup`,
         { email: userEmail, password: userPassword, username: userName },
         { 'Content-Type': 'application/json', withCredentials: true })
         .then(res => {
