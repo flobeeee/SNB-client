@@ -99,6 +99,7 @@
   border: var(--item-border);
   border-radius: var(--radius-small);
   font-weight: 500;
+  color: #23202f;
   cursor: pointer;
 }
 
@@ -115,7 +116,7 @@
   outline: none;
   border: var(--item-border);
   border-radius: var(--radius-small);
-  color: #000000;
+  color: #23202f;
   font-weight: 500;
   width: 49%;
 }
@@ -136,7 +137,7 @@
 .login-github {
   cursor: pointer;
   font-size: var(--font-mid);
-  background-color: #000000;
+  background-color: #23202f;
   padding: 10px;
   outline: none;
   border: var(--item-border);
