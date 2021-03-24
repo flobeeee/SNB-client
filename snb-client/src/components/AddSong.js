@@ -67,13 +67,18 @@ const AddSong = ({ userdata, songList }) => {
     }
   };
 
+  const handleChange = (seletedList) => {
+    setListId(seletedList.value);
+
+  };
+
   return (
     <div className='addsong'>
-      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={false}>
-        {isAddBtn ? (<div>항목을 선택해 주세요</div>) : (<div>저장되었습니다</div>)}
+      <Modal visible={isOpenPopup} color={'#7660dccc'} isBlackBtn={false} onClose={closePopUp} backColor={true} isWarning={true}>
+        {isAddBtn ? (<div style={{ color: 'white' }}>노래를 선택해 주세요</div>) : (<div style={{ color: 'white' }}>저장되었습니다</div>)}
       </Modal>
-      <Modal visible={ListPopup} color={'#fff'} isBlackBtn={true} onClose={closeListPopup} backColor={false}>
-        <div>첫 번째 리스트를 만들어 주세요</div>
+      <Modal visible={ListPopup} color={'#7660dccc'} isBlackBtn={false} onClose={closeListPopup} backColor={true} isWarning={true}>
+        <div style={{ color: 'white' }}>첫 번째 리스트를 만들어 주세요</div>
       </Modal>
       <select
         className="search-dropdown"

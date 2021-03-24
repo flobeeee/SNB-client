@@ -16,6 +16,7 @@ export const Header = styled.div`
 export const Title = styled.div`
   font-size: 2rem;
   text-align: center;
+  color: #5e5e5e
 `;
 
 export const Comment = styled.p`
@@ -41,6 +42,6 @@ export const RemoveButton = styled.button`
   color: #ffffff;
   outline: none;
   &:hover {
-    background-color: #fb1d46;
+    background-color: #d61a5b;
   }
 `;

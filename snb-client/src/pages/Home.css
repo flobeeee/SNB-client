@@ -73,8 +73,10 @@
 /*개발자*/
 
 .ssp {
-  font-size: 2vw;
+  font-size: 1.2vw;
   animation: neon2 1s ease infinite;
+
+
 }
 
 @keyframes neon2 {
