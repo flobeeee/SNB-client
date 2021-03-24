@@ -7,9 +7,7 @@ import SongList from '../components/SongList';
 import './Mypage.css';
 
 const Mypage = ({ userdata, listHandler }) => {
-
-  const [currentListId, setCurrentListId] = useState('');
-  console.log('currentListId', currentListId);
+  const [currentListId, setCurrentListId] = useState(userdata.lists.length !== 0 ? String(userdata.lists[0].id) : '');
   const [songs, setSongs] = useState(userdata.songs);
 
   useEffect(async () => {
@@ -19,6 +17,8 @@ const Mypage = ({ userdata, listHandler }) => {
         { 'Content-Type': 'application/json', withCredentials: true })
         .then((res) => setSongs(res.data.Song))
         .catch(() => setSongs([]));
+    }else{
+      setSongs([]);
     }
   }, [currentListId]);
 
@@ -30,12 +30,9 @@ const Mypage = ({ userdata, listHandler }) => {
       .then((res) => {
         const addedList = {
           id: res.data.id,
-          name,
-          songs: []
+          name
         };
         const newList = [...userdata.lists, addedList];
-        //userdata.lists.push({ id: res.data.id, name });
-        //setSongs([]);
         listHandler(newList);
         setCurrentListId(String(res.data.id));
         return res.status === 201 ? true : false;
@@ -43,14 +40,18 @@ const Mypage = ({ userdata, listHandler }) => {
   };
 
   const requestRemoveList = async () => {
+    console.log('remove..', currentListId);
     return await axios.post('https://localhost:4000/mylist/remove',
       { 'listid': Number(currentListId) },
       { 'Content-Type': 'application/json', withCredentials: true })
       .then((res) => {
         const newList = userdata.lists.filter((data) => data.id !== Number(currentListId));
         listHandler(newList);
-        // setCurrentListId(String(userdata?.lists[0]?.id));
-        setSongs([]);
+        if(newList.length > 0){
+          setCurrentListId(String(newList[0].id));
+        } else {
+          setCurrentListId('');
+        }
         return res.status === 200 ? true : false;
       });
   };
@@ -72,7 +73,7 @@ const Mypage = ({ userdata, listHandler }) => {
             setCurrentListId={setCurrentListId}
             requestAddList={requestAddList}
             requestRemoveList={requestRemoveList}
-            setSongs={setSongs}
+            currentListId={currentListId}
           ></MyList>
 
         </div>
