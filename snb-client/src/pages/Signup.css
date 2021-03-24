@@ -10,7 +10,7 @@
   justify-content: space-between;
   width: 400px;
   height: 500px;
-  border: 1px solid #000000;
+  border: 1px solid white(0, 0, 0);
   border-radius: var(--radius-mid);
   padding: 20px;
   /* box-shadow: var(--shadow); */
@@ -51,10 +51,11 @@
 .signup-check {
   font-size: var(--font-small);
   border-radius: var(--radius-mid);
-  border: var(--item-border);
+  border: #cecece solid 1px;
   padding: 10px;
   outline: none;
-  margin-bottom: 15px
+  margin-bottom: 15px;
+
 }
 
 .signup-button {
