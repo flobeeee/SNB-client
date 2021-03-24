@@ -15,7 +15,7 @@
 }
 .userinfo-username {
   font-size: var(--font-large);
-  color: var(--menu-color);
+  color: #5e5e5e;
   font-weight: 700;
 }
 .userinfo-email {

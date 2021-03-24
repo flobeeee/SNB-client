@@ -27,14 +27,8 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
   const [page, setPage] = useState(1);
   const [nowPage, setNowPage] = useState(nowPages);
   const [Next, setnext] = useState(isNext);
-
-
-
-
   const [isOpenPopup, setIsOpenPopup] = useState(false);
   const [isAddBtn, setIsAddBtn] = useState(true);
-
-
 
   const isAdd = (e) => {
     if (e === true) {
@@ -47,13 +41,12 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
   };
   const openPopUp = () => {
     setIsOpenPopup(true);
+
   };
 
   const closePopUp = () => {
     setIsOpenPopup(false);
   };
-
-
 
   const NextPage = async () => {
 
@@ -119,8 +112,6 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
   };
 
   const getSongs = (songInfo) => {
-    // eslint-disable-next-line no-empty
-    //console.log('방금들어온값의 체크상태', songInfo.checked);
 
     if (songInfo.checked === false) {
       let song = songList.filter(el => Number(el.songNum) !== Number(songInfo.data.songNum));
@@ -132,8 +123,8 @@ const Search = ({ searchValue, searchType, title, userdata, isNext, nowPages }) 
 
   return (
     <div className='search-box'>
-      <Modal visible={isOpenPopup} color={'#fff'} isBlackBtn={true} onClose={closePopUp} backColor={false}>
-        {!isAddBtn ? (<div>첫번째 페이지 입니다</div>) : (<div>마지막 페이지 입니다</div>)}
+      <Modal visible={isOpenPopup} color={'#7660dccc'} isBlackBtn={false} onClose={closePopUp} backColor={true} isWarning={true} >
+        {!isAddBtn ? (<div style={{ color: 'white' }}>첫번째 페이지 입니다</div>) : (<div style={{ color: 'white' }}>마지막 페이지 입니다</div>)}
       </Modal>
       <div className='info'>
         <div className='info-num'>번호</div>

@@ -24,7 +24,7 @@ const Main = ({ logoutHandler, userdata, listHandler }) => {
 
   return (
     <Router>
-      <Header logoutHandler={logoutHandler} searchHandler={searchHandler} />
+      {userdata ? (<Header logoutHandler={logoutHandler} searchHandler={searchHandler} />) : <div></div>}
       <Switch>
         <Route path="/mypage">
           <Mypage userdata={userdata} listHandler={listHandler} />
@@ -33,7 +33,7 @@ const Main = ({ logoutHandler, userdata, listHandler }) => {
           <Search searchValue={searchValue} searchType={searchType} title={title} userdata={userdata} isNext={isNext} nowPages={nowPages} />
         </Route>
         <Route path="/">
-          <Home/>
+          <Home />
         </Route>
       </Switch >
     </Router >
