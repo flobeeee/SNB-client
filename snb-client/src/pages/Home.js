@@ -89,8 +89,8 @@ const Home = (props) => {
         <marquee className="ssp" behavior="alternate" direction="up" width="1400" height="100" scrollamount="8">
           <marquee behavior="alternate" scrollamount="8">
             <span className="ssp-name">Team</span>
-            ⎛⎝(^O^)⎠⎞<span className="ssp-name">백광호</span>
-          ⎛⎝(˘･ᴗ･˘)⎠⎞<span className="ssp-name">김유상</span>
+            ⎛⎝( ͡° ʖ̯ ͡°)⎠⎞<span className="ssp-name">백광호</span>
+          ⎛⎝(´༎ຶٹ༎ຶ`)⎠⎞<span className="ssp-name">김유상</span>
           ⎛⎝( •᷄⌓•᷅ )⎠⎞<span className="ssp-name">이은정</span>
           ⎛⎝(๑•᎑•๑)⎠⎞<span className="ssp-name">임혜림</span>
           </marquee>
